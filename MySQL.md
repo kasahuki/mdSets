@@ -16,7 +16,7 @@
 
 
 
-# *SQL分类*
+# 1.*SQL分类*
 
 ## *DDL*
 
@@ -278,7 +278,7 @@ where 首先过滤 之后在此基础上进行聚合函数的操作(分组) 分�
 
 
 
-## 函数
+## 2.函数
 
 ### 字符串函数
 
@@ -304,7 +304,7 @@ where 首先过滤 之后在此基础上进行聚合函数的操作(分组) 分�
 
 ![](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241006232418677.png)
 
-# 约束(constraint)
+# 3.约束(constraint)
 
 ![image-20241006232550253](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241006232550253.png)
 
@@ -355,7 +355,7 @@ where 首先过滤 之后在此基础上进行聚合函数的操作(分组) 分�
 
 ![image-20241007101848231](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241007101848231.png)
 
-# 多表查询
+# 4.多表查询
 
 ## 多表关系
 
@@ -375,6 +375,8 @@ where 首先过滤 之后在此基础上进行聚合函数的操作(分组) 分�
 
 ## 多表查询概述
 
+**核心：搞清表结构和查询条件**
+
 ![image-20241007103344572](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241007103344572.png)
 
 ![image-20241007103354179](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241007103354179.png)
@@ -385,19 +387,95 @@ where 首先过滤 之后在此基础上进行聚合函数的操作(分组) 分�
 
 ## 多表查询分类
 
+### 1.连接查询
+
+==核心：集合部分==
+
 ![image-20241007103520413](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241007103520413.png)
 
-### 内连接
 
-#### 隐式内连接
+
+![image-20241007162718114](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241007162718114.png)
+
+![image-20241007162737851](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241007162737851.png)
+
+==对于以上的这个交集就是dept_id==
+
+#### 内连接
+
+##### 隐式内连接
 
 ![image-20241007103952020](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241007103952020.png)
 
-#### 显示内连接
+##### 显示内连接
+
+![s](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241007161955054.png)
+
+
+
+**inner 可省略**
+
+---
+
+**这样就可以查询到内连接查询不到的null值了**
+
+**（如果一个是null，交集肯定是没有的）**
+
+所以内连接查不到
+
+#### 外连接
+
+![image-20241007162325426](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241007162325426.png)
+
+![image-20241007175858201](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241007175858201.png)
+
+
+
+![image-20241007175837594](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241007175837594.png)
+
+**左右表由书写顺序决定！**
+
+#### 自连接
+
+<font size=9 color=red>自连接分为内外连接</font>
+
+**也就是说集合关系还是一样的，区分内外什么时候用（一般就看null值要不要拆查询）**
+
+![image-20241007180433325](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241007180433325.png)
+
+
+
+**核心：将一张相同的表看作是两张一样的表设置主外键 来进行连接**
+
+**自连接必须起别名 不然会混淆**
+
+![image-20241007181014237](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241007181014237.png)
+
+**在排列组合中通过where确定对应关系**
+
+![image-20241007181339391](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241007181339391.png)
+
+
+
+## 2.联合查询
+
+![image-20241007182604689](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241007182604689.png)
+
+## 3.子查询
+
+
+
+#### 标量子查询
+
+#### 列子查询
+
+#### 行子查询
+
+#### 表子查询
 
 
 
 
 
-# 事务
+# 5.事务
 

@@ -289,7 +289,7 @@ int countLen(list l)//统计链表长度,如果加了地址符链表当前头节
 
 
 
-
+> 可设置头尾指针（类似带头尾结点！
 
 
 
@@ -389,7 +389,7 @@ bioListNode* find_by_index(bioList l, int index) {
 
 
 
-# basic：数组的缺陷和链表的区别
+# basic：==数组==的缺陷和链表的区别
 
 ~~~C++
 #include<iostream>
@@ -454,6 +454,34 @@ int main()
     return 0;
 }
 ~~~
+
+
+
+## 应用 ： 多项式的 -存储-  &&  多项式的 -相加-
+
+
+
+
+
+~~~C++
+~~~
+
+
+
+
+
+---
+
+
+
+
+
+~~~C++
+~~~
+
+
+
+
 
 
 
@@ -1269,18 +1297,476 @@ void createIntread(clueTreeNode *l)//一边遍历一边线索化
 ## 哈夫曼树
 ## trie树（拓展）
 
-
 # 六、并查集
+
+![image-20241009203612672](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241009203612672.png)
+
+## 简单方法
+
+~~~C++
+#include<iostream>
+using namespace std;
+//----------------------------------------------------------------------
+#define size 13 //初始化结点个数
+int UFset[size];//节点编号
+int val[size];//结点值 
+//------------------------------------------------------------------------field
+int find(int s[],int x)//返回x所属的根节点
+{
+    while(s[x]>=0) x=s[x];
+    return x;
+    
+}
+
+void Union(int s[],int root1,int root2)//合并集合
+{
+    if(root1==root2)return ;
+    else s[root1]=root2;
+    
+}
+//---------------------------------------------------------------------function
+int main()
+{
+    int n;
+    cin>>n;
+    
+    for(int i=0;i<size;i++)UFset[i]=-1;//只有 s[x]是 -1 的才是 根结点 ---initialize
+    for(int i=0;i<n;i++)
+    {
+        int x;
+        cin>>x;
+        val[i]=x;//--------------------//赋值（assignment）
+    }
+    
+    cout<<val[find(UFset,4)]<<endl;//一开始都是离散的点根节点都是本身
+    
+    Union(UFset,find(UFset,0),find(UFset,1));
+    Union(UFset,find(UFset,1),find(UFset,2));
+    Union(UFset,find(UFset,3),find(UFset,4));
+    if(find(UFset,3)==find(UFset,2))cout<<1;
+    else cout<<0;
+
+    
+    
+    return 0;
+}
+~~~
+
+**==缺点==： union操作有可能会使大树合并到小树上导致树的深度增加，导致下次find时要耗费很长时间**
+
+## 时间复杂度：
+
+union 内部操作为O(1)（前提是已经查到了root）;
+
+而一次find操作最差情况的时间复杂度 是 O(n) 在n个结点且深度刚好为n的情况下、
+
+---
+
+
+
+## 优化union
+
+**==主要思路==：  就是将小树并到大树上避免树的深度越来越深**
+
+**操作：让s[root]不存-1 而是存 -（该root 树下面的结点数）**
+
+~~~C++}
+void Union(int s[],int root1,int root2)//优化
+{
+    if(root1==root2)return ;
+    
+    if(s[root2]<s[root1])//注意是负数
+    {
+       
+        s[root2]+=s[root1]; 
+        s[root1]=root2;
+    }
+    else
+    {
+        // s[root2]=root1;
+        s[root1]+=s[root2];
+        s[root2]=root1;
+        //注意顺序问题
+    }
+    
+}
+~~~
+
+最坏时间情况为O(logn)
+
+## 终极优化（压缩路径）
+
+~~~C++
+int find(int x)//找到编号为x的结点的根节点
+{
+    if(x!=p[x])
+        p[x]=find(p[x]);
+        
+        //return x; 不能
+         return p[x];
+        
+}
+//p【root】=root
+~~~
+
+时间复杂度接近O (1)
+
+**递的过程找到根结点**
+
+**归的时候让所有结点指向根结点**
+
+![image-20241009211307951](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241009211307951.png)
+
+
+
+![image-20241009211933606](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241009211933606.png)
 
 # 七、图
 
 [邻接表入门](#五、树)
 
+## 1.图的存储
+
+#### 1.邻接矩阵（适用于稠密图）
+
+**边如果很少（稀疏图）就会有很多空间浪费**
+
+
+
+![image-20241009213321006](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241009213321006.png)
+
+##### 定义
+
+~~~C++
+typedef struct 
+{
+    char vex[N];//顶点信息可以是结构体
+    int edge[N][N];//边  无权图的话可以是bool类型
+    int vexnum ,arcnum;
+    //存储这个图的点个数和边个数
+}graph;
+~~~
+
+![image-20241009213547037](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241009213547037.png)
+
+~~~C++
+
+int main()
+{
+    int n;//n个顶点
+    cin>>n;
+    graph g;
+    for(int i=0;i<n;i++)cin>>g.vex[i];
+    //edge[a][b] a->b;
+    int q;
+    cin>>q;
+    while(q--)
+    {
+        int a,b;//连接两个顶点
+        cin>>a>>b;//输入两个顶点的编号
+        g.edge[a][b]=1;
+        g.edge[b][a]=1;
+    }//建立图的关系
+    int ans=0;//记录这个图的度
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<n;j++)
+        {
+             if(g.edge[i][j])
+             ans++;
+            cout<<g.edge[i][j]<<" ";
+        }
+        cout<<endl;
+    }
+        cout<<ans/2;//度的数量
+    
+    return 0;
+}
+~~~
+
+
+
+##### 带权图的存储
+
+
+
+![image-20241009213558354](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241009213558354.png)
+
+
+
+**带权图先初始化所有边是0或者正无穷的都是可以的！**
+
+![image-20241009213605823](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241009213605823.png)
+
+
+
+> 涉及线性代数和矩阵的存储
+>
+> ![image-20241009214016575](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241009214016575.png)
+
+
+
+##### 邻接矩阵的性质
+
+
+
+![image-20241009213628105](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241009213628105.png)
+
+
+
+
+
+![image-20241009213635502](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241009213635502.png)
+
+![image-20241009213642866](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241009213642866.png)
+
+#### 2.邻接表（适用于稀疏图）
+
+![image-20241009220501867](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241009220501867.png)
+
+---
+
+
+
+
+
+![image-20241009220508380](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241009220508380.png)
+
+---
+
+
+
+
+
+![image-20241009220514633](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241009220514633.png)
+
+
+
+> **vertices 顶点集（合）**
+>
+> **vertex 顶点**
+
+
+
+##### 初始化&&定义
+
+~~~C++
+const int N=1e3;
+int n;
+typedef struct Arcnode  // 弧/边
+{
+    int adjvex;//指向的顶点的编号
+    Arcnode *next;
+    
+};//相当于是链表结点
+
+typedef struct Vnode //顶点结构体结点 (存每个结点的信息)
+{
+    int val;//结点的值
+    Arcnode *first;//存这个结点的头指针位置
+    
+}adjList[N];//存每个结点
+
+//存图结构体
+typedef struct 
+{
+  adjList vertices;// 数组类型 顶点集合
+  int vexnum,arcnum;//顶点总和和边/弧总数
+}graph;
+
+
+void initialize(graph *g)//传入地址
+{
+    for(int i=0;i<n;i++)g->vertices[i].first=nullptr;
+}
+~~~
+
+##### 添加边结点
+
+~~~C++
+void add(graph *g,int a,int b)//传入结点编号   ~~不带头结点的
+{
+  Arcnode *newNode = new Arcnode;
+  newNode->adjvex=b;
+  newNode->next=g->vertices[a].first;
+  g->vertices[a].first=newNode;
+  
+  
+  Arcnode *newNode_reverse =new Arcnode;
+  newNode_reverse->adjvex=a;
+  newNode_reverse->next=g->vertices[b].first;
+  g->vertices[b].first=newNode_reverse;
+  
+
+  
+}//功能：a<->b 插入(无向图)
+~~~
+
+##### 传参和基本操作注意（c语言和c++特性区别）
+
+~~~C++
+    graph g; //注意c语言和c++区别
+    cin>>n;//结点个数 
+    initialize(&g);//c语言特性 传参函数形参那边不允许写& 所以尽量写指针形式
+    for(int i=0;i<n;i++)cin>>g.vertices[i].val;//输入结点值
+   
+    int q;
+    cin>>q;
+    while(q--)
+    {
+        int a,b;
+        cin>>a>>b;
+        //连接结点
+        add(&g,a,b);
+    
+        
+    }
+    int x=0;
+    while(cin>>x)
+    {
+        for(Arcnode *i=g.vertices[x].first;i!=nullptr;i=i->next)
+            cout<<i->adjvex<<' ';
+         //枚举类型注意
+         //注意释放内存（when）
+         
+    }
+~~~
+
+##### 对于 有向图 枚举 入边 和 出边（简单）
+
+~~~C++
+    //枚举入边
+    int x;
+    cin>>x;
+    for(int i=0;i<n;i++)//枚举每一个编号
+    {
+        if(i==x)
+            continue;
+        for(Arcnode *j=g.vertices[i].first;j!=nullptr;j=j->next)
+        {
+           if(j->adjvex==x)
+            cout<<i<<' ';//此为入边的结点
+        }
+        cout<<endl;
+    }  
+~~~
+
+
+
+## 2.==图的基本操作==（对于邻接表和邻接矩阵）
+
+> **注意：有无向图有向图之分！！！**
+
+### 判断图是否存在边<x,y> 有向边（弧） （x,y） 无向边
+
+对于邻接表：遍历链表 时间复杂度：O(1)~O(|V|)  （考虑最好和最坏情况）
+
+![image-20241010224253432](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241010224253432.png)
+
+---
+
+
+
+
+
+![image-20241010224311616](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241010224311616.png)
+---
+
+---
+
+
+
+
+
+![image-20241010224337676](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241010224337676.png)
+
+---
+
+![image-20241010224346968](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241010224346968.png)
+
+**邻接矩阵的删除**
+
+---
+
+
+
+![image-20241010224404081](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241010224404081.png)
+
+**邻接表的删除**
+
+---
+
+
+
+ ![image-20241010224512653](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241010224512653.png)
+
+**有向图的删除**
+
+---
+
+![image-20241010224520701](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241010224520701.png)
+
+**对于邻接表直接头插法即可！！**
+
+---
+
+![image-20241010224528077](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241010224528077.png)
+
+
+
+---
+
+
+
+![image-20241010224535557](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241010224535557.png)
+
+---
+
+![image-20241010224543631](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241010224543631.png)
+
+---
+
+
+
+**带权图的权值获取和查询**
+
+![image-20241010224550180](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241010224550180.png)
+
+---
+
+
+
+## 3. 图的遍历
+
+### 1.图的BFS遍历
+
+### 2.图的DFS遍历
+
+
+
+
+
+
+
+## *最短路
+
+### 0.bfs  （✓） （win + .）
+
+
+
+### 1.dijkstra
+
+
+
+### 2.floyd
+
+
+
 
 
 # 八、最小生成树
 
-# 九、二叉排序树
+# 九、二叉排序树（二叉搜索树）
 
 # 十、平衡二叉树
 
@@ -1289,6 +1775,10 @@ void createIntread(clueTreeNode *l)//一边遍历一边线索化
 # 十二、B树
 
 # 十三、B+树
+
+
+
+
 
 # 十四、堆
 
@@ -1401,6 +1891,10 @@ void change(int k,int x)
 # 十五、哈希表(散列查找)
 
 [树的相关知识](#五、树)
+
+
+
+
 
 # 十六、排序
 
