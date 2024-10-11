@@ -1427,7 +1427,7 @@ int find(int x)//找到编号为x的结点的根节点
 
 ## 1.图的存储
 
-#### 1.邻接矩阵（适用于稠密图）
+#### 1.邻接矩阵（适用于 稠密图 ）
 
 **边如果很少（稀疏图）就会有很多空间浪费**
 
@@ -1506,7 +1506,7 @@ int main()
 
 
 
-##### 邻接矩阵的性质
+##### 邻接矩阵的性质（涉及压缩矩阵的存储）
 
 
 
@@ -1553,12 +1553,14 @@ int main()
 ~~~C++
 const int N=1e3;
 int n;
+
 typedef struct Arcnode  // 弧/边
 {
     int adjvex;//指向的顶点的编号
     Arcnode *next;
     
-};//相当于是链表结点
+}Arcnode;//相当于是链表结点
+//好习惯
 
 typedef struct Vnode //顶点结构体结点 (存每个结点的信息)
 {
@@ -1740,7 +1742,281 @@ void add(graph *g,int a,int b)//传入结点编号   ~~不带头结点的
 
 ### 1.图的BFS遍历
 
+> **对于  <无向图>  && <邻接表>  的bfs**
+
+~~~C++
+#include<iostream>
+using namespace std;
+const int N=1e3;
+int n;
+
+int q[N];
+
+typedef struct Arcnode  // 弧/边
+{
+    int adjvex;//指向的顶点的编号
+    Arcnode *next;
+    
+}Arcnode;//相当于是链表结点
+//好习惯
+
+typedef struct Vnode //顶点结构体结点 (存每个结点的信息)
+{
+    int val;//结点的值
+    Arcnode *first;//存这个结点的头指针位置
+    
+}adjList[N];//存每个结点
+
+//存图结构体
+typedef struct 
+{
+  adjList vertices;// 数组类型 顶点集合
+  int vexnum,arcnum;//顶点总和和边/弧总数
+}graph;
+
+void add(graph *g,int a,int b)//传入结点编号   ~~不带头结点的
+{
+  Arcnode *newNode = new Arcnode;
+  newNode->adjvex=b;
+  newNode->next=g->vertices[a].first;
+  g->vertices[a].first=newNode;
+  
+  Arcnode *newNode_reverse = new Arcnode;
+  newNode_reverse->adjvex=a;
+  newNode_reverse->next=g->vertices[b].first;
+  g->vertices[b].first=newNode_reverse;
+  
+}//功能：a<->b 插入(无向图)
+void initialize(graph *g)//传入地址
+{
+    for(int i=0;i<n;i++)g->vertices[i].first=nullptr;
+}
+void bfs(graph *g,int v)//从结点v开始的bfs遍历
+{
+    //初始化
+    bool st[N];//标记是否访问过
+    int hh=0,tt=-1;
+    q[++tt]=v;
+    st[v]=1;
+    
+    while(tt>=hh)//队列不空
+    {
+        int t=q[hh++];//取弹队头
+        for(Arcnode *i=g->vertices[t].first;i!=nullptr;i=i->next)
+        {
+           if(!st[i->adjvex])
+           {
+               cout<<i->adjvex<<" ";
+               st[i->adjvex]=1;
+               q[++tt]=i->adjvex;
+               
+           }
+           
+        }
+    }
+    
+}
+int main()
+{
+    graph g;
+  
+    cin>>n;//结点个数 
+    initialize(&g);
+    for(int i=0;i<n;i++)cin>>g.vertices[i].val;//输入结点值
+    
+  
+    
+    int q;
+    cin>>q;
+    while(q--)
+    {
+        int a,b;
+        cin>>a>>b;
+        //连接结点
+        add(&g,a,b);
+    
+        
+    }
+    bfs(&g,0);
+  
+  
+    
+    return 0;
+}
+~~~
+
+
+
+#### 如果图不止一个连通块
+
+#### -->就无法遍历完所有顶点!!!\
+
+>  **所要添加的操作是：**
+
+~~~C++
+void bfs(graph *g,int v)//从结点v开始的bfs遍历
+{
+    //初始化
+    cout<<v<<" ";
+    int hh=0,tt=-1;
+    q[++tt]=v;
+    st[v]=1;
+    
+    while(tt>=hh)//队列不空
+    {
+        int t=q[hh++];//取弹队头
+        for(Arcnode *i=g->vertices[t].first;i!=nullptr;i=i->next)
+        {
+           if(!st[i->adjvex])
+           {
+               cout<<i->adjvex<<" ";
+               st[i->adjvex]=1;
+               q[++tt]=i->adjvex;
+               
+           }
+           
+        }
+    }
+    
+}
+
+void bfsTraveler(graph *g)
+{
+  for(int i=0;i<n;i++)st[i]=0;
+  //先初始化
+
+  for(int i=0;i<n;i++)
+  {
+      if(!st[i])
+      {
+         bfs(g,i); 
+         cout<<endl<<"-------"<<endl;
+      }
+       
+       
+  }
+  
+    
+}
+~~~
+
+### 复杂度分析
+
+![image-20241011192142663](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241011192142663.png)
+
+
+
+
+
+---
+
+### 广度优先生成树
+
+![](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241011192137652.png)
+
+
+
 ### 2.图的DFS遍历
+
+> 针对于 无向图 和 邻接表的dfs遍历
+
+~~~C++
+void dfs(graph *g,int v)
+{
+    
+    for(Arcnode *i=g->vertices[v].first;i!=nullptr;i=i->next)
+    {
+      
+        if(!st[i->adjvex])
+        {   
+            cout<<i->adjvex<<' ';
+            st[i->adjvex]=1;
+            dfs(g,i->adjvex);
+        }
+    }
+    
+}
+~~~
+
+#### 如果图不止一个连通块
+
+#### -->就无法遍历完所有顶点!!!
+
+~~~C++
+void dfs(graph *g,int v)
+{
+    cout<<v<<" ";//为什么结点处理放这里可以（一定满足）
+    
+    for(Arcnode *i=g->vertices[v].first;i!=nullptr;i=i->next)
+    {
+        if(!st[i->adjvex])
+        {   
+            st[i->adjvex]=1;
+            dfs(g,i->adjvex);
+        }
+    }
+    
+}
+
+
+void dfstravel(graph *g)
+{
+       
+    
+    for(int i=0;i<n;i++)st[i]=0;//初始化
+  
+
+    for(int i=0;i<n;i++)
+    {
+        
+        if(!st[i])
+        {
+          st[i]=1;
+          dfs(g,i);  
+          cout<<endl<<"--------"<<endl;
+        }
+            
+    }
+}
+~~~
+
+
+
+### 复杂度分析
+
+![](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241011210933645.png)
+
+**思维：dfs找全部解，一旦tle了就记忆化，剪枝或者改为bfs（最短路），实在不行就dp！！**
+
+
+
+![image-20241011211122218](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241011211122218.png)
+
+---
+
+
+
+![image-20241011211157535](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241011211157535.png)
+
+![image-20241011211202359](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241011211202359.png)
+
+---
+
+
+
+### 深度优先生成树/森林
+
+
+
+![image-20241011211207045](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241011211207045.png)
+
+![image-20241011211211264](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241011211211264.png)
+
+![image-20241011211215101](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241011211215101.png)
+
+---
+
+
 
 
 
@@ -1762,9 +2038,79 @@ void add(graph *g,int a,int b)//传入结点编号   ~~不带头结点的
 
 
 
+---
+
 
 
 # 八、最小生成树
+
+## 1.prim算法
+
+![image-20241011211526962](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241011211526962.png)
+
+![image-20241011211542709](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241011211542709.png)
+
+![image-20241011211551109](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241011211551109.png)
+
+---
+
+
+
+## prim实现操作
+
+![image-20241011211950682](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241011211950682.png)
+
+![image-20241011212001654](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241011212001654.png)
+
+![image-20241011212008783](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241011212008783.png)
+
+![image-20241011212123191](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241011212123191.png)
+
+![image-20241011212129170](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241011212129170.png)
+
+---
+
+
+
+
+
+
+
+​	
+
+
+
+## 2. cruscal算法
+
+![image-20241011211618541](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241011211618541.png)
+
+![image-20241011211634355](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241011211634355.png)
+
+## cruscal实现操作（并查集）
+
+
+
+![image-20241011212138688](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241011212138688.png)
+
+![image-20241011212205046](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241011212205046.png)
+
+![image-20241011212208675](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241011212208675.png)
+
+![image-20241011212211415](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241011212211415.png)
+
+
+
+## ==sum==
+
+![image-20241011211648769](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241011211648769.png)
+
+
+
+
+
+# -------《查找》--------
+
+
 
 # 九、二叉排序树（二叉搜索树）
 
@@ -1801,11 +2147,12 @@ void down(int u)
 {
     int t=u;//当前结点cur
     
-    //比较三个值
+    //比较三个值（前提是指涉不为空）
     if(u*2<=Size&&h[u*2]<h[t])t=u*2;
     if(u*2+1<=Size&&h[u*2+1]<h[t])t=u*2+1;
+    //两个if都要判断
     
-    if(t!=u)
+    if(t!=u)//如果确实要改变
     {
         swap(h[t],h[u]);
         down(t);//直到down到满足条件
@@ -1822,7 +2169,7 @@ void down(int u)
     Size=n;
     for(int i=1;i<=Size;i++)cin>>h[i];//传入时都是离散的每一个点
     //!
-    for(int i=n/2;i;i--)down(i);//从最后一个父节点开始建堆(建树)
+    for(int i=n/2;i;i--)down(i);//从最后一个父节点开始建堆(建小根堆)
 ~~~
 
 
