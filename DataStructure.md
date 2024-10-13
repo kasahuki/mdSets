@@ -2032,17 +2032,502 @@ void dfstravel(graph *g)
 
 ### 1.dijkstra
 
+![image-20241013142449294](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241013142449294.png)
 
+![image-20241013142453353](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241013142453353.png)
+
+```C++
+#include <cstring>
+#include <iostream>
+#include <algorithm>
+
+using namespace std;
+
+const int N = 510;
+
+int n, m;
+int g[N][N];
+int dist[N];//记录最短路径！！
+bool st[N];//标记是否找到最短路
+
+int dijkstra()
+{
+    memset(dist, 0x3f, sizeof dist);
+    dist[1] = 0;//标记起点
+
+    for (int i = 0; i < n - 1; i ++ )
+    {
+        int t = -1;
+        for (int j = 1; j <= n; j ++ )
+            if (!st[j] && (t == -1 || dist[t] > dist[j]))// 找到当前未标记的节点中距离最小的节点
+                t = j;
+
+        for (int j = 1; j <= n; j ++ )
+            dist[j] = min(dist[j], dist[t] + g[t][j]);// 更新邻接节点的距离
+
+        st[t] = true;
+    }
+
+    if (dist[n] == 0x3f3f3f3f) return -1;
+    return dist[n];
+}
+
+int main()
+{
+    scanf("%d%d", &n, &m);
+
+    memset(g, 0x3f, sizeof g);
+    while (m -- )
+    {
+        int a, b, c;
+        scanf("%d%d%d", &a, &b, &c);
+
+        g[a][b] = min(g[a][b], c);//防止重边
+    }
+
+    printf("%d\n", dijkstra());
+
+    return 0;
+}
+
+
+```
+
+### 时间复杂度（与prim极其类似）
 
 ### 2.floyd
 
 
 
+**key：中转点**
+
+![image-20241013140817638](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241013140817638.png)
+
+![image-20241013140846502](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241013140846502.png)
+
+
+
+
+
+
+
+~~~C++
+#include<iostream>
+#include<cstring>
+using namespace std;
+const int N=1e3+10;
+int mp[N][N];
+int vex[N];
+int n;
+int path[N][N];
+void floyd()
+{
+    for(int i=0;i<n;i++)//枚举中转点
+        for(int j=0;j<n;j++)
+            for(int k=0;k<n;k++)
+                if(mp[j][k]>mp[j][i]+mp[i][k])
+                {
+                    mp[j][k]=mp[j][i]+mp[i][k];
+                    path[j][k]=i;//类似bfs中的last数组记录路径
+                }      
+     
+}
+
+int main()
+{
+  
+    cin>>n;
+    memset(mp,0x3f,sizeof mp);//0x3f3f3f3f
+    memset(path,-1,sizeof path);
+   int x;
+   cin>>x;
+    while(x--)
+    {
+      int a,b,val;
+      cin>>a>>b>>val;
+      mp[a][b]=mp[b][a]=val;//两个连等号
+      
+    }
+    floyd();
+  
+    int st,ed;
+    cin>>st>>ed;
+    while(ed!=st)
+    {
+        cout<<ed<<' ';
+        ed=path[st][ed];
+        
+    }
+    return 0;
+}
+~~~
+
+**时空复杂度：0(v3次方) o(v2次方)**
+
+**floyd可以解决带负权边的问题！**
+
+
+
+![image-20241013141204822](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241013141204822.png)
+
+
+
+![image-20241013141213311](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241013141213311.png)
+
+**时空复杂度具体还是得看图的存储结构**
+
 ---
+
+# 拓扑排序（可判断回路）
+
+**key ： 拓扑排序一定是有向无环图！**
+
+
+
+![image-20241013143603689](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241013143603689.png)
+
+![image-20241013143703056](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241013143703056.png)
+
+### 邻接矩阵法
+
+~~~C++
+#include<iostream>
+#include<vector>
+using namespace std;
+const int N=10000;
+int g[N][N];
+int st[N];
+int top=0;
+int cnt;//记录当前的顶点数
+int n;
+int inedge[N];
+vector<int>ans;
+int bfs()
+{
+       while(top)
+    {
+        ans.push_back(st[top]);
+        int t=st[top];
+        cnt++;
+        top--;
+        for(int i=1;i<=n;i++)
+        {
+            if(g[t][i])
+            {
+              inedge[i]--;  
+                   
+            if(inedge[i]==0)
+            {
+              st[++top]=i;  
+              g[t][i]=0;//删去这条边
+            }
+            
+            }
+        }
+        
+        
+    }
+    if(cnt<n)
+        return 0;
+    else
+        return 1;
+}
+int main()
+{
+ 
+    cin>>n;
+    int x;
+    cin>>x;
+    while(x--)
+    {
+        int a,b;
+        cin>>a>>b;
+       
+        if(!g[a][b])//防止重边重复计数
+        inedge[b]++;//统计入边  
+        g[a][b]=1;//表明有边
+    }
+    for(int i=n;i>=1;i--)
+    {
+        if(inedge[i]==0) 
+            st[++top]=i;
+    }
+    //先存储入度为0的点
+    if(bfs())
+        for(int i=0;i<n;i++)
+            cout<<ans[i]<<' ';
+    else
+        cout<<-1;
+
+//  for(int i=1;i<=n;i++)cout<<inedge[i]<<' '; 
+    
+}
+~~~
+
+### 邻接表写法
+
+~~~C++
+#include<iostream>
+#include<vector>
+using namespace std;
+const int N=1e5+10;
+vector<int>ans;
+int st[N];
+int top;
+int inedge[N];
+
+int n;
+typedef struct ArcNode
+{
+    int adjvex;
+    ArcNode *next;
+}ArcNode;
+
+typedef struct vexNode
+{
+    int val;
+    ArcNode *first;//头结点
+}verlist[N];
+typedef struct graph
+{
+    verlist vertices;//顶点集
+    int numvex,numedge;
+   
+    
+}graph;
+void add(graph *g,int a,int b)
+{
+    ArcNode *n1=new ArcNode();
+    n1->adjvex=b;
+    n1->next=g->vertices[a].first;
+    g->vertices[a].first=n1;
+    
+}
+int bfs(graph *g)
+{
+    int cnt=0;
+    while(top)
+    {
+        int t=st[top--];//这里就是对队列中的元素处理
+        cnt++;
+        ans.push_back(t);
+        for(ArcNode *i=g->vertices[t].first;i!=nullptr;i=i->next)
+        {
+            inedge[i->adjvex]--;//因为在这个循环中把所有出边都删除了
+            if(inedge[i->adjvex]==0)
+            {
+                st[++top]=i->adjvex;
+                
+            }
+        }
+        
+    }
+    if(cnt<n)return 0;
+    else
+    return 1;
+}
+int main()
+{
+    graph g;
+
+    cin>>n;
+    for(int i=1;i<=n;i++)g.vertices[i].first=nullptr;//一定要初始化
+    int x;
+    cin>>x;
+   
+    while(x--)
+    {
+        int a;
+        int b;
+        cin>>a>>b;
+     
+            add(&g,a,b); 
+    }
+    for(int i=1;i<=n;i++)
+    {
+      for(ArcNode *h=g.vertices[i].first;h!=nullptr;h=h->next)
+      {
+          inedge[h->adjvex]++;
+      }
+    }
+    // for(int i=1;i<=n;i++)
+    //     if(inedge[i]==0)
+    //         st[++top]=i;
+    // if(bfs(&g))
+    //     for(auto c: ans)
+    //         cout<<c<<' ';
+    // else
+    //     cout<<-1;
+        cout<<inedge[2];
+ 
+    
+}
+
+~~~
+
+**注意点：初始化问题 nullptr 一定！！**
+
+**删除边问题**
+
+
+
+### 逆拓扑排序（使用dfs）
+
+### 对于逆序 考虑dfs（递归栈）
+
+#### 整体
+
+~~~c++
+
+    #include<iostream>
+    #include<vector>
+    using namespace std;
+    const int N=1e5+10;
+    vector<int>ans;
+    bool flag[N];
+    int n;
+    typedef struct ArcNode
+    {
+        int adjvex;
+        ArcNode *next;
+    }ArcNode;
+    
+    typedef struct vexNode
+    {
+        int val;
+        ArcNode *first;//头结点
+    }verlist[N];
+    typedef struct graph
+    {
+        verlist vertices;//顶点集
+        int numvex,numedge;
+       
+        
+    }graph;
+    void add(graph *g,int a,int b)
+    {
+        ArcNode *n1=new ArcNode();
+        n1->adjvex=b;
+        n1->next=g->vertices[a].first;
+        g->vertices[a].first=n1;
+        
+    }
+    
+      void dfs(graph *g,int v)//起点
+    {
+        for(ArcNode *i=g->vertices[v].first;i!=nullptr;i=i->next)
+        {
+            if(!flag[i->adjvex])
+            {
+              flag[i->adjvex]=1;
+              dfs(g,i->adjvex);  
+              
+            }
+            
+        }
+        cout<<v<<' ';
+        
+    }
+    
+    
+    
+    void dfstravel(graph *g)
+    {
+        for(int i=1;i<=n;i++)
+        flag[i]=0;
+        //初始化
+        for(int i=1;i<=n;i++)//从入度为零的点开始
+        {
+            if(!flag[i])
+            {
+            
+                dfs(g,i);
+            }
+            
+        }
+        
+    }
+  
+    int main()
+    {
+        graph g;
+    
+        cin>>n;
+        for(int i=1;i<=n;i++)g.vertices[i].first=nullptr;//一定要初始化
+        int x;
+        cin>>x;
+       
+        while(x--)
+        {
+            int a;
+            int b;
+            cin>>a>>b;
+         
+            add(&g,a,b); 
+        }
+        dfstravel(&g);
+        
+            
+      
+        
+    }
+
+~~~
+
+#### 核心代码
+
+~~~C++
+ 
+      void dfs(graph *g,int v)//起点
+    {
+        for(ArcNode *i=g->vertices[v].first;i!=nullptr;i=i->next)
+        {
+            if(!flag[i->adjvex])
+            {
+              flag[i->adjvex]=1;
+              dfs(g,i->adjvex);  
+              
+            }
+            
+        }
+        cout<<v<<' ';
+        
+    }
+    
+    
+    
+    void dfstravel(graph *g)
+    {
+        for(int i=1;i<=n;i++)
+        flag[i]=0;
+        //初始化
+        for(int i=1;i<=n;i++)//从入度为零的点开始
+        {
+            if(!flag[i])
+            {
+            
+                dfs(g,i);
+            }
+            
+        }
+        
+    }
+
+~~~
+
+![image-20241013170231676](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241013170231676.png)
+
+# 关键路径
+
+
 
 
 
 # 八、最小生成树
+
+**连通图概念：从一个顶点可以到达任意一个顶点（都有路径）**
+
+生成树：表示所有顶点均由边连接在一起，但**不存在回路**的图
 
 ## 1.prim算法
 
@@ -2080,13 +2565,13 @@ void dfstravel(graph *g)
 
 
 
-## 2. cruscal算法
+## 2. kruskal算法
 
 ![image-20241011211618541](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241011211618541.png)
 
 ![image-20241011211634355](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241011211634355.png)
 
-## cruscal实现操作（并查集）
+## kruskal实现操作（并查集）
 
 
 
