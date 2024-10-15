@@ -1564,7 +1564,7 @@ union 内部操作为O(1)（前提是已经查到了root）;
 
 **==主要思路==：  就是将小树并到大树上避免树的深度越来越深**
 
-**操作：让s[root]不存-1 而是存 -（该root 树下面的结点数）**
+**操作：让s[root]不存-1 而是存 -（该root 树下面的结点数包括自身）**
 
 ~~~C++}
 void Union(int s[],int root1,int root2)//优化
@@ -1580,7 +1580,7 @@ void Union(int s[],int root1,int root2)//优化
     else
     {
         // s[root2]=root1;
-        s[root1]+=s[root2];
+        s[root1]+=s[root2];w
         s[root2]=root1;
         //注意顺序问题
     }
@@ -1590,7 +1590,7 @@ void Union(int s[],int root1,int root2)//优化
 
 最坏时间情况为O(logn)
 
-## 终极优化（压缩路径）
+## （压缩路径）
 
 ~~~C++
 int find(int x)//找到编号为x的结点的根节点
@@ -1605,7 +1605,7 @@ int find(int x)//找到编号为x的结点的根节点
 //p【root】=root
 ~~~
 
-时间复杂度接近O (1)
+时间复杂度 为O (logn)
 
 **递的过程找到根结点**
 
@@ -1616,6 +1616,149 @@ int find(int x)//找到编号为x的结点的根节点
 
 
 ![image-20241009211933606](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241009211933606.png)
+
+## ’终极‘优化（不是按深度来比较的！）
+
+**而是按结点总数来比较的！**
+
+**结合压缩路径和小树合并到大树！**
+
+（按size结点大小）
+
+~~~C++
+#include<iostream>
+using namespace std;
+const int N=1e5+10;
+int p[N];
+int find(int x)
+{
+    return p[x]>=0?p[x]=find(p[x]):x;
+}
+
+int main()
+{
+  int n;
+  cin>>n;
+  
+  for(int i=1;i<=n;i++)p[i]=-1;//只有根的p[root]才是负数 并且绝对值等于这个集合的结点数
+
+  int u;
+  cin>>u;
+  while(u--)//并 主要是在这个操作优化
+  {
+    int a,b;
+    cin>>a>>b;
+    int pa=find(a);
+    int pb=find(b);
+    if(pa==pb)
+    continue;
+    if(p[pa]<p[pb])//注意负数
+    {
+       
+        p[pa]+=p[pb];
+         p[pb]=pa;
+    }
+    else
+    {
+      p[pb]+=p[pa];
+       p[pa]=pb;
+    }
+  }
+  int q;
+  cin>>q;
+  while(q--)
+  {
+    int a,b;
+    cin>>a>>b;
+    if(find(a)==find(b))
+      puts("Yes");
+    else
+      puts("No");
+    
+  } 
+
+  return 0;
+}
+~~~
+
+![image-20241015213454839](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241015213454839.png)
+
+**如果是按size比较的话 就将深度高的接到深度低的上了 就会增加深度**
+
+## 真·终极优化（按深度）
+
+~~~C++
+#include<iostream>
+using namespace std;
+const int N=1e5+10;
+int p[N];
+int height[N];//高度只存在根节点上
+int find(int x)
+{
+    return p[x]!=x?p[x]=find(p[x]):x;
+}
+
+int main()
+{
+  int n;
+  cin>>n;
+  
+  for(int i=1;i<=n;i++)
+  {
+    p[i]=i;
+    height[i]=1;
+  }
+  int u;
+  cin>>u;
+  while(u--)//并
+  {
+    int a,b;
+    cin>>a>>b;
+    int pa=find(a);
+    int pb=find(b);
+    if(pa==pb)
+    continue;
+    if(height[pa]<height[pb])
+      p[pa]=pb;
+    else if(height[pa]>height[pb])
+      p[pb]=pa;
+    else
+    {
+      p[pa]=pb;
+      height[pb]++;
+    }
+    
+    
+  }
+  int q;
+  cin>>q;
+  while(q--)
+  {
+    int a,b;
+    cin>>a>>b;
+    if(find(a)==find(b))
+      puts("Yes");
+    else
+      puts("No");
+    
+  } 
+  for(int i=1;i<=n;i++)
+  {
+      cout<<height[i]<<' ';
+  }
+
+
+ 
+
+  return 0;
+}
+~~~
+
+**将深度小的接到深度高的上面去！！！！**
+
+（使用数组存height深度）
+
+
 
 # 七、图
 
