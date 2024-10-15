@@ -269,7 +269,7 @@ int countLen(list l)//统计链表长度,如果加了地址符链表当前头节
 
 
 
-## 循环链表(环形链表，！但指向==表头==)
+## ！循环链表(环形链表，！但指向==表头==)
 
 ###  ==循环单链表==和==循环双链表== 
 
@@ -278,6 +278,14 @@ int countLen(list l)//统计链表长度,如果加了地址符链表当前头节
 ![image-20240924231426150](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20240924231426150.png)
 
 ![image-20240924231442290](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20240924231442290.png)
+
+### **初始化：**![image-20241013213720089](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241013213720089.png)
+
+
+
+![image-20241013213147658](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241013213147658.png)
+
+**删除也同理！**
 
 ![image-20240924231456953](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20240924231456953.png)
 
@@ -291,7 +299,13 @@ int countLen(list l)//统计链表长度,如果加了地址符链表当前头节
 
 > 可设置头尾指针（类似带头尾结点！
 
+![Screenshot_2024-10-10-12-52-26-019_net.csdn.csdnplus](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/Screenshot_2024-10-10-12-52-26-019_net.csdn.csdnplus.png)
 
+
+
+![image-20241013213814034](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241013213814034.png)
+
+![image-20241013213906802](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241013213906802.png)
 
 ## <u>双链表（带头结点）</u>
 
@@ -572,6 +586,89 @@ int main()
 
 #### 计（算）长（度）：遍历计算
 
+
+
+## 应用 ： 表达式求值 
+
+**结合队列可求杨辉三角！**
+
+~~~C++
+#include<iostream>
+#include<stack>
+#include<unordered_map>
+using namespace std;
+stack<char>op;
+stack<int>num;
+unordered_map<char,int> h{{'+',1},{'-',1},{'/',2},{'*',2}};
+void eval()
+{
+    int num1=num.top();
+    num.pop();
+    int num2=num.top();
+    num.pop();//注意要弹出
+    char c=op.top();
+    op.pop();
+    int ans=0;
+    if(c=='+')ans=num1+num2;
+    if(c=='-')ans=num2-num1;
+    if(c=='/')ans=num2/num1;//注意栈是倒着存的
+    if(c=='*')ans=num1*num2;
+    num.push(ans);
+
+
+    
+}
+int main()
+{
+    string s;
+    cin>>s;
+    for(int i=0;i<s.size();i++)
+    {
+        if(s[i]>='0'&&s[i]<='9')
+        {
+            int x=0,j=i;
+            while(j<s.size()&&(s[j]>='0'&&s[j]<='9'))
+            {   
+                x=x*10+s[j]-'0';
+                j++;
+            }
+           
+            num.push(x); 
+            i=j-1;
+        }
+        else if(s[i]=='(')
+            op.push(s[i]);
+            
+        else if(s[i]==')')
+        {
+            while(op.top()!='(')//这里不用判空
+            {
+                eval();
+            }
+            op.pop();
+        }
+        else
+        {
+            while(op.size()&&h[s[i]]<=h[op.top()])
+            eval();//要判空 （特判！）
+            
+            op.push(s[i]);
+        }
+        
+    }
+    while(op.size())eval();
+    
+    cout<<num.top();
+    return 0;
+    
+    
+}
+~~~
+
+#### 注意点：
+
+**判空 扫尾操作  双指针闪现（防止延迟！）**
+
 ---
 
 
@@ -755,7 +852,7 @@ int main()
 
 
 
-**存下标**
+==**存下标**==
 
 ~~~C++
  for(int i=1;i<=n;i++)
@@ -767,6 +864,105 @@ int main()
         if(i>=k)cout<<a[q.front()]<<' ';
     }
 ~~~
+
+#### 循环队列
+
+~~~C++
+#include <iostream>
+using namespace std;
+#define max_size 100
+// typedef struct cq //如果此处写了下面一定要写
+// {
+
+// }circular_queue;
+typedef struct 
+{
+  int data[max_size];
+  int front;
+  int rear;
+
+}circular_queue;
+void init (circular_queue *q)
+{
+  q->front=q->rear=0;
+}
+bool isEmpty(circular_queue *q)
+{
+  if(q->front==q->rear)
+    return 1;
+  else
+    return 0;
+
+}
+bool isFull(circular_queue *q)
+{
+  if((q->rear+1)%max_size==q->front)
+    return 1;
+  else 
+    return 0;
+
+}
+int dequeue(circular_queue *q)
+{
+  int x;
+  if(isEmpty(q))
+    return 0;
+  else
+  {
+    x=q->data[q->front];
+    q->front=(q->front+1)%max_size;
+  }
+  return x;
+
+
+}
+bool enqueue(circular_queue *q,int x)
+{
+  if(isFull(q))
+    return 0;
+  else
+  {
+    q->data[q->rear]=x;
+    q->rear=(q->rear+1)%max_size;
+
+  }
+  return 1;
+
+  
+}
+void print(circular_queue *q)
+{
+  while(!isEmpty(q))
+  {
+    cout<<dequeue(q)<<' ';
+  }
+}
+int main()
+{
+  circular_queue q;
+  init(&q);
+  int n;
+  cin>>n;
+  for(int i=0;i<n;i++)
+  {
+    int x;
+    cin>>x;
+    enqueue(&q,x);
+  }
+  print(&q);
+  cout<<q.data[q.front]<<" "<<q.data[q.rear-1]; //输出队头和队尾
+
+  return 0;
+}
+~~~
+
+![image-20241015132005982](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241015132005982.png)
+
+![image-20241015132014127](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241015132014127.png)
+
+**图 1and  3 是空位不同的循环队列**
+
+**图 2 是判断队列的长度！！！** 
 
 
 
@@ -2006,6 +2202,8 @@ void dfstravel(graph *g)
 
 ### 深度优先生成树/森林
 
+![image-20241015133355580](C:/Users/33813/AppData/Roaming/Typora/typora-user-images/image-20241015133355580.png)
+
 
 
 ![image-20241011211207045](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241011211207045.png)
@@ -2591,6 +2789,18 @@ int main()
 
 
 
+# 有向无环图 的表达式求值
+
+![image-20241015164413069](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241015164413069.png)
+
+
+
+![image-20241015164423599](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241015164423599.png)
+
+![image-20241015164431523](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241015164431523.png)
+
+![image-20241015164437958](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241015164437958.png)
+
 
 
 # -------《查找》--------
@@ -2599,11 +2809,77 @@ int main()
 
 # 九、二叉排序树（二叉搜索树）
 
+## 二叉搜索树的定义
+
+![image-20241015164542843](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241015164542843.png)
+
+## 查找
+
+
+
+![image-20241015164709213](C:/Users/33813/AppData/Roaming/Typora/typora-user-images/image-20241015164709213.png)
+
+##  插入
+
+## ![image-20241015164737288](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241015164737288.png)
+
+## 构造
+
+
+
+![image-20241015164756645](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241015164756645.png)
+
+## 删除分三种情况
+
+### 1.结点是叶子结点 
+
+**直接删除**
+
+### 2.结点只有一边的子树
+
+
+
+![image-20241015164836591](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241015164836591.png)
+
+### 3.结点两边都有子树
+
+#### 又分为两种做法 ： 处理 后继和前驱 
+
+![image-20241015165111380](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241015165111380.png)
+
+**根据二叉排序树的特性进行的措施！**
+
+![image-20241015165124001](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241015165124001.png)
+
+## 查找效率分析
+
+###  查找成功
+
+![image-20241015165339468](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241015165339468.png)
+
+**最好情况：二叉树的最小高度为log2^n+1  平均查找长度为O (log2^n+1)**
+
+**最坏情况：每个结点有且仅有一个分支 树高h=结点数n  退化为链表 ,平均查找长度为 o(n)**
+
+**原因就是构造时的问题**
+
+**解决方法：构造时构造==平衡二叉树！==**
+
+### 查找失败
+
+![image-20241015165750084](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241015165750084.png)
+
 # 十、平衡二叉树
+
+
 
 # 十一、红黑树
 
+
+
 # 十二、B树
+
+
 
 # 十三、B+树
 
