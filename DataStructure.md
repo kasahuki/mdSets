@@ -2946,7 +2946,45 @@ int main()
 
 
 
-# -------《查找》--------
+# ==-------《查找》--------==
+
+
+
+**查找长度的概念：对比关键字的次数！**
+
+## 查找的基本概念
+
+
+
+![image-20241016211125959](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241016211125959.png)
+
+---
+
+
+
+![](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241016211217831.png)
+
+## 查找算法的效率分析
+
+![image-20241016211256652](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241016211256652.png)
+
+## 平均查找长度公式：
+
+![image-20241016211347984](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241016211347984.png)
+
+**注意：ASL的数量级反映了这个查找算法的时间复杂度！**
+
+
+
+# 1^o^   顺序查找
+
+
+
+# 2^o^   折半查找（二分）
+
+
+
+# 3^o^   分块查找
 
 
 
@@ -3030,7 +3068,7 @@ int main()
 
 
 
-# 十四、堆
+# ==十四、堆==
 
 
 
@@ -3141,17 +3179,301 @@ void change(int k,int x)
 
 # 十五、哈希表(散列查找)
 
+# 一、 拉链法
+
+
+
 [树的相关知识](#五、树)
 
+![image-20241016195939589](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241016195939589.png)
+
+**==特别的==：注意题目 如果位置上都没有数的话 就无需判断，也就是查找长度是 ==0== ！**
+
+**冲突越多 查找效率越低**
+
+![image-20241016202801877](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241016202801877.png)
+
+## 装填因子
 
 
 
+---
+
+
+
+![image-20241016202753965](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241016202753965.png)
+
+## 1.除留余数法
+
+### 使用数组模拟
+
+~~~C++
+#include<iostream>
+#include<cstring>
+using namespace std;
+const int N=100003;//第一个比长度大的质数（可以相等--> 尽可能接近）
+int e[N],idx,h[N],ne[N];
+void add(int x)
+{
+  int hash=(x%N+N)%N;
+  e[idx]=x;
+  ne[idx]=h[hash];
+  h[hash]=idx++;
+
+
+}
+int find(int x)
+{
+  int hash=(x%N+N)%N;
+  for(int i=h[hash];i!=-1;i=ne[i])
+  {
+    if(e[i]==x)
+      return 1;
+  }
+  return 0;
+}
+int main()
+{
+  memset(h,-1,sizeof h); //初始化为-1
+  int n;
+  cin>>n;
+  while(n--)
+  {
+    int x;
+    cin>>x;
+    add(x);
+  }
+  int x;
+  cin>>x;
+  cout<<find(x);
+  
+
+  return 0;
+}
+~~~
+
+![image-20241016202329672](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241016202329672.png)
+
+![image-20241016203135175](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241016203135175.png)
+
+**但是使用mod 素数法也不一定是最优的 如果如上是连续的就不是最优的了 （具体题目具体分析！**）
+
+此邻接表也可用于==建图== ！！ 
+
+## Create Graph
+
+==**h 存的都是下标指针一类的！！**==
+
+~~~C++
+#include<iostream>
+#include<cstring>
+using namespace std;
+const int N=1e5+10;
+int e[N],ne[N],h[N],w[N];
+int idx;
+void add(int a,int b,int weight)// a->b
+{
+  ne[idx]=h[a];
+  h[a]=idx;
+  e[idx]=b;
+  w[idx++]=weight;
+
+}
+int main()
+{
+  memset(h,-1,sizeof h);//都要先初始化为-1；
+
+  return 0;
+}
+~~~
+
+
+
+### 使用拉链法
+
+~~~C++
+#include<iostream>
+using namespace std;
+const int N=10003;
+
+typedef struct ArcNode  //?????
+{
+    int adjvex;//结点值
+    ArcNode *next;//链表
+}ArcNode;
+
+typedef struct VNode
+{
+  int val;
+  ArcNode *first;//h[]
+
+}vexlist[N];
+typedef struct graph
+{
+  vexlist vextices;//顶点set
+  int numvex,numedge;//no-usage
+}graph;
+//下面的只是别名  上面的是它本名！！！
+void add(int x,graph *g)
+{
+  int hash=(x%N+N)%N;
+  ArcNode *newNode=new ArcNode();
+  newNode->adjvex=x;
+  newNode->next=g->vextices[hash].first;
+  g->vextices[hash].first=newNode;
+
+
+}
+int find_is_exist(int x,graph *g)
+{
+  int hash=(x%N+N)%N;
+  for(ArcNode *i=g->vextices[hash].first;i!=nullptr;i=i->next)
+  {
+      if(i->adjvex==x)
+        return 1；
+  }
+  return 0;
+}
+--------------------------------
+void init(graph *g)
+{
+  for(int i=0;i<N;i++) 
+    g->vextices[i].first=nullptr;
+}
+--------------------------------// -->初始化很重要<--
+int main()
+{
+  graph p;
+  init(&p);
+  int n;
+  cin>>n;
+  while(n--)
+  {
+    int x;
+    cin>>x;
+    add(x,&p);
+  }
+  int q;
+  cin>>q;
+  while(q--)
+  {
+    int x;
+    cin>>x;
+    cout<<find_is_exist(x,&p)<<endl;
+  }
+  return 0;
+}
+~~~
+
+
+
+
+
+## 2.直接定址法
+
+![image-20241016203346967](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241016203346967.png)
+
+## 3. 平方取中法
+
+![image-20241016203400792](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241016203400792.png)
+
+## 4.数字分析法
+
+## ![image-20241016203427159](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241016203427159.png)
+
+
+
+**key：就是尽可能的减小冲突，也有可能完全避免冲突的（具体问题具体分析！！！**
+
+
+
+![image-20241016203421863](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241016203421863.png)
+
+# 二、开放寻址法
+
+<font size=8>==**! 注意：  m 表示散列表表长度**==</font>
+
+
+
+## 1.线性探测法（最重要！！）
+
+![image-20241016203813404](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241016203813404.png)
+
+![image-20241016203817042](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241016203817042.png)
+
+### 查找
+
+![image-20241016203854808](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241016203854808.png)
+
+缺点：没有区别度的查找！
+
+#### 查找失败
+
+
+
+**注意空位置也是要找的！**
+
+
+
+![image-20241016203949619](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241016203949619.png)
+
+**当遇到空位置判断为空就停止**
+
+**但是！** 
+
+**这样就引出的一个问题！**
+
+### 删除の问题
+
+![image-20241016204115894](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241016204115894.png)
+
+**标记“逻辑删除”！**
+
+![image-20241016204144636](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241016204144636.png)
+
+### 查找效率分析（ASL）
+
+![image-20241016204210097](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241016204210097.png)
+
+### 缺点
+
+![img](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/%7B2FE42FCB-10B0-4D5A-8718-B194A7B0CCEC%7D)
+
+![image-20241016204343928](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241016204343928.png)
+
+**导致遇到逻辑删除的位置还是要一直查询！**
+
+## 2.平方探测法
+
+**一开始都由于mod13余6造成冲突！** 
+
+![image-20241016210602587](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241016210602587.png)
+
+
+
+---
+
+![image-20241016210706302](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241016210706302.png)
+
+> 要想查找到所有位置是有要求的！！
+
+## 3.伪随机探测法
+
+![image-20241016210815543](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241016210815543.png)
+
+![image-20241016210823874](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241016210823874.png)
+
+## 4.再散列法（准备多个散列表）
+
+![image-20241016210835076](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241016210835076.png)
 
 # 十六、排序
 
 ![image-20240926191434980](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20240926191434980.png)
 
 > 对于递归 画树更好理解！
+>
+> 稳定 插帽龟 and  *统计鸡
 
 ## 算法的稳定性
 
