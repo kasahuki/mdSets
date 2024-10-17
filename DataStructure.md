@@ -2,6 +2,42 @@
 
 
 
+# 0、时间复杂度
+
+## 1.频率最高的语句（执行深度最深的 /阶数最多的）
+
+## 2. 语句执行次数和问题规模n的关系
+
+## 3. 忽略常数
+
+![image-20241017210952655](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241017210952655.png)
+
+![image-20241017211000233](C:/Users/33813/AppData/Roaming/Typora/typora-user-images/image-20241017211000233.png)
+
+![image-20241017211008348](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241017211008348.png)
+
+
+
+# 特殊矩阵的压缩存储
+
+分为按行优先和按列优先存储 
+
+注意点 ： 一维数组默认从0下标开始 
+
+**三对角矩阵概念！**
+
+![image-20241017211021475](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241017211021475.png)
+
+
+
+![825357dbaf9fecd541cf159647cf60a](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/825357dbaf9fecd541cf159647cf60a.jpg)
+
+**m~ij~ 的i j取决于 按行/列优先存储**
+
+
+
+
+
 # <font size=25 color=red>一、链表</font>
 
 ==增操作 ： 构建链表！==
@@ -1147,6 +1183,24 @@ int main()
 >
 > ##### 如果按照注释那样会使得a为cbgfj
 
+## BF 算法（暴力匹配）
+
+![image-20241017200841618](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241017200841618.png)
+
+直接使用双重循环
+
+或是双指针
+
+![image-20241017200920166](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241017200920166.png)
+
+### 时间复杂度分析
+
+![image-20241017200939277](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241017200939277.png)
+
+
+
+
+
 # 四、KMP算法
 
 > 主要就是前缀数组next
@@ -1207,7 +1261,9 @@ int main()
 
 有**两种**方案 ，**第一种**使双亲指针设置为-1  
 
-第二种将尾部数据移到该位置将其覆盖！！
+第二种将尾部数据移到该位置将其覆盖！！（good）
+
+
 
 缺点 ： 如果删除的不是叶子结点的话就会有问题 ，因为要删除儿子结点，这就涉及到了查询操作，
 
@@ -1219,9 +1275,13 @@ int main()
 
 [hash表](#十五、哈希表(散列查找))
 
+**就是邻接表！！！**
+
 ### **<font color=red size=25>3、孩子兄弟表示法</font>**
 
 <img src="https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20240929193349960.png" alt="image-20240929193349960" style="zoom:150%;" />
+
+
 
 #### 初始化
 
@@ -1231,20 +1291,169 @@ int main()
 typedef struct CSNode
 {
     int val;
-    CSNode * firstSon,rightBrother;
+    CSNode * firstSon,rightBrother;//层次不一样！！ 类比leftchild 和 rightchild
     
 }*CSTree;
 ~~~
+
+树与森林都可以转化为二叉树 然后操作就如[二叉树](#二叉树)
 
 ## 树与二叉树的转化
 
 ![image-20240929195721503](C:/Users/33813/AppData/Roaming/Typora/typora-user-images/image-20240929195721503.png)
 
+
+
+
+
+
+
 ## 森林和二叉树的转化
+
+![image-20241017201857035](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241017201857035.png)
+
+
+
+![image-20241017202042876](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241017202042876.png)
+
+## SUM
+
+
+
+![image-20241017202110296](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241017202110296.png)
+
+### 树的遍历
+
+#### 先根遍历
+
+**第一次经过就访问！**
+
+
+
+![image-20241017203219748](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241017203219748.png)
+
+#### 后根遍历
+
+**最后一次经过才访问**
+
+![image-20241017203304337](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241017203304337.png)
+
+**等效于二叉树的中序遍历**
+
+#### 层次遍历
+
+![image-20241017203331994](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241017203331994.png)
+
+**先根后根都是dfs**
+
+**层次是bfs**
+
+
+
+
+
+### 森林的遍历
+
+#### 先序遍历
+
+![image-20241017203434814](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241017203434814.png)
+
+#### 中序遍历
+
+![image-20241017203438865](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241017203438865.png)
+
+![image-20241017203442009](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241017203442009.png)
+
+**以下为等效遍历**
+
+### SUM
+
+
+
+![image-20241017203448919](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241017203448919.png)
+
+**问题：如何使用代码将森林和树转化为二叉树！**
+
+Todo：
+
+~~~C++
+#include<iostream>
+using namespace std;
+
+struct Tree {
+    int data;
+    Tree *first_child;  // 第一个孩子
+    Tree *self_bro;     // 兄弟节点
+
+    // 构造函数
+    Tree(int x) : data(x), first_child(nullptr), self_bro(nullptr) {}
+};
+
+// 添加孩子节点
+void addChild(Tree *parent, int x) {
+    Tree *newNode = new Tree(x);
+    
+    // 如果parent还没有孩子，就直接添加为第一个孩子
+    if (parent->first_child == nullptr) {
+        parent->first_child = newNode;
+    } else {
+        // 如果已经有孩子，找到最后一个兄弟节点，将新节点作为它的兄弟
+        Tree *child = parent->first_child;
+        while (child->self_bro != nullptr) {
+            child = child->self_bro;
+        }
+        child->self_bro = newNode;
+    }
+}
+
+// 前序遍历树（孩子兄弟表示法）
+void preOrder(Tree *root) {
+    if (root == nullptr) return;
+
+    // 打印当前节点
+    cout << root->data << " ";
+
+    // 先递归遍历第一个孩子
+    preOrder(root->first_child);
+    
+    // 再递归遍历兄弟节点
+    preOrder(root->self_bro);
+}
+
+int main() {
+    // 创建根节点
+    Tree *root = new Tree(1);
+    
+    // 添加子节点和兄弟节点
+    addChild(root, 2);  // 2作为1的孩子
+    addChild(root, 3);  // 3作为1的孩子的兄弟
+    addChild(root, 4);  // 4作为1的孩子的兄弟
+    
+    // 给2节点添加孩子
+    addChild(root->first_child, 5);   // 5作为2的孩子
+    addChild(root->first_child, 6);   // 6作为5的兄弟
+    addChild(root->first_child, 7);   // 7作为6的兄弟
+
+    // 前序遍历树，验证结构
+    cout << "Pre-order traversal of the tree: ";
+    preOrder(root);
+    cout << endl;
+
+    return 0;
+}
+~~~
 
 
 
 ## ==二叉树==
+
+### 完全二叉树
+
+### 判断是否是完全二叉树
+
+**使用bfs存 存第一个NULL（也可以存别的东西等效替代 如正无穷） 如果null之后队列还有数的话就说明不是完全二叉树！！**
+
+![image-20241017163824454](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241017163824454.png)
 
 ### ==顺序存储==
 
@@ -1491,7 +1700,26 @@ void createIntread(clueTreeNode *l)//一边遍历一边线索化
 
 
 ## 哈夫曼树
+
+### 代码实现
+
+~~~C++
+~~~
+
+**WPL：树的带权路径长度！！！**
+
+### SUM
+
+
+
+![image-20241017211415016](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241017211415016.png)
+
 ## trie树（拓展）
+
+~~~C++
+~~~
+
+
 
 # 六、并查集
 
@@ -2978,13 +3206,107 @@ int main()
 
 # 1^o^   顺序查找
 
+![image-20241017192820102](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241017192820102.png)
+
+**带哨兵与不带哨兵 仅有微妙的区别 重点在于 查找成功和查找失败的情况**
+
+ASL= （每个点查找次数 乘上查找概率 ）之和
+
+**通过 有序 来优化算法**
+
+![image-20241017193115000](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241017193115000.png)
+
+![image-20241017193548148](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241017193548148.png)
+
+
+
 
 
 # 2^o^   折半查找（二分）
 
+## 构造二分查找判定树
+
+
+
+![image-20241017193951847](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241017193951847.png)
+
+---
+
+
+
+![image-20241017193935293](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241017193935293.png)
+
+## 折半查找判定树的树高h：
+
+
+
+![image-20241017195049820](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241017195049820.png)
+
+![image-20241017195110393](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241017195110393.png)
+
+---
+
+## 时间复杂度
+
+![image-20241017195225185](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241017195225185.png)
+
+---
+
+
+
+
+
+
+
+## 查找成功与查找失败
+
+**二分查找判定树  是个二叉排序树 + 二叉平衡树** 
+
+**所以对于一个结点数为n的空链域就有n+1个！**
+
+
+
+## sum
+
+![image-20241017194037958](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241017194037958.png)
+
+**不对称的分为左/右多的两种情况**
+
+![image-20241017210430792](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241017210430792.png)
+
+
+
+---
+
 
 
 # 3^o^   分块查找
+
+![image-20241017195431850](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241017195431850.png)
+
+## 可用折半/顺序查找 查找 索引表
+
+
+
+![](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241017200134171.png)
+
+## 二分查找逻辑
+
+![image-20241017200314181](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241017200314181.png)
+
+**查找 4次？ 还是 5次？**
+
+
+
+![image-20241017200318195](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241017200318195.png)
+
+**查找失败的情况较为复杂 重点在折半查找的查找成功和失败的情况上！！**
+
+**可以用邻接表（拉链法）来动态存储 增删 方便（链表的优点！）**
+
+![image-20241017200550250](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241017200550250.png)
+
+
 
 
 
