@@ -1642,60 +1642,107 @@ int main()
 
 ## 线索二叉树
 
-### 中序线索化
+### 	线索二叉树的中序/前序/后序遍历序列
 
-~~~C++
-void Inthread(clueTreeNode *l,clueTreeNode *&pre)
-{
-    if(l!=nullptr)//递归边界
-    {
-        Inthread(l->lchild,pre);//左
-        //当前结点
-        if(l->lchild==nullptr)//使空链域线索化
-        {
-            l->lchild=pre;//前驱
-            l->ltag=1;
-        }
-        if(pre!=nullptr && pre->rchild==nullptr)//如果前驱结点没有右孩子的话
-        {
-            pre->rchild=l;
-            pre->rtag=1;                    
-        }
-        pre=l;
-        
-        Inthread(l->rchild,pre);
-        
-            
-        
-    }
-}
-void createIntread(clueTreeNode *l)//一边遍历一边线索化
-{
-    clueTreeNode *pre=nullptr;
-    if(l!=nullptr)//如果二叉树不为空
-    {
-        Inthread(l,pre);
-        if(pre->rchild==nullptr)//处理最后一个结点
-            pre->rtag=1;//标记线索化
-    }
-    
-}
-~~~
+​	![image-20241110190454478](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241110190454478.png)
 
-### 前序线索化
+### 问题 ：如果从某个节点开始能否开始中序遍历整颗二叉树？
 
-~~~C++
-~~~
+![image-20241110190859359](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241110190859359.png)
 
-### 后序线索化
+## 中序~线索二叉树的存储
 
-~~~c++
-~~~
+![image-20241110190938336](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241110190938336.png)
 
-### 在线索二叉树中找前驱和后继
+**==指向前驱和后继的指针就是线索==**
 
-~~~C++
-~~~
+![image-20241110191122369](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241110191122369.png)
+
+![image-20241110191135518](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241110191135518.png)
+
+### 找中序前驱
+
+#### 土方法：
+
+
+
+
+
+![image-20241110191154758](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241110191154758.png)
+
+#### 线索化查找：
+
+### 中序线索化：
+
+
+
+![image-20241110191321314](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241110191321314.png)
+
+### 先序线索化
+
+![image-20241110191324208](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241110191324208.png)
+
+![image-20241110191358251](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241110191358251.png)
+
+![image-20241110191401045](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241110191401045.png)
+
+### 后序线索化：
+
+
+
+![image-20241110191435896](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241110191435896.png)
+
+# ==《通过线索二叉树找前驱/后继》==
+
+
+
+### 找中序后继：
+
+![image-20241110191643405](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241110191643405.png)
+
+![image-20241110191752039](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241110191752039.png)
+
+### 找中序前驱：
+
+
+
+![image-20241110191808466](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241110191808466.png)
+
+![image-20241110191814016](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241110191814016.png)
+
+### 找先序后继：
+
+
+
+![image-20241110191825685](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241110191825685.png)
+
+### 找先序前驱:
+
+![image-20241110191839090](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241110191839090.png)
+
+### 找后序前驱：
+
+![image-20241110191850562](C:/Users/33813/AppData/Roaming/Typora/typora-user-images/image-20241110191850562.png)
+
+### 找后序后继：
+
+
+
+![image-20241110191904128](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241110191904128.png)
+
+![image-20241110191916949](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241110191916949.png)
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
