@@ -18,11 +18,83 @@
 
 
 
-# 特殊矩阵的压缩存储
+# 数组、矩阵存储和广义表
+
+
+
+## 特殊矩阵的压缩存储
 
 分为按行优先和按列优先存储 
 
-注意点 ： 一维数组默认从0下标开始 
+注意点 ： ==一维数组默认从0下标开始==
+
+`array [n][m]` n个数组（0~n-1），每个数组里都有m（0 ~ m-1）个元素
+
+![image-20241124175558277](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241124175558277.png)
+
+**行/列/页优先**
+
+
+
+### ==对称矩阵==的压缩存储
+
+
+
+![image-20241124175822092](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241124175822092.png)
+
+**以……为顺序将 二维数组的一部分存储在一维数组当中**
+
+### 三角矩阵
+
+
+
+![image-20241124180025625](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241124180025625.png)
+
+**多一个就去存那个固定的c值**
+
+![image-20241124181356800](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241124181356800.png)
+
+**c==0 就是线性代数里比较特殊的上/下三角矩阵**
+
+###  对角矩阵
+
+![](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241124180339303.png)
+
+**以对角线的顺序存储**
+
+
+
+### 稀疏矩阵
+
+![image-20241124180403044](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241124180403044.png)
+
+**密度小于0.05 （非零元素少时）**
+
+![image-20241124181712867](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241124181712867.png)
+
+![image-20241124181757465](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241124181757465.png)
+
+### 十字链表存储稀疏矩阵
+
+![image-20241124181839495](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241124181839495.png)
+
+![image-20241124181929350](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241124181929350.png)
+
+![image-20241124182002045](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241124182002045.png)
+
+
+
+## 广义表
+
+![image-20241124180457077](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241124180457077.png)
+
+
+
+![image-20241124180545920](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241124180545920.png)
+
+![image-20241124180625820](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241124180625820.png)
+
+![image-20241124180728470](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241124180728470.png)
 
 **三对角矩阵概念！**
 
@@ -33,6 +105,8 @@
 ![825357dbaf9fecd541cf159647cf60a](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/825357dbaf9fecd541cf159647cf60a.jpg)
 
 **m~ij~ 的i j取决于 按行/列优先存储**
+
+
 
 
 
@@ -2114,9 +2188,15 @@ int main()
 
 
 
+
+
+
+
 > 涉及线性代数和矩阵的存储
 >
 > ![image-20241009214016575](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241009214016575.png)
+>
+> 
 
 
 
