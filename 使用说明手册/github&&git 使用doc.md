@@ -247,50 +247,32 @@ git branch -D branch-name  还未合并的（强制删除）
 
 
 
----
-
-
-
-## 使用GUI工具 
-
-
-
----
-
-
-
-## SSH配置
-
-
-
----
-
-
-
-## Gitee以及Gitlab的使用
+## 使用GUI工具 & IDE使用git
 
 
 
 
 
+# 开放模式工作流
 
+~~~tex
+一轮开发流程通常如下：
+	1.	拉取最新代码
+从 GitHub 仓库拉取最新代码（git pull origin main 或其他默认分支），确保本地代码是最新的。
+	2.	创建本地分支
+基于主分支（如 main 或 develop）创建一个新的本地分支（git checkout -b feature/branch-name），用于独立开发新功能或修复问题。
+	3.	在分支上开发
+在本地分支上完成开发工作并进行测试，确保功能完整且代码质量达标。
+	4.	推送分支到远程仓库
+将本地分支推送到远程仓库（git push origin feature/branch-name），为创建 Pull Request 做准备。
+	5.	创建 Pull Request
+在 GitHub 上创建一个 Pull Request，请求将分支代码合并到主分支，并说明开发内容。
+	6.	代码评审
+团队成员对 Pull Request 进行代码评审（Code Review），提出修改建议或确认代码可以合并。
+	7.	合并代码
+通过评审后，将 Pull Request 合并到主分支（在 GitHub 上点击 “Merge”）。
+	8.	删除分支
+	•	删除远程分支：git push origin --delete feature/branch-name
+	•	删除本地分支：git branch -d feature/branch-name
+~~~
 
----
-
-
-
-## vscode使用git
-
-
-
-
-
----
-
-
-
-## vscode 使用文档 
-
-**shift + alt + F 一键格式化代码**
-
-shift +alt +上下箭头 快速复制

@@ -1710,6 +1710,94 @@ int main()
 }
 ~~~
 
+## 树的前序/中序/后序遍历 构建树
+
+## 树的非递归形式输出前序/中序/后序遍历序列
+
+![image-20241206142828150](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241206142828150.png)
+
+~~~c++
+#include<iostream>
+using namespace std;
+// global
+typedef struct biotree
+{
+    char data;
+    biotree *lc;
+    biotree *rc;
+    biotree(char val):data(val),lc(nullptr),rc(nullptr){};
+    
+};
+biotree* createTree() //返回从根节点开始的整棵树
+{
+    char c;
+    cin>>c;
+    if(c == '#')
+        return nullptr;
+    else
+        {
+            biotree *newnode = new biotree(c);
+            newnode->lc = createTree(); // 利用返回值连接 --》 思考
+            newnode->rc = createTree();
+            return newnode;
+            
+        }
+}
+
+void middleTraveler(biotree *root)
+{
+    
+    if(root == nullptr)
+    return ;
+    
+    int top = -1;
+    biotree *nodestack[100];
+    // 先将根节点弹入栈顶
+    biotree *p = root;
+    while(p || top>=0)
+    {
+        if(p)
+        {
+            nodestack[++top] = p;
+            p = p->lc;
+            // 优先往左边找
+        }
+        else // 如果当前结点的左边是空（说明已经是最左边的一个了）就到当前结点的右边
+        {
+          cout<<nodestack[top]->data<<' ';
+          p = nodestack[top--]->rc; // 再去右子树中找最左边的结点
+          
+        }
+    }
+}
+int main()
+{
+    
+    
+    biotree *root = createTree();
+    middleTraveler(root);
+    
+  
+    
+    return 0;
+}
+~~~
+
+**输入：ABC#D##E##FG##H## （==前序==）**
+**输出：C D B E A G F H  （==中序==）**
+
+存到栈里就相当于是进入递归下一层
+
+**弹出栈就是返回上一层**
+
+**旧知识推新知识非常重要**
+
+## 
+
+
+
+## 二叉链表构造表达式计算
+
 
 
 
