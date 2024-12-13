@@ -306,8 +306,6 @@ Git 提供了一个非常强大的功能，允许你将文件中的部分更改�
 
 
 
-
-
 ![52bac5116a6fd98cadb607acdaf3f20](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/52bac5116a6fd98cadb607acdaf3f20.jpg)
 
 
@@ -335,3 +333,16 @@ Git 提供了一个非常强大的功能，允许你将文件中的部分更改�
 	•	删除本地分支：git branch -d feature/branch-name
 ~~~
 
+注意点： 在本地中移动文件时，git是只会跟踪文件内容而不会跟踪文件的位置的，所以移动的新位置git就以为是新文件
+
+**git add -u . 包括删除的文件提交到暂存区**
+
+
+
+提交是提交到本地git存储仓库
+
+
+
+# shell 脚本与环境变量 linux
+
+**%（环境变量值）%**
