@@ -73,3 +73,16 @@ text:"""
 
 
 ![image-20240929231145747](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20240929231145747.png)
+
+# 网站收录
+
+[AIshort](https://www.aishort.top/)
+
+[explain this](https://www.explainthis.io/zh-hant)
+
+[chatgpt 引导语](https://prompts.fresns.cn/)
+
+
+
+
+
