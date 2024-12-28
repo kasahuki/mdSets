@@ -128,7 +128,6 @@ username and useremail
 ![image-20241019130926233](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241019130926233.png)
 
 **git status 查看状态**
-**git status 查看状态**
 
 ## 回退版本
 
