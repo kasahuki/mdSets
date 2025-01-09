@@ -1,4 +1,4 @@
-<center>**<font color="red" size="28">数据结构</font>**</center>
+<center> **<font color="red" size="28"> 数据结构 </font>** </center>
 
 
 
@@ -6,7 +6,7 @@
 
 ## 1.频率最高的语句（执行深度最深的 /阶数最多的）
 
-## 2. 语句执行次数和问题规模n的关系
+## 2. 语句执行次数和问题规模 n 的关系
 
 ## 3. 忽略常数
 
@@ -24,11 +24,13 @@
 
 ## 特殊矩阵的压缩存储
 
+![image-20250109214904823](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250109214904823.png)
+
 分为按行优先和按列优先存储 
 
-注意点 ： ==一维数组默认从0下标开始==
+注意点 ： ==一维数组默认从 0 下标开始==
 
-`array [n][m]` n个数组（0~n-1），每个数组里都有m（0 ~ m-1）个元素
+`array [n][m]` n 个数组（==0~n-1==），每个数组里都有 m（0 ~ m-1）个元素
 
 ![image-20241124175558277](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241124175558277.png)
 
@@ -36,13 +38,13 @@
 
 
 
-### ==对称矩阵==的压缩存储
+### ==对称矩阵== 的压缩存储
 
 
 
 ![image-20241124175822092](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241124175822092.png)
 
-**以……为顺序将 二维数组的一部分存储在一维数组当中**
+**以……为顺序将 二维数组的一部分存储在一维数组当中**	
 
 ### 三角矩阵
 
@@ -50,11 +52,11 @@
 
 ![image-20241124180025625](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241124180025625.png)
 
-**多一个就去存那个固定的c值**
+**多一个就去存那个固定的 c 值**
 
 ![image-20241124181356800](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241124181356800.png)
 
-**c==0 就是线性代数里比较特殊的上/下三角矩阵**
+**c == 0 就是线性代数里比较特殊的上/下三角矩阵 **
 
 ###  对角矩阵
 
@@ -68,7 +70,7 @@
 
 ![image-20241124180403044](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241124180403044.png)
 
-**密度小于0.05 （非零元素少时）**
+**密度小于 0.05 （非零元素少时）**
 
 ![image-20241124181712867](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241124181712867.png)
 
@@ -84,6 +86,26 @@
 
 
 
+## SUM
+
+# 矩阵
+
+**对称矩阵：** 主对角线（左-> 右）数值无规律 上下部对称 所以存上/下 + 对角线上的值即可
+
+**三角矩阵：** 对角线以上/下（不包括对角线） 的元素都是常数 c 存 n(n+1)/2 + 1（常数 c）
+
+**对角矩阵**：三、四、五对角矩阵
+
+---
+
+
+
+**稀疏矩阵**：矩阵中大都是零（（非零元素个数）/ （m X n）<= 0.05 ）的时候
+
+**存储原则：** 使用三元组存储 非零元素的行、列、值
+
+**缺点：** 无法 **随机存取**
+
 ## 广义表
 
 ![image-20241124180457077](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241124180457077.png)
@@ -91,6 +113,8 @@
 
 
 ![image-20241124180545920](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241124180545920.png)
+
+![image-20241230182154988](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241230182154988.png)
 
 ![image-20241124180625820](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241124180625820.png)
 
@@ -104,7 +128,7 @@
 
 ![825357dbaf9fecd541cf159647cf60a](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/825357dbaf9fecd541cf159647cf60a.jpg)
 
-**m~ij~ 的i j取决于 按行/列优先存储**
+**m~ij~ 的 i j 取决于 按行/列优先存储**
 
 
 
@@ -112,7 +136,7 @@
 
 
 
-# <font size=25 color=red>一、链表</font>
+# <font size=25 color=red> 一、链表 </font>
 
 ==增操作 ： 构建链表！==
 
@@ -177,7 +201,7 @@ int main()
 
 ## 链表（链式实现）
 
-> 使用new/malloc ，delete/free 动态分配内存空间！
+> 使用 new/malloc ，delete/free 动态分配内存空间！
 
 ### ==创+初始化==
 
@@ -186,26 +210,42 @@ typedef struct ListNode
 {
     int val;
     ListNode *next;
-    ListNode():next(nullptr){}//无参构造
-    ListNode(int x):val(x),next(nullptr){}//初始化
+    ListNode(): next(nullptr){}//无参构造
+    ListNode(int x): val(x), next(nullptr){}//初始化
     
 }*list;
 
 
- ListNode *a=new ListNode(-1);//a是指针(地址)//创
-    list b=new ListNode(2);
+ ListNode *a = new ListNode(-1);//a 是指针(地址)//创
+    list b = new ListNode(2);
 ~~~
+
+### 销毁链表
+
+~~~c++
+void destroyList(listNode *head) {
+    while (head) {
+        listNode *temp = head;
+        head = head-> next;
+        delete temp; // 释放节点内存
+    }
+}
+
+
+~~~
+
+
 
 ### ==构建链表==
 
 #### 头插法
 
 ~~~c++
-void add_head(list &l,int x)//头插法  -->栈--> 头节点就是栈顶
+void add_head(list &l, int x)//头插法  --> 栈--> 头节点就是栈顶
 {
-    ListNode *newnode=new ListNode(x);//新结点
-    newnode->next=l->next;
-    l->next=newnode;
+    ListNode *newnode = new ListNode(x);//新结点
+    newnode-> next = l-> next;
+    l-> next = newnode;
     
 }
 ~~~
@@ -213,16 +253,16 @@ void add_head(list &l,int x)//头插法  -->栈--> 头节点就是栈顶
 #### 尾插法
 
 ~~~c++
-void add_tail(list &l,int x)//尾插法  
+void add_tail(list &l, int x)//尾插法  
 {
-    ListNode *tail=l;//定义一个尾结点
-    while(tail->next!=nullptr)
-        tail=tail->next;//找到end位置(不是null)
+    ListNode *tail = l;//定义一个尾结点
+    while(tail-> next!= nullptr)
+        tail = tail-> next;//找到 end 位置(不是 null)
         
-    ListNode *s=new ListNode(x);//创建新结点
+    ListNode *s = new ListNode(x);//创建新结点
     
-    tail->next=s;
-    tail=s;//更新尾指针位置
+    tail-> next = s;
+    tail = s;//更新尾指针位置
         
     
     
@@ -232,31 +272,31 @@ void add_tail(list &l,int x)//尾插法
 #### 按指定位置插入新节点
 
 ~~~c++
-void insert(list &l,int idx,int x)//在链表指定位置插入结点
+void insert(list &l, int idx, int x)//在链表指定位置插入结点
 {
-    if(idx==0)
+    if(idx == 0)
     return ;  
-    if(idx==1)
+    if(idx == 1)
     {
-        add_head(l,x);
+        add_head(l, x);
         return ;
     }
-    list tmp=l;//步进结点,替代原有的链表
-    int pos=0;
-    ListNode *newnode=new ListNode(x);//创建新结点
+    list tmp = l;//步进结点, 替代原有的链表
+    int pos = 0;
+    ListNode *newnode = new ListNode(x);//创建新结点
   
-    while(tmp!=nullptr)
+    while(tmp!= nullptr)
     {
-        if(pos==idx-1)//如果找到了前驱结点
+        if(pos == idx-1)//如果找到了前驱结点
         {
-            newnode->next=tmp->next;
-            tmp->next=newnode;
+            newnode-> next = tmp-> next;
+            tmp-> next = newnode;
             return ;
        
         }
         pos++;
      
-        tmp=tmp->next;
+        tmp = tmp-> next;
     }
     
 }
@@ -268,19 +308,19 @@ void insert(list &l,int idx,int x)//在链表指定位置插入结点
 #### 按位查找
 
 ~~~c++
-int query_value(list l,int x)//按位查找值
+int query_value(list l, int x)//按位查找值
 {
-    int idx=1;
+    int idx = 1;
  
-    while(l!=nullptr)
+    while(l!= nullptr)
     {
-        l=l->next;//不管头节点
-        if(l==nullptr)//边界条件
+        l = l-> next;//不管头节点
+        if(l == nullptr)//边界条件
         break;
         
        
-        if(idx==x)
-        return l->val;
+        if(idx == x)
+        return l-> val;
         idx++;
         
     }
@@ -296,16 +336,16 @@ int query_value(list l,int x)//按位查找值
 #### 按值查找
 
 ~~~c++
-int query_index (list l,int x)//按值查找,不能加list &l 防止步进时修改链表的头节点
+int query_index (list l, int x)//按值查找, 不能加 list &l 防止步进时修改链表的头节点
 {
-    int pos=1;//标记位置
-    while(l!=nullptr)
+    int pos = 1;//标记位置
+    while(l!= nullptr)
     {
-         l=l->next;
-         if(l==nullptr)//防止空指针访问异常
+         l = l-> next;
+         if(l == nullptr)//防止空指针访问异常
          return -1;
          
-        if(l->val==x)
+        if(l-> val == x)
         {
             return pos;
         } 
@@ -317,28 +357,28 @@ int query_index (list l,int x)//按值查找,不能加list &l 防止步进时修
 }
 ~~~
 
-### ==删除==指定位置的结点
+### ==删除== 指定位置的结点
 
 ~~~c++
-void del(list &l,int k)//删除第k个结点,头节点表示第0个位置
+void del(list &l, int k)//删除第 k 个结点, 头节点表示第 0 个位置
 {
    
     //特判
-    if(k==0)
+    if(k == 0)
     return ;//头节点不删
    
     
-    list tmp=l;//步进结点,替代原有的链表
-    int pos=0;
-    while(tmp->next!=nullptr)
+    list tmp = l;//步进结点, 替代原有的链表
+    int pos = 0;
+    while(tmp-> next!= nullptr)
     {
-        if(pos==k-1)//找到了这个结点的前驱结点才删除
+        if(pos == k-1)//找到了这个结点的前驱结点才删除
         {
-           tmp->next=tmp->next->next;  
+           tmp-> next = tmp-> next-> next;  
            return ;
         }
         
-         tmp=tmp->next;
+         tmp = tmp-> next;
          pos++;
     }
     return ;
@@ -351,7 +391,7 @@ void del(list &l,int k)//删除第k个结点,头节点表示第0个位置
 ~~~c++
 bool isEmpty(list l)
 {
-    if(l->next==nullptr)
+    if(l-> next == nullptr)
     return 1;
     else
     return 0;
@@ -360,36 +400,36 @@ bool isEmpty(list l)
 ~~~
 
 ~~~c++
-int countLen(list l)//统计链表长度,如果加了地址符链表当前头节点的位置就会变化
+int countLen(list l)//统计链表长度, 如果加了地址符链表当前头节点的位置就会变化
 //如果不是修改原链表最好不要地址传参 或者可以用一个结点复制原  头结点 （反正有头节点就可以访问整个链表了）
 {
-    int len=0;
-    while(l!=nullptr)
+    int len = 0;
+    while(l!= nullptr)
     {
-        l=l->next;
+        l = l-> next;
         len++;
     }
     return len-1;
 }
 ~~~
 
-<font color='red' size=6>！！注意问题：不要随便移动初始的头节点（哨兵结点，固定，），要固定住，然后使用步进结点步进去遍历  。 遍历时要防止空指针异常，特判极端（极小极大/一般）边界情况</font>
+<font color='red' size=6>！！注意问题：不要随便移动初始的头节点（哨兵结点，固定，），要固定住，然后使用步进结点步进去遍历  。 遍历时要防止空指针异常，特判极端（极小极大/一般）边界情况 </font>
 
 ---
 
 
 
-## ！循环链表(环形链表，！但指向==表头==)
+## ！循环链表(环形链表，！但指向 ==表头==)
 
-###  ==循环单链表==和==循环双链表== 
+###  ==循环单链表== 和 ==循环双链表== 
 
-**<font size='16' color='red'>循环是有<u>作用</u>的</font>**
+**<font size='16' color='red'> 循环是有<u>作用</u>的 </font>**
 
 ![image-20240924231426150](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20240924231426150.png)
 
 ![image-20240924231442290](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20240924231442290.png)
 
-### **初始化：**![image-20241013213720089](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241013213720089.png)
+### **初始化：** ![image-20241013213720089](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241013213720089.png)
 
 
 
@@ -428,27 +468,27 @@ typedef struct bioListNode
     int val;
     bioListNode *next;
     bioListNode *prior;
-    bioListNode(int x):val(x),next(nullptr),prior(nullptr){}
+    bioListNode(int x): val(x), next(nullptr), prior(nullptr){}
     
 }*bioList;
 
 //创
-   bioListNode *a=new bioListNode(-1);
-    bioListNode *b=new bioListNode(-1);
-    a->next=b;
-    b->prior=a;//初始化定义头结点和尾结点（都是不存真正的值的）
+   bioListNode *a = new bioListNode(-1);
+    bioListNode *b = new bioListNode(-1);
+    a-> next = b;
+    b-> prior = a;//初始化定义头结点和尾结点（都是不存真正的值的）
 //这样 《头插法》 和 《尾插法》 就更容易了
 ~~~
 
-### 在p结点之后插入s结点
+### 在 p 结点之后插入 s 结点
 
 ~~~c++
-void insert(bioListNode *p,bioListNode *s)//传入两个结点,在p结点之后插入一个新的结点
+void insert(bioListNode *p, bioListNode * s)//传入两个结点, 在 p 结点之后插入一个新的结点
 {
-    s->next=p->next;
-    p->next->prior=s;
-    s->prior=p;
-    p->next=s;
+    s-> next = p-> next;
+    p-> next-> prior = s;
+    s-> prior = p;
+    p-> next = s;
 }
 ~~~
 
@@ -478,12 +518,12 @@ void del(bioListNode *p) // 删除结点p
 ~~~C++
 bioListNode* find_by_value(bioList l, int value) {
     while (l != nullptr) {
-        if (l->val == value) {
-            return l; // 找到值为value的节点
+        if (l-> val == value) {
+            return l; // 找到值为 value 的节点
         }
-        l = l->next;
+        l = l-> next;
     }
-    return nullptr; // 未找到值为value的节点
+    return nullptr; // 未找到值为 value 的节点
 }
 ~~~
 
@@ -494,18 +534,18 @@ bioListNode* find_by_index(bioList l, int index) {
     int current_index = 0;
     while (l != nullptr) {
         if (current_index == index) {
-            return l; // 找到索引为index的节点
+            return l; // 找到索引为 index 的节点
         }
-        l = l->next;
+        l = l-> next;
         current_index++;
     }
-    return nullptr; // 未找到索引为index的节点
+    return nullptr; // 未找到索引为 index 的节点
 }
 ~~~
 
 
 
-### 双链表的遍历（可向==前==也可向==后==）
+### 双链表的遍历（可向 ==前== 也可向 ==后==）
 
 
 
@@ -513,42 +553,42 @@ bioListNode* find_by_index(bioList l, int index) {
 
 
 
-# basic：==数组==的缺陷和链表的区别
+# basic：==数组== 的缺陷和链表的区别
 
 ~~~C++
-#include<iostream>
+#include <iostream>
 using namespace std;
-const int N=1e3+10;
+const int N = 1e3+10;
 #define Maxsize 20
-int a[N];
+int a [N];
 
 typedef struct sqlist
 {
-  int data[Maxsize];
+  int data [Maxsize];
   int length;
   
 };
 
 void init(sqlist &l)//初始化
 {
-    l.length=0;
-    for(int i=0;i<l.length;i++)l.data[i]=0;
+    l.length = 0;
+    for(int i = 0; i < l.length; i++)l.data [i] = 0;
     
 }
-void insert(sqlist &l,int k,int x)//在指定位置插入元素
+void insert(sqlist &l, int k, int x)//在指定位置插入元素
 {
     l.length++;
-    if(l.length>=Maxsize)
+    if(l.length >= Maxsize)
     return ;
-    for(int i=l.length;i>k;i--) l.data[i]=l.data[i-1];
-    l.data[k]=x;
+    for(int i = l.length; i > k; i--) l.data [i] = l.data [i-1];
+    l.data [k] = x;
     
 }
-void del(sqlist &l,int k)//在指定位置删除元素
+void del(sqlist &l, int k)//在指定位置删除元素
 {
-    if(k>=l.length)
+    if(k >= l.length)
     return ;
-    for(int i=k;i<l.length-1;i++)l.data[i]=l.data[i+1];
+    for(int i = k; i < l.length-1; i++)l.data [i] = l.data [i+1];
     l.length--;
        
        
@@ -557,8 +597,8 @@ void del(sqlist &l,int k)//在指定位置删除元素
 }
 void print(sqlist l)
 {
-    for(int i=0;i<l.length;i++)cout<<l.data[i]<<' ';
-    cout<<endl;
+    for(int i = 0; i < l.length; i++)cout << l.data [i] <<' ';
+    cout << endl;
 }
 int main()
 {
@@ -571,7 +611,7 @@ int main()
     print(l);
     del(l,2);
     print(l);
-    cout<<l.length;
+    cout << l.length;
     
     
     
@@ -622,32 +662,32 @@ int main()
 ### 顺序栈
 
 ~~~c++
-#include<iostream>
+#include <iostream>
 using namespace std;
-const int maxsize=25;
+const int maxsize = 25;
 typedef struct 
 {
-    int val[maxsize];
+    int val [maxsize];
     int top;//栈顶指针
     
 }stack;
 void init(stack &st)//初始化
 {
-    st.top=0;//表示没有元素
-    for(int i=0;i<=maxsize;i++)
-        st.val[i]=0;
+    st.top = 0;//表示没有元素
+    for(int i = 0; i <= maxsize; i++)
+        st.val [i] = 0;
 }
-void add(stack &st,int x)//增
+void add(stack &st, int x)//增
 {
-    st.val[++st.top]=x;
+    st.val [++st.top] = x;
 }
 void pop(stack &st)
 {
-    st.val[st.top--];
+    st.val [st.top--];
 }
 bool isEmpty(stack st)
 {
-    if(!st.top)return 1;
+    if(! st.top)return 1;
     else return 0;
 }
 int countLen(stack st)
@@ -657,9 +697,9 @@ int countLen(stack st)
 void print(stack st)
 {
     while(st.top)
-    cout<<st.val[st.top--]<<
+    cout << st.val [st.top--] <<
 {
-    stack st;//创" ";
+    stack st;//创 " ";
     
 }
 int main()
@@ -671,8 +711,8 @@ int main()
     add(st,6);
     add(st,3);
     pop(st);
-    cout<<st.val[st.top];//查
-    cout<<endl<<countLen(st)<<endl;
+    cout << st.val [st.top];//查
+    cout << endl << countLen(st)<< endl;
     print(st);
     // (3) 6 4 6 5 8
     
@@ -684,21 +724,39 @@ int main()
 
 > ### 带头结点
 
-#### 创&初始化：new方法
+#### 创&初始化：new 方法
 
 #### 入栈 ： 单链表头插法
 
 #### 出栈 ：单链表头（存数据的头）删
 
-#### 判空 ：st->next==nullptr
+#### 判空 ：st-> next == nullptr
 
-#### 查值：st->next->val
+#### 查值：st-> next-> val
 
 #### 计（算）长（度）：遍历计算
 
 
 
-## 应用 ： 表达式求值 
+## 应用 ：
+
+### 中缀表达式 与前后缀表达式互转
+
+
+
+**后缀表达式消除了括号方便计算机算** 避免优先级复杂的比较计算
+
+![847e1b809704afe7753aa9ed6cf31c3](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/847e1b809704afe7753aa9ed6cf31c3.jpg)
+
+
+
+![74faa91f7c6b97c09701cd0ae5542e5](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/74faa91f7c6b97c09701cd0ae5542e5.jpg)
+
+
+
+
+
+##  表达式求值 
 
 
 
@@ -707,26 +765,26 @@ int main()
 **结合队列可求杨辉三角！**
 
 ~~~C++
-#include<iostream>
-#include<stack>
-#include<unordered_map>
+#include <iostream>
+#include <stack>
+#include <unordered_map>
 using namespace std;
-stack<char>op;
-stack<int>num;
-unordered_map<char,int> h{{'+',1},{'-',1},{'/',2},{'*',2}};
+stack <char> op;
+stack <int> num;
+unordered_map <char,int> h{{'+',1},{'-',1},{'/',2},{'*',2}};
 void eval()
 {
-    int num1=num.top();
+    int num1 = num.top();
     num.pop();
-    int num2=num.top();
+    int num2 = num.top();
     num.pop();//注意要弹出
-    char c=op.top();
+    char c = op.top();
     op.pop();
-    int ans=0;
-    if(c=='+')ans=num1+num2;
-    if(c=='-')ans=num2-num1;
-    if(c=='/')ans=num2/num1;//注意栈是倒着存的
-    if(c=='*')ans=num1*num2;
+    int ans = 0;
+    if(c =='+')ans = num1+num2;
+    if(c =='-')ans = num2-num1;
+    if(c =='/')ans = num2/num1;//注意栈是倒着存的
+    if(c =='*')ans = num1* num2;
     num.push(ans);
 
 
@@ -735,25 +793,25 @@ void eval()
 int main()
 {
     string s;
-    cin>>s;
-    for(int i=0;i<s.size();i++)
+    cin >> s;
+    for(int i = 0; i < s.size(); i++)
     {
-        if(s[i]>='0'&&s[i]<='9')
+        if(s [i] >='0'&&s [i] <='9')
         {
-            int x=0,j=i;
-            while(j<s.size()&&(s[j]>='0'&&s[j]<='9'))
+            int x = 0, j = i;
+            while(j <s.size()&&(s[j]> ='0'&&s [j] <='9'))
             {   
-                x=x*10+s[j]-'0';
+                x = x*10+s [j]-'0';
                 j++;
             }
            
             num.push(x); 
-            i=j-1;
+            i = j-1;
         }
-        else if(s[i]=='(')
-            op.push(s[i]);
+        else if(s [i] =='(')
+            op.push(s [i]);
             
-        else if(s[i]==')')
+        else if(s [i] ==')')
         {
             while(op.top()!='(')//这里不用判空
             {
@@ -763,16 +821,16 @@ int main()
         }
         else
         {
-            while(op.size()&&h[s[i]]<=h[op.top()])
+            while(op.size()&&h [s[i]]<= h [op.top()])
             eval();//要判空 （特判！）
             
-            op.push(s[i]);
+            op.push(s [i]);
         }
         
     }
     while(op.size())eval();
     
-    cout<<num.top();
+    cout << num.top();
     return 0;
     
     
@@ -783,6 +841,16 @@ int main()
 
 **判空 扫尾操作  双指针闪现（防止延迟！）**
 
+
+
+#### 栈与递归
+
+**最外层的调用也算的！！！**
+
+
+
+![image-20250109213155992](C:/Users/33813/AppData/Roaming/Typora/typora-user-images/image-20250109213155992.png)
+
 ---
 
 
@@ -791,67 +859,67 @@ int main()
 
 > ### 带头结点
 
-> 这里讨论的是只可队尾插入队头弹出的队列（非 真·双端队列和`假·双端队列`）
+> 这里讨论的是只可队尾插入队头弹出的队列（非 真·双端队列和 `假·双端队列`）
 
 #### 初始化 （利用结构体的嵌套）
 
 ~~~c++
-#include<iostream>
+#include <iostream>
 using namespace std;
-typedef struct ListNode// 结点结构体 --> 结构体变量 里面存有 int值还有一个next指针（地址）
+typedef struct ListNode// 结点结构体 --> 结构体变量 里面存有 int 值还有一个 next 指针（地址）
 {
     int val;
     ListNode *next;
     ListNode(int val)
     {
-        this->val=val;
-        this->next=nullptr;
+        this-> val = val;
+        this-> next = nullptr;
     }//初始化
 };
 
 typedef struct 
 {
-   ListNode *front,*rear;//有两个结点结构体，里面存有next指针（地址）和值
+   ListNode *front,* rear;//有两个结点结构体，里面存有 next 指针（地址）和值
 }listQueue;
 int main()
 {
     //创建带头节点的链队
-    listQueue l;//l是个 结构体对象 不能使用-> 来引用！
-   l.front=l.rear=new ListNode(-1);
+    listQueue l;//l 是个 结构体对象 不能使用-> 来引用！
+   l.front = l.rear = new ListNode(-1);
     return 0;
 }
 ~~~
 
 
 
-<font size=25 color=red>这个头指针是不存值的（也即是带头节点）-->与以上同理</font>
+<font size=25 color=red> 这个头指针是不存值的（也即是带头节点）--> 与以上同理 </font>
 
-<font size=25 color=red>**结点结构体正常搞**</font>
+<font size=25 color=red> **结点结构体正常搞** </font>
 
-<font size=25 color=red>**给链队设置头尾指针** 这样可以访问到头尾元素</font>
+<font size=25 color=red> **给链队设置头尾指针** 这样可以访问到头尾元素 </font>
 
 
 
 #### 入队 (使用尾插法)
 
 ~~~c++
-void add_tail(listQueue &l,int x)//尾插法
+void add_tail(listQueue &l, int x)//尾插法
 {
-    ListNode *newNode= new ListNode(x);
-    l.rear->next=newNode;
-    l.rear=newNode;
+    ListNode *newNode = new ListNode(x);
+    l.rear-> next = newNode;
+    l.rear = newNode;
     
 }
 void print(listQueue l)
 {
-    ListNode *head=l.front->next;
-    while(head!=nullptr)
+    ListNode *head = l.front-> next;
+    while(head!= nullptr)
     {
-        cout<<head->val<<"-->";
-        head=head->next;
+        cout <<head-> val <<"--> ";
+        head = head-> next;
     }
-    cout<<"NULL";
-    cout<<endl;
+    cout << "NULL";
+    cout << endl;
 }
 ~~~
 
@@ -861,9 +929,9 @@ void print(listQueue l)
 void pop_front(listQueue &l)
 {
     
-    ListNode *head=l.front;
-    if(head->next==nullptr)return ;
-    head->next=head->next->next;
+    ListNode *head = l.front;
+    if(head-> next == nullptr)return ;
+    head-> next = head-> next-> next;
 }
 ~~~
 
@@ -872,7 +940,7 @@ void pop_front(listQueue &l)
 ~~~C++
 bool isEmpty(listQueue l)
 {
-    if(l.front==l.rear)return 1;
+    if(l.front == l.rear)return 1;
     else return 0;
     
 }
@@ -883,14 +951,14 @@ bool isEmpty(listQueue l)
 ~~~C++
 void print(listQueue l)
 {
-    ListNode *head=l.front->next;
-    while(head!=nullptr)
+    ListNode *head = l.front-> next;
+    while(head!= nullptr)
     {
-        cout<<head->val<<"-->";
-        head=head->next;
+        cout <<head-> val <<"--> ";
+        head = head-> next;
     }
-    cout<<"NULL";
-    cout<<endl;
+    cout << "NULL";
+    cout << endl;
 }
 ~~~
 
@@ -901,18 +969,18 @@ void print(listQueue l)
 ~~~c++
 // void pop_rear(listQueue &l)//尾删法
 // {
-//     ListNode *tail=l.rear;
+//     ListNode *tail = l.rear;
     
     
 // }
 
 
-void add_head(listQueue &l,int x)//头插
+void add_head(listQueue &l, int x)//头插
 {
-    ListNode *head=l.front;
-    ListNode *newNode=new ListNode(x);
-    newNode->next=head->next;
-    head->next=newNode;
+    ListNode *head = l.front;
+    ListNode *newNode = new ListNode(x);
+    newNode-> next = head-> next;
+    head-> next = newNode;
 }
 
 ~~~
@@ -920,42 +988,42 @@ void add_head(listQueue &l,int x)//头插
 #### 单调队列
 
 ~~~c++
-#include<iostream>
-#include<deque>
+#include <iostream>
+#include <deque>
 using namespace std;
-const int N=1e6+10;
-int a[N];
-int n,k;
+const int N = 1e6+10;
+int a [N];
+int n, k;
 int main()
 {
-    cin>>n>>k;
-    for(int i=1;i<=n;i++)cin>>a[i];
-    deque<int> q;
+    cin >> n >> k;
+    for(int i = 1; i <=n;i++)cin> > a [i];
+    deque <int> q;
     //找最小值
-   for(int i=1;i<=n;i++)//枚举每一个点
+   for(int i = 1; i <= n; i++)//枚举每一个点
     {
-        //i起码要大于窗口长度
-       if(i>k&&a[i-k]==q.front())q.pop_front();//如果滑出窗口的话（一定要保证窗口元素个数不大于k）
+        //i 起码要大于窗口长度
+       if(i > k&&a [i-k] == q.front())q.pop_front();//如果滑出窗口的话（一定要保证窗口元素个数不大于 k）
        
-       while(q.size()&&a[i]<q.back())q.pop_back();
-        q.push_back(a[i]);
+       while(q.size()&&a [i] < q.back())q.pop_back();
+        q.push_back(a [i]);
        
-        if(i>=k)
-        cout<<q.front()<<' ';
+        if(i >= k)
+        cout << q.front()<<' ';
         
     }
-    cout<<endl;
+    cout << endl;
     q.clear();
-     for(int i=1;i<=n;i++)//枚举每一个点
+     for(int i = 1; i <= n; i++)//枚举每一个点
     {
-        while(q.size()&&a[i]>q.back())q.pop_back();
-        q.push_back(a[i]);//队列存值
-        //若队头滑出了窗口，则弹出队头，保持窗口的元素在k之内
-        if(i-k>=1&&a[i-k]==q.front())
+        while(q.size()&&a [i] > q.back())q.pop_back();
+        q.push_back(a [i]);//队列存值
+        //若队头滑出了窗口，则弹出队头，保持窗口的元素在 k 之内
+        if(i-k >= 1&&a [i-k] == q.front())
         q.pop_front();
         
         //窗口形成
-        if(i>=k)cout<<q.front()<<" ";
+        if(i >= k)cout << q.front()<< " ";
         
         
     }
@@ -969,40 +1037,42 @@ int main()
 ==**存下标**==
 
 ~~~C++
- for(int i=1;i<=n;i++)
+ for(int i = 1; i <= n; i++)
     {
-        //不可q.size()>=k
-        if(i>k&&i-k==q.front())q.pop_front();
-        while(q.size()&&a[q.back()]>a[i])q.pop_back();
+        //不可 q.size()>= k
+        if(i > k&&i-k == q.front())q.pop_front();
+        while(q.size()&&a [q.back()] > a [i])q.pop_back();
         q.push_back(i);
-        if(i>=k)cout<<a[q.front()]<<' ';
+        if(i >= k)cout << a [q.front()] <<' ';
     }
 ~~~
 
 #### 循环队列
 
+**% mod 操作就是对于环也就是圆圈（钟）轮转**
+
 ~~~C++
 #include <iostream>
 using namespace std;
 #define max_size 100
-// typedef struct cq //如果此处写了下面一定要写
+// typedef struct cq //如果此处写了下面一定要写 根据 c++版本决定要不要 写 考研看清楚是什么版本的
 // {
 
 // }circular_queue;
 typedef struct 
 {
-  int data[max_size];
+  int data [max_size]; // 循环队列只能用数组！！！！
   int front;
-  int rear;
+  int rear;// 表示数组下标
 
 }circular_queue;
 void init (circular_queue *q)
 {
-  q->front=q->rear=0;
+  q-> front = q-> rear = 0; // 头尾一开始都指向空（自己留一个空的空间）
 }
 bool isEmpty(circular_queue *q)
 {
-  if(q->front==q->rear)
+  if(q-> front == q-> rear)
     return 1;
   else
     return 0;
@@ -1010,7 +1080,7 @@ bool isEmpty(circular_queue *q)
 }
 bool isFull(circular_queue *q)
 {
-  if((q->rear+1)%max_size==q->front)
+  if((q-> rear+1)%max_size == q-> front)
     return 1;
   else 
     return 0;
@@ -1023,21 +1093,21 @@ int dequeue(circular_queue *q)
     return 0;
   else
   {
-    x=q->data[q->front];
-    q->front=(q->front+1)%max_size;
+    x = q-> data [q-> front];
+    q-> front =(q-> front+1)%max_size;
   }
   return x;
 
 
 }
-bool enqueue(circular_queue *q,int x)
+bool enqueue(circular_queue *q, int x)
 {
   if(isFull(q))
     return 0;
   else
   {
-    q->data[q->rear]=x;
-    q->rear=(q->rear+1)%max_size;
+    q-> data [q-> rear] = x;
+    q-> rear =(q-> rear+1)%max_size;
 
   }
   return 1;
@@ -1046,9 +1116,9 @@ bool enqueue(circular_queue *q,int x)
 }
 void print(circular_queue *q)
 {
-  while(!isEmpty(q))
+  while(! isEmpty(q))
   {
-    cout<<dequeue(q)<<' ';
+    cout << dequeue(q)<<' ';
   }
 }
 int main()
@@ -1056,15 +1126,15 @@ int main()
   circular_queue q;
   init(&q);
   int n;
-  cin>>n;
-  for(int i=0;i<n;i++)
+  cin >> n;
+  for(int i = 0; i < n; i++)
   {
     int x;
-    cin>>x;
-    enqueue(&q,x);
+    cin >> x;
+    enqueue(&q, x);
   }
   print(&q);
-  cout<<q.data[q.front]<<" "<<q.data[q.rear-1]; //输出队头和队尾
+  cout << q.data [q.front] << " " << q.data [q.rear-1]; //输出队头和队尾
 
   return 0;
 }
@@ -1078,9 +1148,62 @@ int main()
 
 **图 2 是判断队列的长度！！！** 
 
+![image-20250109213857935](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250109213857935.png)
 
+启示：对这个数据结构进行操作/判断时注意这个数据结构此时状态的==可能性==）——联系韦恩图
+
+![image-20250109214217313](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250109214217313.png)
 
 # 三、串（String）
+
+## 数组和指针基础
+
+~~~c++
+#include <iostream>
+using namespace std;
+void print(int arr []) // 等价 print(int *arr)
+{
+  cout << arr [1]; // 等价*(arr+1)
+  // 数组的 【】 就是 解引用  也就是 *
+  
+}
+int main ()
+{
+  int a [2] ={1,5};
+  print(a);
+  return 0;
+}
+~~~
+
+arr 就是 ==首地址== *arr 首地址的* *解引用**
+
+应用：
+
+~~~c++
+//**** **** *** 密码子查找（依据密码子 codon []，确定氨基酸 AA [] *** **** ****//
+void SearchCodon(char codon [], char AA []){
+//**** **** **** **** **** **** **** *****//
+	for(int i = 0; i < 64; i++)
+	{
+		if(strcmp(codonTable [i][0], codon) == 0) // 为什么不能 codonTable == codon
+		{
+            //int strcmp(const char *str1, const char * str2);
+			strcpy(AA, codonTable [i][1]);  
+			return ;
+		}
+		strcpy(AA, "unknown"); // char *strcpy(char * dest, const char *src);
+        // strcpy 函数会将源字符串 src 的内容复制到目标字符串 dest 所指向的位置，直到遇到源字符串的空字符 \0（字符串结束标志）为止。它返回指向目标字符串 dest 的指针。
+		
+	}
+    
+    // SerachCodon(codon, AA);
+    // 函数调用
+    // char codon [3], AA [3];
+~~~
+
+
+
+ 
 
 ![image-20240925153840008](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20240925153840008.png)
 
@@ -1096,7 +1219,7 @@ int main()
 
 > **`按照字典序排序优先看每个字母，如果前缀都一样就要看长度！`**
 
-拓展：采用不同的编码方式，每个字符所占空间不同，考研中只需默认每个字符占==1B==即可
+拓展：采用不同的编码方式，每个字符所占空间不同，考研中只需默认每个字符占 ==1B== 即可
 
 
 
@@ -1104,11 +1227,11 @@ int main()
 
 ![image-20240925154440498](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20240925154440498.png)
 
-**销毁这个串： free释放内存空间！**
+**销毁这个串： free 释放内存空间！**
 
 ![image-20240925154450549](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20240925154450549.png)
 
-**==如果用数组空间去存的话，一个空间是一字节，一字节的空间只能存0-255（整型）==**
+**==如果用数组空间去存的话，一个空间是一字节，一字节的空间只能存 0-255（整型）==**
 
 ![image-20240925154455828](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20240925154455828.png)
 
@@ -1144,22 +1267,22 @@ int main()
 
 拷贝：遍历赋值
 
-清空：令length=0；
+清空：令 length = 0；
 
 ~~~c++
-#include<iostream>
+#include <iostream>
 using namespace std;
 typedef struct StringNode
 {
-    char val[4];
+    char val [4];
     StringNode *next;
     StringNode(char c)///构造函数
     {
-        val[0] = c;  // 初始化第一个字符
-        val[1] = '\0';  // 确保字符串终止符存在
-        val[2] = '\0';  // 初始化其余字符为终止符
-        val[3] = '\0';  // 初始化其余字符为终止符
-        next=nullptr;
+        val [0] = c;  // 初始化第一个字符
+        val [1] = '\0';  // 确保字符串终止符存在
+        val [2] = '\0';  // 初始化其余字符为终止符
+        val [3] = '\0';  // 初始化其余字符为终止符
+        next = nullptr;
     }
     
     
@@ -1167,10 +1290,10 @@ typedef struct StringNode
 
 void print(StringNode *s)
 {
-    while(s!=nullptr)
+    while(s!= nullptr)
     {
-        cout<<s->val[0];
-        s=s->next;
+        cout <<s-> val [0];
+        s = s-> next;
         
     }
 
@@ -1183,46 +1306,46 @@ void print(StringNode *s)
 #### 注意点
 
 ~~~c++
-// StringNode* catString(StringNode *a,StringNode *b)//拼接字符串
+// StringNode * catString(StringNode * a, StringNode *b)//拼接字符串
 // {
     
-//     StringNode *res=new StringNode('#');
-//     StringNode *cur=res;
+//     StringNode *res = new StringNode('#');
+//     StringNode *cur = res;
    
-//   while(a!=nullptr)
+//   while(a!= nullptr)
 //   {
-//       cur->next=a;
-//       a=a->next;
-//       cur=cur->next;
+//       cur-> next = a;
+//       a = a-> next;
+//       cur = cur-> next;
 //   }
-//   while(b!=nullptr)
+//   while(b!= nullptr)
 //   {
-//       cur->next=b;
-//       b=b->next;
-//       cur=cur->next;
+//       cur-> next = b;
+//       b = b-> next;
+//       cur = cur-> next;
 //   }
-//   return res->next;//传回地址
+//   return res-> next;//传回地址
     
 // }
-StringNode* catString(StringNode *a, StringNode *b) {
+StringNode * catString(StringNode * a, StringNode *b) {
     // 创建一个新的头节点
     StringNode *res = new StringNode('#');
     StringNode *cur = res;
 
-    // 遍历a，复制节点
-    StringNode *tempA = a->next; // 跳过a的头节点
+    // 遍历 a，复制节点
+    StringNode *tempA = a-> next; // 跳过 a 的头节点
     while (tempA != nullptr) {
-        cur->next = new StringNode(tempA->val[0]); // 创建新节点
-        cur = cur->next;
-        tempA = tempA->next;
+        cur-> next = new StringNode(tempA-> val [0]); // 创建新节点
+        cur = cur-> next;
+        tempA = tempA-> next;
     }
 
-    // 遍历b，复制节点
-    StringNode *tempB = b->next; // 跳过b的头节点
+    // 遍历 b，复制节点
+    StringNode *tempB = b-> next; // 跳过 b 的头节点
     while (tempB != nullptr) {
-        cur->next = new StringNode(tempB->val[0]); // 创建新节点
-        cur = cur->next;
-        tempB = tempB->next;
+        cur-> next = new StringNode(tempB-> val [0]); // 创建新节点
+        cur = cur-> next;
+        tempB = tempB-> next;
     }
 
     return res; // 返回新的链表
@@ -1236,30 +1359,30 @@ StringNode* catString(StringNode *a, StringNode *b) {
 int main()
 {
     int n;
-    cin>>n;
-    StringNode *a=new StringNode('#');//初始化 创造一个字符串
+    cin >> n;
+    StringNode *a = new StringNode('#');//初始化 创造一个字符串
     
-    for(int i=0;i<n;i++)//存住字符串
+    for(int i = 0; i < n; i++)//存住字符串
     {
         char c;
-        cin>>c;
-        StringNode *tmp=new StringNode(c);//创建一个结点
-        a=append(a,tmp);
+        cin >> c;
+        StringNode *tmp = new StringNode(c);//创建一个结点
+        a = append(a, tmp);
        
     //   输入 c b g f  
     }
-    StringNode *b=new StringNode('j');
-    StringNode *ans=catString(a,b);
+    StringNode *b = new StringNode('j');
+    StringNode *ans = catString(a, b);
     
     print(a);
-    //如果按照注释那样会使得a为cbgfj
+    //如果按照注释那样会使得 a 为 cbgfj
     return 0;
 }
 ~~~
 
 > **返回字符串基本都是带#头节点的和单链表统一！！**
 >
-> ##### 如果按照注释那样会使得a为cbgfj
+> ##### 如果按照注释那样会使得 a 为 cbgfj
 
 ## BF 算法（暴力匹配）
 
@@ -1279,36 +1402,36 @@ int main()
 
 
 
-# 四、KMP算法
+# 四、KMP 算法
 
-> 主要就是前缀数组next
+> 主要就是前缀数组 next
 
 ~~~C++
-#include<iostream>
-const int N=1e5+10,M=1e6+10;
-char p[N],s[M];
-int n,m;
-int ne[N];
+#include <iostream>
+const int N = 1e5+10, M = 1e6+10;
+char p [N], s [M];
+int n, m;
+int ne [N];
 using namespace std;
 int main()
 {
-    cin>>n>>p+1>>m>>s+1;
-    //构造ne数组
-    for(int i=2,j=0;i<=n;i++)
+    cin >> n >> p+1 >> m >> s+1;
+    //构造 ne 数组
+    for(int i = 2, j = 0; i <= n; i++)
     {
-        while(j && p[i]!=p[j+1])j=ne[j];
-        if(p[i]==p[j+1])j++;
-        //while if不可替换位置
-        ne[i]=j;
+        while(j && p [i]!= p [j+1])j = ne [j];
+        if(p [i] == p [j+1])j++;
+        //while if 不可替换位置
+        ne [i] = j;
     }
-    for(int i=1,j=0;i<=m;i++)
+    for(int i = 1, j = 0; i <= m; i++)
     {
-        while(j&&s[i]!=p[j+1])j=ne[j];
-        if(s[i]==p[j+1])j++;
-        if(j==n)
+        while(j&&s [i]!= p [j+1])j = ne [j];
+        if(s [i] == p [j+1])j++;
+        if(j == n)
         {
-            cout<<i-n<<" ";
-            j=ne[j];//？
+            cout << i-n << " ";
+            j = ne [j];//？
         }
     }
     return 0;
@@ -1318,6 +1441,34 @@ int main()
 
 
 # 五、树
+
+
+
+![image-20250109215214848](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250109215214848.png)
+
+
+
+<span style="color:#FF00FF; font-size:1.9em;">x>=h h如果不是整数 那么就是向上取整h 小于等于的话就是向下取整</span> 
+
+
+
+![image-20250104215224421](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250104215224421.png)
+
+
+
+![image-20250104215228606](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250104215228606.png)
+
+
+
+注意区分树的总度数（每个结点的分支数）和图的度数（离散数学握手定理） 不要搞混了
+
+**总度数** 就是边的总数 就是结点的孩子结点的总和**n-1**
+
+
+
+
+
+
 
 ## SUM
 
@@ -1337,7 +1488,7 @@ int main()
 
 **删除结点**：
 
-有**两种**方案 ，**第一种**使双亲指针设置为-1  
+有 **两种** 方案 ，**第一种** 使双亲指针设置为-1  
 
 第二种将尾部数据移到该位置将其覆盖！！（good）
 
@@ -1345,17 +1496,17 @@ int main()
 
 缺点 ： 如果删除的不是叶子结点的话就会有问题 ，因为要删除儿子结点，这就涉及到了查询操作，
 
-所以要**从头开始遍历**，如果用第一个删除，还要判断这个无效数据，就更慢了
+所以要 **从头开始遍历**，如果用第一个删除，还要判断这个无效数据，就更慢了
 
 
 
-### 2、孩子表示法（邻接表）-->hash表&树/图的存储
+### 2、孩子表示法（邻接表）--> hash 表&树/图的存储
 
-[hash表](#十五、哈希表(散列查找))
+[hash 表](#十五、哈希表(散列查找))
 
 **就是邻接表！！！**
 
-### **<font color=red size=25>3、孩子兄弟表示法</font>**
+### **<font color=red size=25> 3、孩子兄弟表示法 </font>**
 
 <img src="https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20240929193349960.png" alt="image-20240929193349960" style="zoom:150%;" />
 
@@ -1369,12 +1520,13 @@ int main()
 typedef struct CSNode
 {
     int val;
-    CSNode * firstSon,rightBrother;//层次不一样！！ 类比leftchild 和 rightchild
+    CSNode * firstSon, rightBrother;//层次不一样！！ 类比 leftchild 和 rightchild
+    // key ---> 关键是针对非叶子结点
     
 }*CSTree;
 ~~~
 
-树与森林都可以转化为二叉树 然后操作就如[二叉树](#二叉树)
+树与森林都可以转化为二叉树 然后操作就如 [二叉树](#二叉树)
 
 ## 树与二叉树的转化
 
@@ -1422,9 +1574,9 @@ typedef struct CSNode
 
 ![image-20241017203331994](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241017203331994.png)
 
-**先根后根都是dfs**
+**先根后根都是 dfs**
 
-**层次是bfs**
+**层次是 bfs**
 
 
 
@@ -1455,7 +1607,7 @@ typedef struct CSNode
 Todo：
 
 ~~~C++
-#include<iostream>
+#include <iostream>
 using namespace std;
 
 struct Tree {
@@ -1471,16 +1623,16 @@ struct Tree {
 void addChild(Tree *parent, int x) {
     Tree *newNode = new Tree(x);
     
-    // 如果parent还没有孩子，就直接添加为第一个孩子
-    if (parent->first_child == nullptr) {
-        parent->first_child = newNode;
+    // 如果 parent 还没有孩子，就直接添加为第一个孩子
+    if (parent-> first_child == nullptr) {
+        parent-> first_child = newNode;
     } else {
         // 如果已经有孩子，找到最后一个兄弟节点，将新节点作为它的兄弟
-        Tree *child = parent->first_child;
-        while (child->self_bro != nullptr) {
-            child = child->self_bro;
+        Tree *child = parent-> first_child;
+        while (child-> self_bro != nullptr) {
+            child = child-> self_bro;
         }
-        child->self_bro = newNode;
+        child-> self_bro = newNode;
     }
 }
 
@@ -1489,13 +1641,13 @@ void preOrder(Tree *root) {
     if (root == nullptr) return;
 
     // 打印当前节点
-    cout << root->data << " ";
+    cout << root-> data << " ";
 
     // 先递归遍历第一个孩子
-    preOrder(root->first_child);
+    preOrder(root-> first_child);
     
     // 再递归遍历兄弟节点
-    preOrder(root->self_bro);
+    preOrder(root-> self_bro);
 }
 
 int main() {
@@ -1503,14 +1655,14 @@ int main() {
     Tree *root = new Tree(1);
     
     // 添加子节点和兄弟节点
-    addChild(root, 2);  // 2作为1的孩子
-    addChild(root, 3);  // 3作为1的孩子的兄弟
-    addChild(root, 4);  // 4作为1的孩子的兄弟
+    addChild(root, 2);  // 2 作为 1 的孩子
+    addChild(root, 3);  // 3 作为 1 的孩子的兄弟
+    addChild(root, 4);  // 4 作为 1 的孩子的兄弟
     
-    // 给2节点添加孩子
-    addChild(root->first_child, 5);   // 5作为2的孩子
-    addChild(root->first_child, 6);   // 6作为5的兄弟
-    addChild(root->first_child, 7);   // 7作为6的兄弟
+    // 给 2 节点添加孩子
+    addChild(root-> first_child, 5);   // 5 作为 2 的孩子
+    addChild(root-> first_child, 6);   // 6 作为 5 的兄弟
+    addChild(root-> first_child, 7);   // 7 作为 6 的兄弟
 
     // 前序遍历树，验证结构
     cout << "Pre-order traversal of the tree: ";
@@ -1525,11 +1677,15 @@ int main() {
 
 ## ==二叉树==
 
+![image-20250109215318637](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250109215318637.png)
+
+**二叉树的遍历顺序就是 以根结点为基准 然后 左优先**
+
 ### 完全二叉树
 
 ### 判断是否是完全二叉树
 
-**使用bfs存 存第一个NULL（也可以存别的东西等效替代 如正无穷） 如果null之后队列还有数的话就说明不是完全二叉树！！**
+**使用 bfs 存 存第一个 NULL（也可以存别的东西等效替代 如正无穷） 如果 null 之后队列还有数的话就说明不是完全二叉树！！**
 
 ![image-20241017163824454](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241017163824454.png)
 
@@ -1538,12 +1694,12 @@ int main() {
 #### 初始化
 
 ~~~C++
-//tree[]
+//tree []
 //Size
     int n;
-    cin>>n;
-    Size=n;
-    for(int i=1;i<=Size;i++)cin>>tree[i];//构造
+    cin >> n;
+    Size = n;
+    for(int i = 1; i <=Size;i++)cin> > tree [i];//构造
 ~~~
 
 #### 求树的深度
@@ -1551,10 +1707,10 @@ int main() {
 ~~~c++
 int dfs(int u)//返回树的深度
 {
-    if(u*2>Size)
+    if(u*2 > Size)
     return 1;
-     height=dfs(u*2)+1;//符合 完全二叉树/满二叉树
-    //max(dfs(u*2),dfs(u*2+1))+1;//普通树
+     height = dfs(u*2)+1;//符合 完全二叉树/满二叉树
+    //max(dfs(u *2), dfs(u* 2+1))+1;//普通树
     
     return height;
  
@@ -1566,13 +1722,13 @@ int dfs(int u)//返回树的深度
 ~~~C++
 void trace(int u)//输出递归路线
 {
-    if(u*2>Size)//当到达树的叶子结点时
+    if(u*2 > Size)//当到达树的叶子结点时
     {
-        cout<<u<<' ';
+        cout << u <<' ';
         return ;
     }
     
-    cout<<u<<' ';//到达每一层的操作
+    cout << u <<' ';//到达每一层的操作
     
     trace(u*2);
     //返回后做操作
@@ -1585,9 +1741,9 @@ void trace(int u)//输出递归路线
 
  void trace(int u)//输出递归路线
 {
-    if(u>Size)return ;//溢出深度时
+    if(u > Size)return ;//溢出深度时
     
-    cout<<u<<' ';
+    cout << u <<' ';
     
     trace(u*2);
     //返回后做操作
@@ -1608,7 +1764,7 @@ typedef struct listTreeNode
     listTreeNode *lchild;
     listTreeNode *rchild;
     
-    listTreeNode(int x):val(x),lchild(nullptr),rchild(nullptr){}
+    listTreeNode(int x): val(x), lchild(nullptr), rchild(nullptr){}
     
 }*ListTree;
 ~~~
@@ -1619,29 +1775,29 @@ typedef struct listTreeNode
 
 ~~~C++
 //利用 层序遍历 构造完全二叉树(bfs)
-void creatNode(int x,listTreeNode *l)//传入根节点
+void creatNode(int x, listTreeNode *l)//传入根节点
 {
-    queue<listTreeNode*>q;
+    queue <listTreeNode*> q;
     q.push(l);//让根结点入队
-    listTreeNode *newNode=new listTreeNode(x);
+    listTreeNode *newNode = new listTreeNode(x);
     
-    while(!q.empty())//队列不空
+    while(! q.empty())//队列不空
     {
-     auto t=q.front();//提取队头
+     auto t = q.front();//提取队头
      q.pop();//弹出队头
      //寻找当前队头的邻居，并加入队列
-    if(t->lchild!=nullptr) q.push(t->lchild);
+    if(t-> lchild!= nullptr) q.push(t-> lchild);
     else 
     {
-        t->lchild=newNode;
+        t-> lchild = newNode;
         return ;
         
     }
     
-    if(t->rchild!=nullptr)q.push(t->rchild);
+    if(t-> rchild!= nullptr)q.push(t-> rchild);
     else 
     {
-        t->rchild=newNode;
+        t-> rchild = newNode;
         return ;
         
     }
@@ -1656,14 +1812,14 @@ void creatNode(int x,listTreeNode *l)//传入根节点
 ~~~C++
 void trace(ListTree t)
 {
-    if(t==nullptr)
+    if(t == nullptr)
     return ;
     
-   cout<<t->val<<' ';//visit(u)
+   cout <<t-> val <<' ';//visit(u)
    
-    trace(t->lchild);
+    trace(t-> lchild);
   
-    trace(t->rchild);
+    trace(t-> rchild);
       
     
 }
@@ -1674,10 +1830,10 @@ void trace(ListTree t)
 ~~~C++
 int height(listTreeNode *l)
 {
-    if(l->lchild==nullptr)
+    if(l-> lchild == nullptr)
     return 1;
     
-    return height(l->lchild)+1;
+    return height(l-> lchild)+1;
     
 }
 ~~~
@@ -1690,20 +1846,20 @@ int height(listTreeNode *l)
 int main()
 {
     int n;
-    cin>>n;
-    listTreeNode *l=new listTreeNode(0);
-    for(int i=0;i<n;i++)
+    cin >> n;
+    listTreeNode *l = new listTreeNode(0);
+    for(int i = 0; i < n; i++)
     {
         int x;
-        cin>>x;
-        if(i==0)
+        cin >> x;
+        if(i == 0)
         {
-         l->val=x;   
+         l-> val = x;   
          continue;
         }
         
         
-        creatNode(x,l);
+        creatNode(x, l);
         
     }
     trace(l);
@@ -1716,12 +1872,26 @@ int main()
 
 ## 树的前序/中序/后序遍历 构建树
 
+![image-20250109215404348](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250109215404348.png)
+
+
+
+![ed920753c7a08a17beb24f10c9edb5c](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/ed920753c7a08a17beb24f10c9edb5c.jpg)
+
+**在先/后 序列找根结点 然后回到中序找左右子树 各对左右子树再找根结点**
+
+
+
+---
+
+
+
 ## 树的非递归形式输出前序/中序/后序遍历序列
 
 ![image-20241206142828150](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241206142828150.png)
 
 ~~~c++
-#include<iostream>
+#include <iostream>
 using namespace std;
 // global
 typedef struct biotree
@@ -1729,20 +1899,20 @@ typedef struct biotree
     char data;
     biotree *lc;
     biotree *rc;
-    biotree(char val):data(val),lc(nullptr),rc(nullptr){};
+    biotree(char val): data(val), lc(nullptr), rc(nullptr){};
     
 };
 biotree* createTree() //返回从根节点开始的整棵树
 {
     char c;
-    cin>>c;
+    cin >> c;
     if(c == '#')
         return nullptr;
     else
         {
             biotree *newnode = new biotree(c);
-            newnode->lc = createTree(); // 利用返回值连接 --》 思考
-            newnode->rc = createTree();
+            newnode-> lc = createTree(); // 利用返回值连接 --》 思考
+            newnode-> rc = createTree();
             return newnode;
             
         }
@@ -1755,21 +1925,21 @@ void middleTraveler(biotree *root)
     return ;
     
     int top = -1;
-    biotree *nodestack[100];
+    biotree *nodestack [100];
     // 先将根节点弹入栈顶
     biotree *p = root;
-    while(p || top>=0)
+    while(p || top >= 0)
     {
         if(p)
         {
-            nodestack[++top] = p;
-            p = p->lc;
+            nodestack [++top] = p;
+            p = p-> lc;
             // 优先往左边找
         }
         else // 如果当前结点的左边是空（说明已经是最左边的一个了）就到当前结点的右边
         {
-          cout<<nodestack[top]->data<<' ';
-          p = nodestack[top--]->rc; // 再去右子树中找最左边的结点
+          cout <<nodestack[top]-> data <<' ';
+          p = nodestack [top--]-> rc; // 再去右子树中找最左边的结点
           
         }
     }
@@ -1790,9 +1960,11 @@ int main()
 **输入：ABC#D##E##FG##H## （==前序==）**
 **输出：C D B E A G F H  （==中序==）**
 
-存到栈里就相当于是进入递归下一层
+存到栈里就相当于是进入 ==递归下一层==
 
-**弹出栈就是返回上一层**
+
+
+ <font size=6 color =red > **弹出栈就是返回上一层** </font>
 
 **旧知识推新知识非常重要**
 
@@ -1802,7 +1974,17 @@ int main()
 
 ## 线索二叉树
 
+**启示：做完一道检验所有选项不要无脑看到关键词就上起码要所有选项看过去 思路要清晰画图**
+
+![image-20250109220859790](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250109220859790.png)
+
 ### 	线索二叉树的中序/前序/后序遍历序列
+
+ <font size=5 color =red > n 个结点的完全二叉树 的空链域为 n+1 条 </font>
+
+**分别分析 n 奇数偶数的情况即可**！！！！
+
+**前驱和后继 是基于 遍历序列决定的！**
 
 ​	![image-20241110190454478](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241110190454478.png)
 
@@ -1812,7 +1994,13 @@ int main()
 
 ## 中序~线索二叉树的存储
 
+利用 ==左右指针的空链域== 来存储线索 
+
+**特别地 使用 ltag 和 rtag 来标明是否是线索**
+
 ![image-20241110190938336](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241110190938336.png)
+
+**左前右后**
 
 **==指向前驱和后继的指针就是线索==**
 
@@ -1830,7 +2018,11 @@ int main()
 
 ![image-20241110191154758](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241110191154758.png)
 
+==**轮序迭代**==
+
 #### 线索化查找：
+
+**要处理最后一个结点的后继 因为 每个结点的后继处理都是利用 pre 指向 q（当前结点） 但是当 q == null 就停止了 所以要单独对 pre（最后 pre 和 q 同指向 也就是都指向最后一个结点）**  
 
 ### 中序线索化：
 
@@ -1838,15 +2030,27 @@ int main()
 
 ![image-20241110191321314](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241110191321314.png)
 
-### 先序线索化
+### 
 
 ![image-20241110191324208](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241110191324208.png)
+
+### 先序线索化
+
+**主要问题**：左指前 要先判断 ==是不是线索== 非线索再继续遍历！
+
+**为什么就先序因为先序的左孩子结点已经确定前驱了 所以如果不判断就又回去了！！**
+
+
 
 ![image-20241110191358251](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241110191358251.png)
 
 ![image-20241110191401045](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241110191401045.png)
 
-### 后序线索化：
+
+
+### 后序线索化： post- 前缀 就是后的意思
+
+
 
 
 
@@ -1857,6 +2061,8 @@ int main()
 
 
 ### 找中序后继：
+
+Xtag = 0 就说明一定是不是空链域 ，说明一定有孩子！
 
 ![image-20241110191643405](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241110191643405.png)
 
@@ -1906,14 +2112,28 @@ int main()
 
 
 
-## 哈夫曼树
+## 哈夫曼树 （特殊二叉树）
+
+**哈夫曼树中不存在度为 1 的节点，即每个节点要么是叶子节点，要么有两个子节点**。
+
+### WPL 概念
+
+ WPL   （**总的**） 是指树中所有叶子节点的带权路径长度之和。==带权路径长度== 是指从 **根节点到某个叶子节点的路径长度（即经过的边数）** 乘以 ==该叶子节点的权重==。
+
+![image-20250103150550008](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250103150550008.png)
 
 ### 代码实现
+
+![image-20250103154747067](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250103154747067.png)
+
+![image-20250103154758733](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250103154758733.png)
+
+![image-20250103154808449](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250103154808449.png)
 
 ~~~C++
 ~~~
 
-**WPL：树的带权路径长度！！！**
+![image-20250103153625506](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250103153625506.png)
 
 ### SUM
 
@@ -1921,7 +2141,7 @@ int main()
 
 ![image-20241017211415016](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241017211415016.png)
 
-## trie树（拓展）
+## trie 树（拓展）
 
 ~~~C++
 ~~~
@@ -1935,47 +2155,47 @@ int main()
 ## 简单方法
 
 ~~~C++
-#include<iostream>
+#include <iostream>
 using namespace std;
 //----------------------------------------------------------------------
 #define size 13 //初始化结点个数
-int UFset[size];//节点编号
-int val[size];//结点值 
+int UFset [size];//节点编号
+int val [size];//结点值 
 //------------------------------------------------------------------------field
-int find(int s[],int x)//返回x所属的根节点
+int find(int s [], int x)//返回 x 所属的根节点
 {
-    while(s[x]>=0) x=s[x];
+    while(s [x] >= 0) x = s [x];
     return x;
     
 }
 
-void Union(int s[],int root1,int root2)//合并集合
+void Union(int s [], int root1, int root2)//合并集合
 {
-    if(root1==root2)return ;
-    else s[root1]=root2;
+    if(root1 == root2)return ;
+    else s [root1] = root2;
     
 }
 //---------------------------------------------------------------------function
 int main()
 {
     int n;
-    cin>>n;
+    cin >> n;
     
-    for(int i=0;i<size;i++)UFset[i]=-1;//只有 s[x]是 -1 的才是 根结点 ---initialize
-    for(int i=0;i<n;i++)
+    for(int i = 0; i < size; i++)UFset [i] =-1;//只有 s [x] 是 -1 的才是 根结点 ---initialize
+    for(int i = 0; i < n; i++)
     {
         int x;
-        cin>>x;
-        val[i]=x;//--------------------//赋值（assignment）
+        cin >> x;
+        val [i] = x;//--------------------//赋值（assignment）
     }
     
-    cout<<val[find(UFset,4)]<<endl;//一开始都是离散的点根节点都是本身
+    cout << val [find(UFset,4)] << endl;//一开始都是离散的点根节点都是本身
     
-    Union(UFset,find(UFset,0),find(UFset,1));
-    Union(UFset,find(UFset,1),find(UFset,2));
-    Union(UFset,find(UFset,3),find(UFset,4));
-    if(find(UFset,3)==find(UFset,2))cout<<1;
-    else cout<<0;
+    Union(UFset, find(UFset,0), find(UFset,1));
+    Union(UFset, find(UFset,1), find(UFset,2));
+    Union(UFset, find(UFset,3), find(UFset,4));
+    if(find(UFset,3)== find(UFset,2))cout << 1;
+    else cout << 0;
 
     
     
@@ -1983,64 +2203,64 @@ int main()
 }
 ~~~
 
-**==缺点==： union操作有可能会使大树合并到小树上导致树的深度增加，导致下次find时要耗费很长时间**
+**==缺点==： union 操作有可能会使大树合并到小树上导致树的深度增加，导致下次 find 时要耗费很长时间**
 
 ## 时间复杂度：
 
-union 内部操作为O(1)（前提是已经查到了root）;
+union 内部操作为 O(1)（前提是已经查到了 root）;
 
-而一次find操作最差情况的时间复杂度 是 O(n) 在n个结点且深度刚好为n的情况下、
+而一次 find 操作最差情况的时间复杂度 是 O(n) 在 n 个结点且深度刚好为 n 的情况下、
 
 ---
 
 
 
-## 优化union
+## 优化 union
 
 **==主要思路==：  就是将小树并到大树上避免树的深度越来越深**
 
-**操作：让s[root]不存-1 而是存 -（该root 树下面的结点数包括自身）**
+**操作：让 s [root] 不存-1 而是存 -（该 root 树下面的结点数包括自身）**
 
 ~~~C++}
-void Union(int s[],int root1,int root2)//优化
+void Union(int s [], int root1, int root2)//优化
 {
-    if(root1==root2)return ;
+    if(root1 == root2)return ;
     
-    if(s[root2]<s[root1])//注意是负数
+    if(s [root2] < s [root1])//注意是负数
     {
        
-        s[root2]+=s[root1]; 
-        s[root1]=root2;
+        s [root2]+= s [root1]; 
+        s [root1] = root2;
     }
     else
     {
-        // s[root2]=root1;
-        s[root1]+=s[root2];w
-        s[root2]=root1;
+        // s [root2] = root1;
+        s [root1]+= s [root2]; w
+        s [root2] = root1;
         //注意顺序问题
     }
     
 }
 ~~~
 
-最坏时间情况为O(logn)
+最坏时间情况为 O(logn)
 
 ## （压缩路径）
 
 ~~~C++
-int find(int x)//找到编号为x的结点的根节点
+int find(int x)//找到编号为 x 的结点的根节点
 {
-    if(x!=p[x])
-        p[x]=find(p[x]);
+    if(x!= p [x])
+        p [x] = find(p [x]);
         
         //return x; 不能
-         return p[x];
+         return p [x];
         
 }
-//p【root】=root
+//p【root】= root
 ~~~
 
-时间复杂度 为O (logn)
+时间复杂度 为 O (logn)
 
 **递的过程找到根结点**
 
@@ -2058,54 +2278,54 @@ int find(int x)//找到编号为x的结点的根节点
 
 **结合压缩路径和小树合并到大树！**
 
-（按size结点大小）
+（按 size 结点大小）
 
 ~~~C++
-#include<iostream>
+#include <iostream>
 using namespace std;
-const int N=1e5+10;
-int p[N];
+const int N = 1e5+10;
+int p [N];
 int find(int x)
 {
-    return p[x]>=0?p[x]=find(p[x]):x;
+    return p [x] >= 0?p [x] = find(p [x]): x;
 }
 
 int main()
 {
   int n;
-  cin>>n;
+  cin >> n;
   
-  for(int i=1;i<=n;i++)p[i]=-1;//只有根的p[root]才是负数 并且绝对值等于这个集合的结点数
+  for(int i = 1; i <= n; i++)p [i] =-1;//只有根的 p [root] 才是负数 并且绝对值等于这个集合的结点数
 
   int u;
-  cin>>u;
+  cin >> u;
   while(u--)//并 主要是在这个操作优化
   {
-    int a,b;
-    cin>>a>>b;
-    int pa=find(a);
-    int pb=find(b);
-    if(pa==pb)
+    int a, b;
+    cin >> a >> b;
+    int pa = find(a);
+    int pb = find(b);
+    if(pa == pb)
     continue;
-    if(p[pa]<p[pb])//注意负数
+    if(p [pa] < p [pb])//注意负数
     {
        
-        p[pa]+=p[pb];
-         p[pb]=pa;
+        p [pa]+= p [pb];
+         p [pb] = pa;
     }
     else
     {
-      p[pb]+=p[pa];
-       p[pa]=pb;
+      p [pb]+= p [pa];
+       p [pa] = pb;
     }
   }
   int q;
-  cin>>q;
+  cin >> q;
   while(q--)
   {
-    int a,b;
-    cin>>a>>b;
-    if(find(a)==find(b))
+    int a, b;
+    cin >> a >> b;
+    if(find(a)== find(b))
       puts("Yes");
     else
       puts("No");
@@ -2118,68 +2338,68 @@ int main()
 
 ![image-20241015213454839](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241015213454839.png)
 
-**如果是按size比较的话 就将深度高的接到深度低的上了 就会增加深度**
+**如果是按 size 比较的话 就将深度高的接到深度低的上了 就会增加深度**
 
 ## 真·终极优化（按深度）
 
 ~~~C++
-#include<iostream>
+#include <iostream>
 using namespace std;
-const int N=1e5+10;
-int p[N];
-int height[N];//高度只存在根节点上
+const int N = 1e5+10;
+int p [N];
+int height [N];//高度只存在根节点上
 int find(int x)
 {
-    return p[x]!=x?p[x]=find(p[x]):x;
+    return p [x]!= x?p [x] = find(p [x]): x;
 }
 
 int main()
 {
   int n;
-  cin>>n;
+  cin >> n;
   
-  for(int i=1;i<=n;i++)
+  for(int i = 1; i <= n; i++)
   {
-    p[i]=i;
-    height[i]=1;
+    p [i] = i;
+    height [i] = 1;
   }
   int u;
-  cin>>u;
+  cin >> u;
   while(u--)//并
   {
-    int a,b;
-    cin>>a>>b;
-    int pa=find(a);
-    int pb=find(b);
-    if(pa==pb)
+    int a, b;
+    cin >> a >> b;
+    int pa = find(a);
+    int pb = find(b);
+    if(pa == pb)
     continue;
-    if(height[pa]<height[pb])
-      p[pa]=pb;
-    else if(height[pa]>height[pb])
-      p[pb]=pa;
+    if(height [pa] < height [pb])
+      p [pa] = pb;
+    else if(height [pa] > height [pb])
+      p [pb] = pa;
     else
     {
-      p[pa]=pb;
-      height[pb]++;
+      p [pa] = pb;
+      height [pb]++;
     }
     
     
   }
   int q;
-  cin>>q;
+  cin >> q;
   while(q--)
   {
-    int a,b;
-    cin>>a>>b;
-    if(find(a)==find(b))
+    int a, b;
+    cin >> a >> b;
+    if(find(a)== find(b))
       puts("Yes");
     else
       puts("No");
     
   } 
-  for(int i=1;i<=n;i++)
+  for(int i = 1; i <= n; i++)
   {
-      cout<<height[i]<<' ';
+      cout << height [i] <<' ';
   }
 
 
@@ -2191,13 +2411,42 @@ int main()
 
 **将深度小的接到深度高的上面去！！！！**
 
-（使用数组存height深度）
+（使用数组存 height 深度）
 
 
 
 # 七、图
 
 [邻接表入门](#五、树)
+
+#### 图的基本知识
+
+![image-20250109215841503](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250109215841503.png)
+
+![image-20250109215853168](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250109215853168.png)
+
+![image-20250109215859276](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250109215859276.png)
+
+![image-20250109215907230](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250109215907230.png)
+
+![image-20250109215915809](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250109215915809.png)
+
+生成树一般是对于无向图而言的！！
+
+**带权图：网**
+
+有向边：弧
+
+连通图是对于无向图的
+强弱连通是对于有向图的
+
+### 重点注意 ： 树的度和图的度不一样 树的度就是指孩子结点 图上面的也算！~
+
+
+
+
+
+![image-20250109220351354](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250109220351354.png)
 
 ## 1.图的存储
 
@@ -2214,9 +2463,9 @@ int main()
 ~~~C++
 typedef struct 
 {
-    char vex[N];//顶点信息可以是结构体
-    int edge[N][N];//边  无权图的话可以是bool类型
-    int vexnum ,arcnum;
+    char vex [N];//顶点信息可以是结构体
+    int edge [N][N];//边  无权图的话可以是 bool 类型
+    int vexnum , arcnum;
     //存储这个图的点个数和边个数
 }graph;
 ~~~
@@ -2227,32 +2476,32 @@ typedef struct
 
 int main()
 {
-    int n;//n个顶点
-    cin>>n;
+    int n;//n 个顶点
+    cin >> n;
     graph g;
-    for(int i=0;i<n;i++)cin>>g.vex[i];
-    //edge[a][b] a->b;
+    for(int i = 0; i <n;i++)cin> > g.vex [i];
+    //edge [a][b] a-> b;
     int q;
-    cin>>q;
+    cin >> q;
     while(q--)
     {
-        int a,b;//连接两个顶点
-        cin>>a>>b;//输入两个顶点的编号
-        g.edge[a][b]=1;
-        g.edge[b][a]=1;
+        int a, b;//连接两个顶点
+        cin >> a >> b;//输入两个顶点的编号
+        g.edge [a][b] = 1;
+        g.edge [b][a] = 1;
     }//建立图的关系
-    int ans=0;//记录这个图的度
-    for(int i=0;i<n;i++)
+    int ans = 0;//记录这个图的度
+    for(int i = 0; i < n; i++)
     {
-        for(int j=0;j<n;j++)
+        for(int j = 0; j < n; j++)
         {
-             if(g.edge[i][j])
+             if(g.edge [i][j])
              ans++;
-            cout<<g.edge[i][j]<<" ";
+            cout << g.edge [i][j] << " ";
         }
-        cout<<endl;
+        cout << endl;
     }
-        cout<<ans/2;//度的数量
+        cout << ans/2;//度的数量
     
     return 0;
 }
@@ -2260,7 +2509,7 @@ int main()
 
 
 
-##### 带权图的存储
+##### 带权图（网）的存储
 
 
 
@@ -2268,7 +2517,7 @@ int main()
 
 
 
-**带权图先初始化所有边是0或者正无穷的都是可以的！**
+**带权图先初始化所有边是 0 或者正无穷的都是可以的！**
 
 ![image-20241009213605823](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241009213605823.png)
 
@@ -2286,7 +2535,9 @@ int main()
 
 
 
-##### 邻接矩阵的性质（涉及压缩矩阵的存储）
+##### 邻接矩阵的性质（涉及压缩矩阵的存储） --- 离散数学！！！
+
+**n 阶的就是两点之间的路径长度为 n 个的有几条！！**
 
 
 
@@ -2326,17 +2577,19 @@ int main()
 >
 > **vertex 顶点**
 
+与树同理， 一条边对应指向的点
 
+![image-20250104104125048](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250104104125048.png)
 
 ##### 初始化&&定义
 
 ~~~C++
-const int N=1e3;
+const int N = 1e3;
 int n;
 
 typedef struct Arcnode  // 弧/边
 {
-    int adjvex;//指向的顶点的编号
+    int adjvex;//指向的（vex）顶点的编号（index）
     Arcnode *next;
     
 }Arcnode;//相当于是链表结点
@@ -2345,69 +2598,70 @@ typedef struct Arcnode  // 弧/边
 typedef struct Vnode //顶点结构体结点 (存每个结点的信息)
 {
     int val;//结点的值
-    Arcnode *first;//存这个结点的头指针位置
-    
-}adjList[N];//存每个结点
+    Arcnode *first;//存这个结点的头指针位置  
+}adjList [N];//存每个结点 也是一个结构体（也就是数据类型）
 
 //存图结构体
 typedef struct 
 {
-  adjList vertices;// 数组类型 顶点集合
-  int vexnum,arcnum;//顶点总和和边/弧总数
+  adjList vertices;// 数组类型 顶点集合   
+    // Vnode 就相当于一个数据类型 
+  int vexnum, arcnum;//顶点总和和边/弧总数
 }graph;
 
 
 void initialize(graph *g)//传入地址
 {
-    for(int i=0;i<n;i++)g->vertices[i].first=nullptr;
+    for(int i = 0; i <n;i++)g-> vertices [i].first = nullptr;
 }
 ~~~
 
 ##### 添加边结点
 
 ~~~C++
-void add(graph *g,int a,int b)//传入结点编号   ~~不带头结点的
+void add(graph *g, int a, int b)//传入结点编号   ~~不带头结点的
 {
-  Arcnode *newNode = new Arcnode;
-  newNode->adjvex=b;
-  newNode->next=g->vertices[a].first;
-  g->vertices[a].first=newNode;
+  Arcnode *newNode = new Arcnode; // 新建一个边结点
+  newNode-> adjvex = b; // 这个边是 b 出发的！！！
+    
+  newNode-> next = g-> vertices [a].first; // 头插法
+  g-> vertices [a].first = newNode;// 不是虚拟头节点注意！！！
+  // a-> b
   
-  
-  Arcnode *newNode_reverse =new Arcnode;
-  newNode_reverse->adjvex=a;
-  newNode_reverse->next=g->vertices[b].first;
-  g->vertices[b].first=newNode_reverse;
-  
+  Arcnode *newNode_reverse = new Arcnode;
+  newNode_reverse-> adjvex = a;
+  newNode_reverse-> next = g-> vertices [b].first;
+  g-> vertices [b].first = newNode_reverse;
+  // b-> a
 
   
-}//功能：a<->b 插入(无向图)
+}//功能：a <-> b 插入(无向图)
 ~~~
 
-##### 传参和基本操作注意（c语言和c++特性区别）
+##### 传参和基本操作注意（c 语言和 c++特性区别）
 
 ~~~C++
-    graph g; //注意c语言和c++区别
-    cin>>n;//结点个数 
-    initialize(&g);//c语言特性 传参函数形参那边不允许写& 所以尽量写指针形式
-    for(int i=0;i<n;i++)cin>>g.vertices[i].val;//输入结点值
+    graph g; //注意 c 语言和 c++区别
+    cin >> n;//结点个数 
+    initialize(&g);//c 语言特性 传参函数形参那边不允许写& 所以尽量写指针形式
+    for(int i = 0; i <n;i++)cin> > g.vertices [i].val;//输入结点值
    
     int q;
-    cin>>q;
+    cin >> q;
     while(q--)
     {
-        int a,b;
-        cin>>a>>b;
+        int a, b;
+        cin >> a >> b;
         //连接结点
-        add(&g,a,b);
+        add(&g, a, b);
     
         
     }
-    int x=0;
-    while(cin>>x)
+    int x = 0;
+    while(cin >> x)
     {
-        for(Arcnode *i=g.vertices[x].first;i!=nullptr;i=i->next)
-            cout<<i->adjvex<<' ';
+        for(Arcnode *i = g.vertices [x].first; i!= nullptr; i = i-> next)
+            cout <<i-> adjvex <<' ';
          //枚举类型注意
          //注意释放内存（when）
          
@@ -2419,17 +2673,17 @@ void add(graph *g,int a,int b)//传入结点编号   ~~不带头结点的
 ~~~C++
     //枚举入边
     int x;
-    cin>>x;
-    for(int i=0;i<n;i++)//枚举每一个编号
+    cin >> x;
+    for(int i = 0; i < n; i++)//枚举每一个编号
     {
-        if(i==x)
+        if(i == x)
             continue;
-        for(Arcnode *j=g.vertices[i].first;j!=nullptr;j=j->next)
+        for(Arcnode *j = g.vertices [i].first; j!= nullptr; j = j-> next)
         {
-           if(j->adjvex==x)
-            cout<<i<<' ';//此为入边的结点
+           if(j-> adjvex == x)
+            cout << i <<' ';//此为入边的结点
         }
-        cout<<endl;
+        cout << endl;
     }  
 ~~~
 
@@ -2439,7 +2693,7 @@ void add(graph *g,int a,int b)//传入结点编号   ~~不带头结点的
 
 > **注意：有无向图有向图之分！！！**
 
-### 判断图是否存在边<x,y> 有向边（弧） （x,y） 无向边
+### 判断图是否存在边 <x,y> 有向边（弧） （x, y） 无向边
 
 对于邻接表：遍历链表 时间复杂度：O(1)~O(|V|)  （考虑最好和最坏情况）
 
@@ -2520,17 +2774,17 @@ void add(graph *g,int a,int b)//传入结点编号   ~~不带头结点的
 
 ## 3. 图的遍历
 
-### 1.图的BFS遍历
+### 1.图的 BFS 遍历
 
-> **对于  <无向图>  && <邻接表>  的bfs**
+> **对于  <无向图>  && <邻接表>  的 bfs**
 
 ~~~C++
-#include<iostream>
+#include <iostream>
 using namespace std;
-const int N=1e3;
+const int N = 1e3;
 int n;
 
-int q[N];
+int q [N];
 
 typedef struct Arcnode  // 弧/边
 {
@@ -2545,50 +2799,50 @@ typedef struct Vnode //顶点结构体结点 (存每个结点的信息)
     int val;//结点的值
     Arcnode *first;//存这个结点的头指针位置
     
-}adjList[N];//存每个结点
+}adjList [N];//存每个结点
 
 //存图结构体
 typedef struct 
 {
   adjList vertices;// 数组类型 顶点集合
-  int vexnum,arcnum;//顶点总和和边/弧总数
+  int vexnum, arcnum;//顶点总和和边/弧总数
 }graph;
 
-void add(graph *g,int a,int b)//传入结点编号   ~~不带头结点的
+void add(graph *g, int a, int b)//传入结点编号   ~~不带头结点的
 {
   Arcnode *newNode = new Arcnode;
-  newNode->adjvex=b;
-  newNode->next=g->vertices[a].first;
-  g->vertices[a].first=newNode;
+  newNode-> adjvex = b;
+  newNode-> next = g-> vertices [a].first;
+  g-> vertices [a].first = newNode;
   
   Arcnode *newNode_reverse = new Arcnode;
-  newNode_reverse->adjvex=a;
-  newNode_reverse->next=g->vertices[b].first;
-  g->vertices[b].first=newNode_reverse;
+  newNode_reverse-> adjvex = a;
+  newNode_reverse-> next = g-> vertices [b].first;
+  g-> vertices [b].first = newNode_reverse;
   
-}//功能：a<->b 插入(无向图)
+}//功能：a <-> b 插入(无向图)
 void initialize(graph *g)//传入地址
 {
-    for(int i=0;i<n;i++)g->vertices[i].first=nullptr;
+    for(int i = 0; i <n;i++)g-> vertices [i].first = nullptr;
 }
-void bfs(graph *g,int v)//从结点v开始的bfs遍历
+void bfs(graph *g, int v)//从结点 v 开始的 bfs 遍历
 {
     //初始化
-    bool st[N];//标记是否访问过
-    int hh=0,tt=-1;
-    q[++tt]=v;
-    st[v]=1;
+    bool st [N];//标记是否访问过
+    int hh = 0, tt =-1;
+    q [++tt] = v;
+    st [v] = 1;
     
-    while(tt>=hh)//队列不空
+    while(tt >= hh)//队列不空
     {
-        int t=q[hh++];//取弹队头
-        for(Arcnode *i=g->vertices[t].first;i!=nullptr;i=i->next)
+        int t = q [hh++];//取弹队头
+        for(Arcnode *i = g-> vertices [t].first; i!= nullptr; i = i-> next)
         {
-           if(!st[i->adjvex])
+           if(! st [i-> adjvex])
            {
-               cout<<i->adjvex<<" ";
-               st[i->adjvex]=1;
-               q[++tt]=i->adjvex;
+               cout <<i-> adjvex << " ";
+               st [i-> adjvex] = 1;
+               q [++tt] = i-> adjvex;
                
            }
            
@@ -2600,20 +2854,20 @@ int main()
 {
     graph g;
   
-    cin>>n;//结点个数 
+    cin >> n;//结点个数 
     initialize(&g);
-    for(int i=0;i<n;i++)cin>>g.vertices[i].val;//输入结点值
+    for(int i = 0; i <n;i++)cin> > g.vertices [i].val;//输入结点值
     
   
     
     int q;
-    cin>>q;
+    cin >> q;
     while(q--)
     {
-        int a,b;
-        cin>>a>>b;
+        int a, b;
+        cin >> a >> b;
         //连接结点
-        add(&g,a,b);
+        add(&g, a, b);
     
         
     }
@@ -2629,29 +2883,29 @@ int main()
 
 #### 如果图不止一个连通块
 
-#### -->就无法遍历完所有顶点!!!\
+#### --> 就无法遍历完所有顶点!!!\
 
 >  **所要添加的操作是：**
 
 ~~~C++
-void bfs(graph *g,int v)//从结点v开始的bfs遍历
+void bfs(graph *g, int v)//从结点 v 开始的 bfs 遍历
 {
     //初始化
-    cout<<v<<" ";
-    int hh=0,tt=-1;
-    q[++tt]=v;
-    st[v]=1;
+    cout << v << " ";
+    int hh = 0, tt =-1;
+    q [++tt] = v;
+    st [v] = 1;
     
-    while(tt>=hh)//队列不空
+    while(tt >= hh)//队列不空
     {
-        int t=q[hh++];//取弹队头
-        for(Arcnode *i=g->vertices[t].first;i!=nullptr;i=i->next)
+        int t = q [hh++];//取弹队头
+        for(Arcnode *i = g-> vertices [t].first; i!= nullptr; i = i-> next)
         {
-           if(!st[i->adjvex])
+           if(! st [i-> adjvex])
            {
-               cout<<i->adjvex<<" ";
-               st[i->adjvex]=1;
-               q[++tt]=i->adjvex;
+               cout <<i-> adjvex << " ";
+               st [i-> adjvex] = 1;
+               q [++tt] = i-> adjvex;
                
            }
            
@@ -2662,15 +2916,15 @@ void bfs(graph *g,int v)//从结点v开始的bfs遍历
 
 void bfsTraveler(graph *g)
 {
-  for(int i=0;i<n;i++)st[i]=0;
+  for(int i = 0; i < n; i++)st [i] = 0;
   //先初始化
 
-  for(int i=0;i<n;i++)
+  for(int i = 0; i < n; i++)
   {
-      if(!st[i])
+      if(! st [i])
       {
-         bfs(g,i); 
-         cout<<endl<<"-------"<<endl;
+         bfs(g, i); 
+         cout << endl << "-------" << endl;
       }
        
        
@@ -2684,7 +2938,25 @@ void bfsTraveler(graph *g)
 
 ![image-20241011192142663](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241011192142663.png)
 
+### **为什么是 O(V + E) 而不是 O(V × E)？**
 
+#### 1. **邻接表的存储方式**
+
+- 在邻接表中，每个顶点存储一个链表，链表中包含与该顶点直接相连的所有边。
+- 例如，顶点 `v` 的邻接表包含所有以 `v` 为起点的边。
+
+#### 2. **BFS 的执行过程**
+
+- BFS 会访问每个顶点一次，并遍历每个顶点的所有邻接边。
+- 由于邻接表中每条边只会被访问一次，因此总的时间复杂度是 **O(V + E)**。
+
+#### 3. **为什么不是 O(V × E)？**
+
+- 如果时间复杂度是 O(V × E)，意味着对于每个顶点，都需要遍历所有边的总数。
+- 但实际上，BFS 在邻接表中的实现是：
+  - 访问每个顶点一次：O(V)。
+  - 遍历每条边一次：O(E)。
+- 因此，总时间复杂度是 **O(V + E)**，而不是 O(V × E)。
 
 
 
@@ -2692,26 +2964,82 @@ void bfsTraveler(graph *g)
 
 ### 广度优先生成树
 
+![image-20250104145016688](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250104145016688.png)
+
+**就是根据层次遍历构建树（但不一定是二叉树！！！！！）**
+
 ![](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241011192137652.png)
 
+### 广度优先生成树应用
 
 
-### 2.图的DFS遍历
 
-> 针对于 无向图 和 邻接表的dfs遍历
+#### **1. 最短路径问题（无权图）**
+
+- **作用**：
+  - 在 **无权图** 中，BFS 生成树可以用于找到从起点到其他所有顶点的 **最短路径**。
+  - 因为 BFS 是按层次遍历的，所以生成树中的路径长度就是最短路径长度。
+- **示例**：
+  - 在社交网络中，BFS 生成树可以用于找到两个人之间的最短关系链。
+
+------
+
+#### **2. 网络分层与层级分析**
+
+- **作用**：
+  - BFS 生成树将图按层次划分，可以清晰地表示图的 **层级结构**。
+  - 适用于分析网络中的层级关系，例如组织结构、通信网络等。
+- **示例**：
+  - 在组织架构中，BFS 生成树可以表示从 CEO 到各级员工的层级关系。
+
+------
+
+#### **3. 连通性分析**
+
+- **作用**：
+  - **BFS 生成树可以用于判断图的连通性**。
+  - 如果 BFS 生成树包含所有顶点，则图是连通的；否则，图是非连通的。
+- **示例**：
+  - 在计算机网络中，BFS 生成树可以用于分析网络的连通性。
+
+------
+
+#### **4. 最小生成树的基础**
+
+- **作用**：
+  - 在 **无权图** 中，BFS 生成树本身就是一种生成树。
+  - 在 **带权图** 中，BFS 生成树可以为最小生成树算法（如 Prim 算法）提供基础。
+- **示例**：
+  - 在通信网络中，BFS 生成树可以用于初步设计网络拓扑。
+
+------
+
+#### **5. 图的遍历与路径规划**
+
+- **作用**：
+  - BFS 生成树可以用于系统地遍历图的所有顶点，确保不遗漏任何顶点。
+  - 适用于路径规划问题，例如迷宫求解、机器人导航等。
+- **示例**：
+  - 在迷宫求解中，BFS 生成树可以找到从起点到终点的最短路径。
+
+
+
+#### 2.图的 DFS 遍历
+
+> 针对于 无向图 和 邻接表的 dfs 遍历
 
 ~~~C++
-void dfs(graph *g,int v)
+void dfs(graph *g, int v)
 {
     
-    for(Arcnode *i=g->vertices[v].first;i!=nullptr;i=i->next)
+    for(Arcnode *i = g-> vertices [v].first; i!= nullptr; i = i-> next) // 结合循环横向遍历
     {
       
-        if(!st[i->adjvex])
+        if(! st [i-> adjvex])
         {   
-            cout<<i->adjvex<<' ';
-            st[i->adjvex]=1;
-            dfs(g,i->adjvex);
+            cout <<i-> adjvex <<' ';
+            st [i-> adjvex] = 1;
+            dfs(g, i-> adjvex);
         }
     }
     
@@ -2720,19 +3048,19 @@ void dfs(graph *g,int v)
 
 #### 如果图不止一个连通块
 
-#### -->就无法遍历完所有顶点!!!
+#### --> 就无法遍历完所有顶点!!!
 
 ~~~C++
-void dfs(graph *g,int v)
+void dfs(graph *g, int v)
 {
-    cout<<v<<" ";//为什么结点处理放这里可以（一定满足）
+    cout << v << " ";//为什么结点处理放这里可以（一定满足）
     
-    for(Arcnode *i=g->vertices[v].first;i!=nullptr;i=i->next)
+    for(Arcnode *i = g-> vertices [v].first; i!= nullptr; i = i-> next)
     {
-        if(!st[i->adjvex])
+        if(! st [i-> adjvex])
         {   
-            st[i->adjvex]=1;
-            dfs(g,i->adjvex);
+            st [i-> adjvex] = 1;
+            dfs(g, i-> adjvex);
         }
     }
     
@@ -2743,17 +3071,17 @@ void dfstravel(graph *g)
 {
        
     
-    for(int i=0;i<n;i++)st[i]=0;//初始化
+    for(int i = 0; i < n; i++)st [i] = 0;//初始化
   
 
-    for(int i=0;i<n;i++)
+    for(int i = 0; i < n; i++)
     {
         
-        if(!st[i])
+        if(! st [i])
         {
-          st[i]=1;
-          dfs(g,i);  
-          cout<<endl<<"--------"<<endl;
+          st [i] = 1;
+          dfs(g, i);  
+          cout << endl << "--------" << endl;
         }
             
     }
@@ -2766,11 +3094,13 @@ void dfstravel(graph *g)
 
 ![](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241011210933645.png)
 
-**思维：dfs找全部解，一旦tle了就记忆化，剪枝或者改为bfs（最短路），实在不行就dp！！**
+**思维：dfs 找全部解，一旦 tle 了就记忆化，剪枝或者改为 bfs（最短路），实在不行就 dp！！**
 
 
 
 ![image-20241011211122218](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241011211122218.png)
+
+**访问过的就不会再访问了所以和 bfs 时间复杂度一样！！**
 
 ---
 
@@ -2875,7 +3205,7 @@ int main()
 
 ```
 
-### 时间复杂度（与prim极其类似）
+### 时间复杂度（与 prim 极其类似）
 
 ### 2.floyd
 
@@ -2894,23 +3224,23 @@ int main()
 
 
 ~~~C++
-#include<iostream>
-#include<cstring>
+#include <iostream>
+#include <cstring>
 using namespace std;
-const int N=1e3+10;
-int mp[N][N];
-int vex[N];
+const int N = 1e3+10;
+int mp [N][N];
+int vex [N];
 int n;
-int path[N][N];
+int path [N][N];
 void floyd()
 {
-    for(int i=0;i<n;i++)//枚举中转点
-        for(int j=0;j<n;j++)
-            for(int k=0;k<n;k++)
-                if(mp[j][k]>mp[j][i]+mp[i][k])
+    for(int i = 0; i < n; i++)//枚举中转点
+        for(int j = 0; j < n; j++)
+            for(int k = 0; k < n; k++)
+                if(mp [j][k] > mp [j][i]+mp [i][k])
                 {
-                    mp[j][k]=mp[j][i]+mp[i][k];
-                    path[j][k]=i;//类似bfs中的last数组记录路径
+                    mp [j][k] = mp [j][i]+mp [i][k];
+                    path [j][k] = i;//类似 bfs 中的 last 数组记录路径
                 }      
      
 }
@@ -2918,35 +3248,35 @@ void floyd()
 int main()
 {
   
-    cin>>n;
-    memset(mp,0x3f,sizeof mp);//0x3f3f3f3f
-    memset(path,-1,sizeof path);
+    cin >> n;
+    memset(mp,0x3f, sizeof mp);//0x3f3f3f3f
+    memset(path,-1, sizeof path);
    int x;
-   cin>>x;
+   cin >> x;
     while(x--)
     {
-      int a,b,val;
-      cin>>a>>b>>val;
-      mp[a][b]=mp[b][a]=val;//两个连等号
+      int a, b, val;
+      cin >> a >> b >> val;
+      mp [a][b] = mp [b][a] = val;//两个连等号
       
     }
     floyd();
   
-    int st,ed;
-    cin>>st>>ed;
-    while(ed!=st)
+    int st, ed;
+    cin >> st >> ed;
+    while(ed!= st)
     {
-        cout<<ed<<' ';
-        ed=path[st][ed];
+        cout << ed <<' ';
+        ed = path [st][ed];
         
     }
     return 0;
 }
 ~~~
 
-**时空复杂度：0(v3次方) o(v2次方)**
+**时空复杂度：0(v3 次方) o(v2 次方)**
 
-**floyd可以解决带负权边的问题！**
+**floyd 可以解决带负权边的问题！**
 
 
 
@@ -2973,35 +3303,35 @@ int main()
 ### 邻接矩阵法
 
 ~~~C++
-#include<iostream>
-#include<vector>
+#include <iostream>
+#include <vector>
 using namespace std;
-const int N=10000;
-int g[N][N];
-int st[N];
-int top=0;
+const int N = 10000;
+int g [N][N];
+int st [N];
+int top = 0;
 int cnt;//记录当前的顶点数
 int n;
-int inedge[N];
-vector<int>ans;
+int inedge [N];
+vector <int> ans;
 int bfs()
 {
        while(top)
     {
-        ans.push_back(st[top]);
-        int t=st[top];
+        ans.push_back(st [top]);
+        int t = st [top];
         cnt++;
         top--;
-        for(int i=1;i<=n;i++)
+        for(int i = 1; i <= n; i++)
         {
-            if(g[t][i])
+            if(g [t][i])
             {
-              inedge[i]--;  
+              inedge [i]--;  
                    
-            if(inedge[i]==0)
+            if(inedge [i] == 0)
             {
-              st[++top]=i;  
-              g[t][i]=0;//删去这条边
+              st [++top] = i;  
+              g [t][i] = 0;//删去这条边
             }
             
             }
@@ -3009,7 +3339,7 @@ int bfs()
         
         
     }
-    if(cnt<n)
+    if(cnt < n)
         return 0;
     else
         return 1;
@@ -3017,31 +3347,31 @@ int bfs()
 int main()
 {
  
-    cin>>n;
+    cin >> n;
     int x;
-    cin>>x;
+    cin >> x;
     while(x--)
     {
-        int a,b;
-        cin>>a>>b;
+        int a, b;
+        cin >> a >> b;
        
-        if(!g[a][b])//防止重边重复计数
-        inedge[b]++;//统计入边  
-        g[a][b]=1;//表明有边
+        if(! g [a][b])//防止重边重复计数
+        inedge [b]++;//统计入边  
+        g [a][b] = 1;//表明有边
     }
-    for(int i=n;i>=1;i--)
+    for(int i = n; i >= 1; i--)
     {
-        if(inedge[i]==0) 
-            st[++top]=i;
+        if(inedge [i] == 0) 
+            st [++top] = i;
     }
-    //先存储入度为0的点
+    //先存储入度为 0 的点
     if(bfs())
-        for(int i=0;i<n;i++)
-            cout<<ans[i]<<' ';
+        for(int i = 0; i < n; i++)
+            cout << ans [i] <<' ';
     else
-        cout<<-1;
+        cout <<-1;
 
-//  for(int i=1;i<=n;i++)cout<<inedge[i]<<' '; 
+//  for(int i = 1; i <= n; i++)cout << inedge [i] <<' '; 
     
 }
 ~~~
@@ -3049,14 +3379,14 @@ int main()
 ### 邻接表写法
 
 ~~~C++
-#include<iostream>
-#include<vector>
+#include <iostream>
+#include <vector>
 using namespace std;
-const int N=1e5+10;
-vector<int>ans;
-int st[N];
+const int N = 1e5+10;
+vector <int> ans;
+int st [N];
 int top;
-int inedge[N];
+int inedge [N];
 
 int n;
 typedef struct ArcNode
@@ -3069,42 +3399,42 @@ typedef struct vexNode
 {
     int val;
     ArcNode *first;//头结点
-}verlist[N];
+}verlist [N];
 typedef struct graph
 {
     verlist vertices;//顶点集
-    int numvex,numedge;
+    int numvex, numedge;
    
     
 }graph;
-void add(graph *g,int a,int b)
+void add(graph *g, int a, int b)
 {
-    ArcNode *n1=new ArcNode();
-    n1->adjvex=b;
-    n1->next=g->vertices[a].first;
-    g->vertices[a].first=n1;
+    ArcNode *n1 = new ArcNode();
+    n1-> adjvex = b;
+    n1-> next = g-> vertices [a].first;
+    g-> vertices [a].first = n1;
     
 }
 int bfs(graph *g)
 {
-    int cnt=0;
+    int cnt = 0;
     while(top)
     {
-        int t=st[top--];//这里就是对队列中的元素处理
+        int t = st [top--];//这里就是对队列中的元素处理
         cnt++;
         ans.push_back(t);
-        for(ArcNode *i=g->vertices[t].first;i!=nullptr;i=i->next)
+        for(ArcNode *i = g-> vertices [t].first; i!= nullptr; i = i-> next)
         {
-            inedge[i->adjvex]--;//因为在这个循环中把所有出边都删除了
-            if(inedge[i->adjvex]==0)
+            inedge [i-> adjvex]--;//因为在这个循环中把所有出边都删除了
+            if(inedge [i-> adjvex] == 0)
             {
-                st[++top]=i->adjvex;
+                st [++top] = i-> adjvex;
                 
             }
         }
         
     }
-    if(cnt<n)return 0;
+    if(cnt < n)return 0;
     else
     return 1;
 }
@@ -3112,35 +3442,35 @@ int main()
 {
     graph g;
 
-    cin>>n;
-    for(int i=1;i<=n;i++)g.vertices[i].first=nullptr;//一定要初始化
+    cin >> n;
+    for(int i = 1; i <= n; i++)g.vertices [i].first = nullptr;//一定要初始化
     int x;
-    cin>>x;
+    cin >> x;
    
     while(x--)
     {
         int a;
         int b;
-        cin>>a>>b;
+        cin >> a >> b;
      
-            add(&g,a,b); 
+            add(&g, a, b); 
     }
-    for(int i=1;i<=n;i++)
+    for(int i = 1; i <= n; i++)
     {
-      for(ArcNode *h=g.vertices[i].first;h!=nullptr;h=h->next)
+      for(ArcNode *h = g.vertices [i].first; h!= nullptr; h = h-> next)
       {
-          inedge[h->adjvex]++;
+          inedge [h-> adjvex]++;
       }
     }
-    // for(int i=1;i<=n;i++)
-    //     if(inedge[i]==0)
-    //         st[++top]=i;
+    // for(int i = 1; i <= n; i++)
+    //     if(inedge [i] == 0)
+    //         st [++top] = i;
     // if(bfs(&g))
     //     for(auto c: ans)
-    //         cout<<c<<' ';
+    //         cout << c <<' ';
     // else
-    //     cout<<-1;
-        cout<<inedge[2];
+    //     cout <<-1;
+        cout << inedge [2];
  
     
 }
@@ -3153,20 +3483,20 @@ int main()
 
 
 
-### 逆拓扑排序（使用dfs）
+### 逆拓扑排序（使用 dfs）
 
-### 对于逆序 考虑dfs（递归栈）
+### 对于逆序 考虑 dfs（递归栈）
 
 #### 整体
 
 ~~~c++
 
-    #include<iostream>
-    #include<vector>
+    #include <iostream>
+    #include <vector>
     using namespace std;
-    const int N=1e5+10;
-    vector<int>ans;
-    bool flag[N];
+    const int N = 1e5+10;
+    vector <int> ans;
+    bool flag [N];
     int n;
     typedef struct ArcNode
     {
@@ -3178,36 +3508,36 @@ int main()
     {
         int val;
         ArcNode *first;//头结点
-    }verlist[N];
+    }verlist [N];
     typedef struct graph
     {
         verlist vertices;//顶点集
-        int numvex,numedge;
+        int numvex, numedge;
        
         
     }graph;
-    void add(graph *g,int a,int b)
+    void add(graph *g, int a, int b)
     {
-        ArcNode *n1=new ArcNode();
-        n1->adjvex=b;
-        n1->next=g->vertices[a].first;
-        g->vertices[a].first=n1;
+        ArcNode *n1 = new ArcNode();
+        n1-> adjvex = b;
+        n1-> next = g-> vertices [a].first;
+        g-> vertices [a].first = n1;
         
     }
     
-      void dfs(graph *g,int v)//起点
+      void dfs(graph *g, int v)//起点
     {
-        for(ArcNode *i=g->vertices[v].first;i!=nullptr;i=i->next)
+        for(ArcNode *i = g-> vertices [v].first; i!= nullptr; i = i-> next)
         {
-            if(!flag[i->adjvex])
+            if(! flag [i-> adjvex])
             {
-              flag[i->adjvex]=1;
-              dfs(g,i->adjvex);  
+              flag [i-> adjvex] = 1;
+              dfs(g, i-> adjvex);  
               
             }
             
         }
-        cout<<v<<' ';
+        cout << v <<' ';
         
     }
     
@@ -3215,15 +3545,15 @@ int main()
     
     void dfstravel(graph *g)
     {
-        for(int i=1;i<=n;i++)
-        flag[i]=0;
+        for(int i = 1; i <= n; i++)
+        flag [i] = 0;
         //初始化
-        for(int i=1;i<=n;i++)//从入度为零的点开始
+        for(int i = 1; i <= n; i++)//从入度为零的点开始
         {
-            if(!flag[i])
+            if(! flag [i])
             {
             
-                dfs(g,i);
+                dfs(g, i);
             }
             
         }
@@ -3234,18 +3564,18 @@ int main()
     {
         graph g;
     
-        cin>>n;
-        for(int i=1;i<=n;i++)g.vertices[i].first=nullptr;//一定要初始化
+        cin >> n;
+        for(int i = 1; i <= n; i++)g.vertices [i].first = nullptr;//一定要初始化
         int x;
-        cin>>x;
+        cin >> x;
        
         while(x--)
         {
             int a;
             int b;
-            cin>>a>>b;
+            cin >> a >> b;
          
-            add(&g,a,b); 
+            add(&g, a, b); 
         }
         dfstravel(&g);
         
@@ -3260,19 +3590,19 @@ int main()
 
 ~~~C++
  
-      void dfs(graph *g,int v)//起点
+      void dfs(graph *g, int v)//起点
     {
-        for(ArcNode *i=g->vertices[v].first;i!=nullptr;i=i->next)
+        for(ArcNode *i = g-> vertices [v].first; i!= nullptr; i = i-> next)
         {
-            if(!flag[i->adjvex])
+            if(! flag [i-> adjvex])
             {
-              flag[i->adjvex]=1;
-              dfs(g,i->adjvex);  
+              flag [i-> adjvex] = 1;
+              dfs(g, i-> adjvex);  
               
             }
             
         }
-        cout<<v<<' ';
+        cout << v <<' ';
         
     }
     
@@ -3280,15 +3610,15 @@ int main()
     
     void dfstravel(graph *g)
     {
-        for(int i=1;i<=n;i++)
-        flag[i]=0;
+        for(int i = 1; i <= n; i++)
+        flag [i] = 0;
         //初始化
-        for(int i=1;i<=n;i++)//从入度为零的点开始
+        for(int i = 1; i <= n; i++)//从入度为零的点开始
         {
-            if(!flag[i])
+            if(! flag [i])
             {
             
-                dfs(g,i);
+                dfs(g, i);
             }
             
         }
@@ -3299,19 +3629,59 @@ int main()
 
 ![image-20241013170231676](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241013170231676.png)
 
-# 关键路径
+# 关键路径(可以运用到实践！！！)
+
+**网：带权边图**
 
 
 
+![image-20250104152648586](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250104152648586.png)
+
+必须是 ==有向无环图==
+
+![image-20250104153331492](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250104153331492.png)
+
+普通活动：可以拖延的活动！
+
+### 求关键路径
+
+**步骤：先求点（事件 == 就是== 活动 == 完成后的一个状态），在求边（活动） ---> 最早/晚开始时间 **  
+
+**ve，vl**
+
+**e , l**
 
 
-# 八、最小生成树
+
+**求 ve 拓扑排序（入度为零） 取 ==最大==** 
+
+**求 vl 逆拓扑（出度为零） 取 ==最小==**
+
+key：当前事件要达到 入度（活动）都要删除（完成）
+
+![image-20250104155038735](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250104155038735.png)
+
+![image-20250104155329424](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250104155329424.png)
+
+![image-20250104155444586](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250104155444586.png)
+
+**时间余量：最晚开始时间- 最早开始时间 （可以拖延的时间）！！！！**
+
+# 八、最小生成树(一般是针对无向图的)
 
 **连通图概念：从一个顶点可以到达任意一个顶点（都有路径）**
 
-生成树：表示所有顶点均由边连接在一起，但**不存在回路**的图
+生成树：表示所有顶点均由边连接在一起，但 **不存在回路** 的图
 
-## 1.prim算法
+![image-20250104160033803](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250104160033803.png)
+
+## 1.prim 算法（找点为核心）
+
+![image-20250104160302843](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250104160302843.png)
+
+**点亮的部分 ：当前的最小生成树**  每次都在没点亮的点中找   距离点亮的点  中最近（距离最短）的点点亮（加入最小生成树）
+
+
 
 ![image-20241011211526962](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241011211526962.png)
 
@@ -3323,7 +3693,7 @@ int main()
 
 
 
-## prim实现操作
+## prim 实现操作
 
 ![image-20241011211950682](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241011211950682.png)
 
@@ -3347,13 +3717,19 @@ int main()
 
 
 
-## 2. kruskal算法
+## 2. kruskal 算法（找边为核心）
+
+
+
+![image-20250104162420730](C:/Users/33813/AppData/Roaming/Typora/typora-user-images/image-20250104162420730.png)
+
+**每次找最短的边连接 连接之前有条件 ： 就是这条边的两个端点是否连通（不一定是 ==直连==）**
 
 ![image-20241011211618541](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241011211618541.png)
 
 ![image-20241011211634355](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241011211634355.png)
 
-## kruskal实现操作（并查集）
+## kruskal 实现操作（并查集）
 
 
 
@@ -3395,6 +3771,8 @@ int main()
 
 ## 查找的基本概念
 
+![image-20250104162840604](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250104162840604.png)
+
 
 
 ![image-20241016211125959](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241016211125959.png)
@@ -3413,21 +3791,35 @@ int main()
 
 ![image-20241016211347984](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241016211347984.png)
 
-**注意：ASL的数量级反映了这个查找算法的时间复杂度！**
+**注意：ASL 的数量级反映了这个查找算法的时间复杂度！**
 
 
 
 # 1^o^   顺序查找
 
+![image-20250104163557792](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250104163557792.png)
+
+**查找概率看 ==元素权重==**
+
 ![image-20241017192820102](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241017192820102.png)
 
 **带哨兵与不带哨兵 仅有微妙的区别 重点在于 查找成功和查找失败的情况**
 
-ASL= （每个点查找次数 乘上查找概率 ）之和
+ASL = （每个点 **查找次数** 乘上 **查找概率** ）之和
 
 **通过 有序 来优化算法**
 
+### 查找失败主要针对失败结点！！！
+
+![image-20250104174837063](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250104174837063.png)
+
+**分子：每个失败结点的查找次数之和**
+
+
+
 ![image-20241017193115000](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241017193115000.png)
+
+
 
 ![image-20241017193548148](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241017193548148.png)
 
@@ -3435,9 +3827,28 @@ ASL= （每个点查找次数 乘上查找概率 ）之和
 
 
 
-# 2^o^   折半查找（二分）
+# 2^o^   折半查找（二分）--必须数组且有序
+
+
+
+1. **ASL**：反映整体查找效率，是所有元素查找长度的加权平均。
+2. **每个点的查找长度**：反映单个元素的查找效率，具体到某个元素的比较次数。
+
+---
+
+
 
 ## 构造二分查找判定树
+
+<span style="color:#FF00FF;">**失败的ASL就是   每个查找的次数之和/失败结点（前提是概率一样）**</span>
+
+
+
+**key： 失败和成功都和树高有关系**
+
+
+
+**将收尾下标（从 1 开始）相加除以二 然后取这个位置作为根节点递归处理**
 
 
 
@@ -3449,11 +3860,17 @@ ASL= （每个点查找次数 乘上查找概率 ）之和
 
 ![image-20241017193935293](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241017193935293.png)
 
-## 折半查找判定树的树高h：
+**查找失败的分母就是失败结点的个数**
+
+
+
+## 折半查找判定树的树高 h：
 
 
 
 ![image-20241017195049820](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241017195049820.png)
+
+**观察树满足什么性质 判断树的种类 确定计算方法！！！** 
 
 ![image-20241017195110393](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241017195110393.png)
 
@@ -3465,7 +3882,7 @@ ASL= （每个点查找次数 乘上查找概率 ）之和
 
 ---
 
-
+**这个时间复杂度怎么来的？**
 
 
 
@@ -3473,9 +3890,7 @@ ASL= （每个点查找次数 乘上查找概率 ）之和
 
 ## 查找成功与查找失败
 
-**二分查找判定树  是个二叉排序树 + 二叉平衡树** 
-
-**所以对于一个结点数为n的空链域就有n+1个！**
+**二分查找判定树  是个 ==二叉排序树 + 二叉平衡树==**
 
 
 
@@ -3489,51 +3904,77 @@ ASL= （每个点查找次数 乘上查找概率 ）之和
 
 
 
+**正常做法直接画图就行 ： 根据判定树逆向画集合序列 然后判断是向上取整还是向下取整如果矛盾了就是错的！**
+
+
+
 ---
 
 
 
 # 3^o^   分块查找
 
-![image-20241017195431850](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241017195431850.png)
+**特征：块间有序--- 块内无序**
 
-## 可用折半/顺序查找 查找 索引表
+**查找存储结构** 最大值和上下界
 
+![image-20250109221246273](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250109221246273.png)
 
-
-![](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241017200134171.png)
-
-## 二分查找逻辑
-
-![image-20241017200314181](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241017200314181.png)
-
-**查找 4次？ 还是 5次？**
-
-
-
-![image-20241017200318195](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241017200318195.png)
-
-**查找失败的情况较为复杂 重点在折半查找的查找成功和失败的情况上！！**
-
-**可以用邻接表（拉链法）来动态存储 增删 方便（链表的优点！）**
-
-![image-20241017200550250](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241017200550250.png)
-
-
-
-
+![image-20250104204502785](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250104204502785.png)
 
 # 九、二叉排序树（二叉搜索树）
 
-## 二叉搜索树的定义
+## 堆与二叉排序树的区别
+
+
+
+#### **堆**
+
+- 堆是一种 **完全二叉树**。
+- 堆分为 **最大堆** 和 **最小堆**：
+  - **最大堆**：每个节点的值都大于或等于其子节点的值。
+  - **最小堆**：每个节点的值都小于或等于其子节点的值。
+- 堆的根节点是最大值（最大堆）或最小值（最小堆）。
+- 堆通常用于实现 **优先队列**。
+
+#### **二叉排序树（BST）**
+
+- 二叉排序树是一种二叉树，满足以下性质：
+  - 左子树的所有节点的值都小于根节点的值。
+  - 右子树的所有节点的值都大于根节点的值。
+  - 左右子树也分别是二叉排序树。
+- BST 的中序遍历结果是一个 **有序序列**。
+- BST 通常用于动态集合的查找、插入和删除操作。
+
+
+
+---
+
+
+
+## 二叉搜索树的定义(与折半查找树类似)
+
+### 折半查找和二叉排序树的时间复杂度关系
+
+
+
+
+
+![308062505289bd26cd75ce60b260b36](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/308062505289bd26cd75ce60b260b36.png)
+
+
 
 ![image-20241015164542843](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241015164542843.png)
+
+**进行中序遍历得到最终的有序序列**
 
 ## 查找
 
 
 
 ![image-20241015164709213](C:/Users/33813/AppData/Roaming/Typora/typora-user-images/image-20241015164709213.png)
+
+
 
 ##  插入
 
@@ -3551,13 +3992,15 @@ ASL= （每个点查找次数 乘上查找概率 ）之和
 
 **直接删除**
 
-### 2.结点只有一边的子树
+### 2.结点只有一边的子树（代替）
 
 
 
 ![image-20241015164836591](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241015164836591.png)
 
-### 3.结点两边都有子树
+### 3.结点两边都有子树！！！！！
+
+**相当于找中序遍历的前驱/后继 （因为中序遍历二叉排序树就是一个有序序列）**
 
 #### 又分为两种做法 ： 处理 后继和前驱 
 
@@ -3569,31 +4012,85 @@ ASL= （每个点查找次数 乘上查找概率 ）之和
 
 ## 查找效率分析
 
+**插入主要就是查找的过程！！**
+
+![image-20250105144240339](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250105144240339.png)
+
 ###  查找成功
 
 ![image-20241015165339468](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241015165339468.png)
 
-**最好情况：二叉树的最小高度为log2^n+1  平均查找长度为O (log2^n+1)**
+**最好情况：二叉树的高度为 log2^n+1  平均查找长度为 O (log2^（n+1）)**
 
-**最坏情况：每个结点有且仅有一个分支 树高h=结点数n  退化为链表 ,平均查找长度为 o(n)**
+**最坏情况：每个结点有且仅有一个分支 树高 h = 结点数 n  ==退化为链表== , 平均查找长度为 o(n)**
 
 **原因就是构造时的问题**
 
-**解决方法：构造时构造==平衡二叉树！==**
+**解决方法：构造时构造 ==平衡二叉树！==**
 
 ### 查找失败
 
 ![image-20241015165750084](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241015165750084.png)
 
-# 十、平衡二叉树
+# 十、平衡二叉树（AVL 树）
+
+**当二叉搜索树本来就有序的时候二叉搜索树就会退化为链表**
+
+**所以引入 ————>    ==<平衡二叉树>==** 
+
+**平衡二叉树：是一种特殊的二叉搜索树（二叉排序树）**
+
+![image-20250105144313925](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250105144313925.png)
+
+![image-20250105151205375](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250105151205375.png)
+
+### 旋转操作 ==(调整失衡)==
+
+
+
+![image-20250105151219618](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250105151219618.png)
+
+**确定失衡因子 ：** 确定是 ==哪个孩子== 的 ==哪个子树== 上
+
+如图就是 ==LL 型==
+
+![image-20250105165259938](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250105165259938.png)
 
 
 
 
 
+![image-20250105165725423](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250105165725423.png)
+
+![image-20250105165818401](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250105165818401.png)
 
 
 
+![ ](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250105165826570.png)
+
+
+
+### 四种失衡情况 
+
+
+
+![image-20250105165113988](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250105165113988.png)
+
+**和构建二叉排序树一样 但是多了一步 也就是在增删改的过程中如果导致失衡了就要进行平衡操作！**
+
+### 平衡二叉树操作
+
+**插入&构建：**
+
+![](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250105170221788.png)
+
+**删除**:
+
+**删除结点后可能导致多个地方失衡了**
+
+**需要依次沿着祖先向上检查和调整**
+
+![image-20250105170536270](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250105170536270.png)
 
 # 十一、红黑树
 
@@ -3609,7 +4106,7 @@ ASL= （每个点查找次数 乘上查找概率 ）之和
 
 
 
-# 十二、B树
+# 十二、B 树
 
 
 
@@ -3621,34 +4118,38 @@ ASL= （每个点查找次数 乘上查找概率 ）之和
 
 # ==十四、堆==
 
+**堆一定是一颗完全二叉树**
 
 
-## up和down逻辑
+
+![image-20250105144257762](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250105144257762.png)
+
+## up 和 down 逻辑
 
 
 
 ~~~c++
 void up(int u)
 {
-    while(u/2>0&&h[u]<h[u/2])//指涉不为空
+    while(u/2 > 0&&h [u] < h [u/2])//指涉不为空
     {
-        swap(h[u],h[u/2]);
-        u/=2;//步进
+        swap(h [u], h [u/2]);
+        u/= 2;//步进
     }
 }
 void down(int u)
 {
-    int t=u;//当前结点cur
+    int t = u;//当前结点 cur
     
     //比较三个值（前提是指涉不为空）
-    if(u*2<=Size&&h[u*2]<h[t])t=u*2;
-    if(u*2+1<=Size&&h[u*2+1]<h[t])t=u*2+1;
-    //两个if都要判断
+    if(u *2 <= Size&&h [u*2] < h [t])t = u* 2;
+    if(u *2+1 <= Size&&h [u*2+1] < h [t])t = u* 2+1;
+    //两个 if 都要判断
     
-    if(t!=u)//如果确实要改变
+    if(t!= u)//如果确实要改变
     {
-        swap(h[t],h[u]);
-        down(t);//直到down到满足条件
+        swap(h [t], h [u]);
+        down(t);//直到 down 到满足条件
     }
 }
 ~~~
@@ -3658,11 +4159,11 @@ void down(int u)
 ## 建堆
 
 ~~~C++
- cin>>n; 
-    Size=n;
-    for(int i=1;i<=Size;i++)cin>>h[i];//传入时都是离散的每一个点
+ cin >> n; 
+    Size = n;
+    for(int i = 1; i <=Size;i++)cin> > h [i];//传入时都是离散的每一个点
     //!
-    for(int i=n/2;i;i--)down(i);//从最后一个父节点开始建堆(建小根堆)
+    for(int i = n/2; i; i--)down(i);//从最后一个父节点开始建堆(建小根堆)
 ~~~
 
 
@@ -3674,7 +4175,7 @@ void down(int u)
 ~~~c++
 void insert(int x)
 {
-    h[++Size]=x;
+    h [++Size] = x;
     up(Size);
     
 }
@@ -3691,7 +4192,7 @@ void insert(int x)
 ~~~c++
 void del()
 {
-    h[1]=h[Size--];
+    h [1] = h [Size--];
     down(1);
 }
 ~~~
@@ -3703,7 +4204,7 @@ void del()
 ~~~c++
 void supDel(int k)//下标
 {
-    h[k]=h[Size--];
+    h [k] = h [Size--];
     //!
     up(k);
     down(k);
@@ -3715,9 +4216,9 @@ void supDel(int k)//下标
 ### 5.修改任意一个元素
 
 ~~~C++
-void change(int k,int x)
+void change(int k, int x)
 {
-    h[k]=x;
+    h [k] = x;
     //!
     up(k);
     down(k);
@@ -3730,6 +4231,10 @@ void change(int k,int x)
 
 # 十五、哈希表(散列查找)
 
+**处理冲突的方法 ； 拉链法 开放寻址法**
+
+**散列表的构造： 除留余数法 直接定址法 平方取中法 数字分析法**
+
 # 一、 拉链法
 
 
@@ -3738,15 +4243,23 @@ void change(int k,int x)
 
 ![image-20241016195939589](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241016195939589.png)
 
-**==特别的==：注意题目 如果位置上都没有数的话 就无需判断，也就是查找长度是 ==0== ！**
+**==特别的==：注意题目 如果位置上都没有数的话 就无需判断(无需比较关键字)，也就是查找长度是 ==0== ！**
 
 **冲突越多 查找效率越低**
 
 ![image-20241016202801877](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241016202801877.png)
 
-## 装填因子
 
 
+
+
+## 散列表的构造
+
+**！！！！**
+
+**要不大于散列表长度的 才行**
+
+**如果散列表长度 15 mod 19 可能会被映射到大于 16 小于 18 的范围内**
 
 ---
 
@@ -3759,44 +4272,44 @@ void change(int k,int x)
 ### 使用数组模拟
 
 ~~~C++
-#include<iostream>
-#include<cstring>
+#include <iostream>
+#include <cstring>
 using namespace std;
-const int N=100003;//第一个比长度大的质数（可以相等--> 尽可能接近）
-int e[N],idx,h[N],ne[N];
+const int N = 100003;//第一个比长度大的质数（可以相等--> 尽可能接近）
+int e [N], idx, h [N], ne [N];
 void add(int x)
 {
-  int hash=(x%N+N)%N;
-  e[idx]=x;
-  ne[idx]=h[hash];
-  h[hash]=idx++;
+  int hash =(x%N+N)%N;
+  e [idx] = x;
+  ne [idx] = h [hash];
+  h [hash] = idx++;
 
 
 }
 int find(int x)
 {
-  int hash=(x%N+N)%N;
-  for(int i=h[hash];i!=-1;i=ne[i])
+  int hash =(x%N+N)%N;
+  for(int i = h [hash]; i!=-1; i = ne [i])
   {
-    if(e[i]==x)
+    if(e [i] == x)
       return 1;
   }
   return 0;
 }
 int main()
 {
-  memset(h,-1,sizeof h); //初始化为-1
+  memset(h,-1, sizeof h); //初始化为-1
   int n;
-  cin>>n;
+  cin >> n;
   while(n--)
   {
     int x;
-    cin>>x;
+    cin >> x;
     add(x);
   }
   int x;
-  cin>>x;
-  cout<<find(x);
+  cin >> x;
+  cout << find(x);
   
 
   return 0;
@@ -3807,32 +4320,32 @@ int main()
 
 ![image-20241016203135175](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241016203135175.png)
 
-**但是使用mod 素数法也不一定是最优的 如果如上是连续的就不是最优的了 （具体题目具体分析！**）
+**但是使用 mod 素数法也不一定是最优的 如果如上是 ==连续== 的就不是最优的了 （具体题目具体分析！**）
 
-此邻接表也可用于==建图== ！！ 
+此邻接表也可用于 ==建图== ！！ 
 
 ## Create Graph
 
 ==**h 存的都是下标指针一类的！！**==
 
 ~~~C++
-#include<iostream>
-#include<cstring>
+#include <iostream>
+#include <cstring>
 using namespace std;
-const int N=1e5+10;
-int e[N],ne[N],h[N],w[N];
+const int N = 1e5+10;
+int e [N], ne [N], h [N], w [N];
 int idx;
-void add(int a,int b,int weight)// a->b
+void add(int a, int b, int weight)// a-> b
 {
-  ne[idx]=h[a];
-  h[a]=idx;
-  e[idx]=b;
-  w[idx++]=weight;
+  ne [idx] = h [a];
+  h [a] = idx;
+  e [idx] = b;
+  w [idx++] = weight;
 
 }
 int main()
 {
-  memset(h,-1,sizeof h);//都要先初始化为-1；
+  memset(h,-1, sizeof h);//都要先初始化为-1；
 
   return 0;
 }
@@ -3840,14 +4353,14 @@ int main()
 
 
 
-### 使用拉链法
+### 使用拉链法（就是散列表）
 
 ~~~C++
-#include<iostream>
+#include <iostream>
 using namespace std;
-const int N=10003;
+const int N = 10003;
 
-typedef struct ArcNode  //?????
+typedef struct ArcNode  
 {
     int adjvex;//结点值
     ArcNode *next;//链表
@@ -3856,31 +4369,31 @@ typedef struct ArcNode  //?????
 typedef struct VNode
 {
   int val;
-  ArcNode *first;//h[]
+  ArcNode *first;//h []
 
-}vexlist[N];
+}vexlist [N];
 typedef struct graph
 {
-  vexlist vextices;//顶点set
-  int numvex,numedge;//no-usage
+  vexlist vextices;//顶点 set
+  int numvex, numedge;//no-usage
 }graph;
 //下面的只是别名  上面的是它本名！！！
-void add(int x,graph *g)
+void add(int x, graph *g)
 {
-  int hash=(x%N+N)%N;
-  ArcNode *newNode=new ArcNode();
-  newNode->adjvex=x;
-  newNode->next=g->vextices[hash].first;
-  g->vextices[hash].first=newNode;
+  int hash =(x%N+N)%N;
+  ArcNode *newNode = new ArcNode();
+  newNode-> adjvex = x;
+  newNode-> next = g-> vextices [hash].first;
+  g-> vextices [hash].first = newNode;
 
 
 }
-int find_is_exist(int x,graph *g)
+int find_is_exist(int x, graph *g)
 {
-  int hash=(x%N+N)%N;
-  for(ArcNode *i=g->vextices[hash].first;i!=nullptr;i=i->next)
+  int hash =(x%N+N)%N;
+  for(ArcNode *i = g-> vextices [hash].first; i!= nullptr; i = i-> next)
   {
-      if(i->adjvex==x)
+      if(i-> adjvex == x)
         return 1；
   }
   return 0;
@@ -3888,29 +4401,29 @@ int find_is_exist(int x,graph *g)
 --------------------------------
 void init(graph *g)
 {
-  for(int i=0;i<N;i++) 
-    g->vextices[i].first=nullptr;
+  for(int i = 0; i < N; i++) 
+    g-> vextices [i].first = nullptr;
 }
---------------------------------// -->初始化很重要<--
+--------------------------------// --> 初始化很重要 <--
 int main()
 {
   graph p;
   init(&p);
   int n;
-  cin>>n;
+  cin >> n;
   while(n--)
   {
     int x;
-    cin>>x;
+    cin >> x;
     add(x,&p);
   }
   int q;
-  cin>>q;
+  cin >> q;
   while(q--)
   {
     int x;
-    cin>>x;
-    cout<<find_is_exist(x,&p)<<endl;
+    cin >> x;
+    cout << find_is_exist(x,&p)<< endl;
   }
   return 0;
 }
@@ -3920,17 +4433,29 @@ int main()
 
 
 
-## 2.直接定址法
+## 2.直接定址法 （适合连续的元素）
+
+## 
 
 ![image-20241016203346967](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241016203346967.png)
 
 ## 3. 平方取中法
 
-![image-20241016203400792](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241016203400792.png)
+**选定散列函数时不一定知道关键字的全部情况 取其中某几位也不一定合适**
 
-## 4.数字分析法
+都不均匀的情况
 
-## ![image-20241016203427159](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241016203427159.png)
+![image-20250105123548408](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250105123548408.png)
+
+## 4.数字分析法 // 如电话号码 
+
+适用条件 ： **必须事先知道 ==所有关键字== 的每一位上的各种数字的分布情况**
+
+如 135xxxxx……这种 135 就 ==不均匀== 分布比较多
+
+
+
+## ![image-20250105123623761](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250105123623761.png)
 
 
 
@@ -3942,49 +4467,19 @@ int main()
 
 # 二、开放寻址法
 
-<font size=8>==**! 注意：  m 表示散列表表长度**==</font>
+<font size=8> ==**! 注意：  m 表示散列表表长度**== </font>
 
 
+
+**key ： 如果偏移时超过散列表长度了就mod也就是等效作环**
 
 ## 1.线性探测法（最重要！！）
 
-![image-20241016203813404](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241016203813404.png)
+![image-20250105130337305](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250105130337305.png)
 
-![image-20241016203817042](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241016203817042.png)
+![image-20250105130543287](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250105130543287.png)
 
-### 查找
-
-![image-20241016203854808](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241016203854808.png)
-
-缺点：没有区别度的查找！
-
-#### 查找失败
-
-
-
-**注意空位置也是要找的！**
-
-
-
-![image-20241016203949619](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241016203949619.png)
-
-**当遇到空位置判断为空就停止**
-
-**但是！** 
-
-**这样就引出的一个问题！**
-
-### 删除の问题
-
-![image-20241016204115894](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241016204115894.png)
-
-**标记“逻辑删除”！**
-
-![image-20241016204144636](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241016204144636.png)
-
-### 查找效率分析（ASL）
-
-![image-20241016204210097](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241016204210097.png)
+ 
 
 ### 缺点
 
@@ -3996,35 +4491,53 @@ int main()
 
 ## 2.平方探测法
 
-**一开始都由于mod13余6造成冲突！** 
+**弥补了以上问题**
 
-![image-20241016210602587](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241016210602587.png)
-
-
-
----
-
-![image-20241016210706302](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241016210706302.png)
-
-> 要想查找到所有位置是有要求的！！
+> ![image-20250105130854543](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250105130854543.png)
+>
+> 
+>
+> 
 
 ## 3.伪随机探测法
 
-![image-20241016210815543](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241016210815543.png)
+![image-20250105131922185](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250105131922185.png)
 
-![image-20241016210823874](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241016210823874.png)
 
-## 4.再散列法（准备多个散列表）
 
-![image-20241016210835076](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20241016210835076.png)
+## 4.双散列法（准备多个散列表）
+
+![](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250105131823291.png)
+
+
+
+## 删除一个元素
+
+![image-20250105132155895](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250105132155895.png)
+
+
+
+![image-20250105132449143](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250105132449143.png)
+
+
+
+![](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250105132613736.png)
+
+
 
 # 十六、排序
 
-![image-20240926191434980](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20240926191434980.png)
+## 排序分类：
 
-> 对于递归 画树更好理解！
+![image-20250103170109778](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250103170109778.png)
+
+**复杂度分析！！！！**
+
+
+
+> 对于递归 画树更好理解！		
 >
-> 稳定 插帽龟 and  *统计鸡
+> 稳定 插帽龟 and  统计鸡
 
 ## 算法的稳定性
 
@@ -4035,33 +4548,33 @@ int main()
 ## 1.归并排序
 
 ~~~c++
-#include<iostream>
+#include <iostream>
 using namespace std;
-const int N=1e5+10;
-int a[N];
-int res[N];
-void merge(int q[],int l,int r)
+const int N = 1e5+10;
+int a [N];
+int res [N];
+void merge(int q [], int l, int r)
 {
-    if(l==r)//只有一个点到时候返回
+    if(l == r)//只有一个点到时候返回
     return ;
-    int mid=l+r>>1;
-    merge(q,l,mid);
-    merge(q,mid+1,r);
+    int mid = l+r >> 1;
+    merge(q, l, mid);
+    merge(q, mid+1, r);
     
-    int i=l,j=mid+1;
-    int k=0;
-    while(i<=mid&&j<=r)
+    int i = l, j = mid+1;
+    int k = 0;
+    while(i <= mid&&j <= r)
     {
-        if(q[i]<q[j]) res[k++]=q[i++];
-        else res[k++]=q[j++];
+        if(q [i] < q [j]) res [k++] = q [i++];
+        else res [k++] = q [j++];
         
     }
-    while(i<=mid)res[k++]=q[i++];
-    while(j<=r)res[k++]=q[j++];
+    while(i <= mid)res [k++] = q [i++];
+    while(j <= r)res [k++] = q [j++];
     //!!!
-    for(int i=l,j=0;i<=r;i++,j++)
+    for(int i = l, j = 0; i <= r; i++, j++)
     {
-        q[i]=res[j];
+        q [i] = res [j];
     }
     
     
@@ -4069,10 +4582,10 @@ void merge(int q[],int l,int r)
 int main()
 {
     int n;
-    cin>>n;
-    for(int i=0;i<n;i++)cin>>a[i];
-    merge(a,0,n-1);
-    for(int i=0;i<n;i++)cout<<a[i]<<' ';
+    cin >> n;
+    for(int i = 0; i <n;i++)cin> > a [i];
+    merge(a,0, n-1);
+    for(int i = 0; i < n; i++)cout << a [i] <<' ';
     
     return 0;
 }
@@ -4080,37 +4593,79 @@ int main()
 
 ## 2.快速排序
 
+思路 ： 任选一个元素作为 枢轴（pivot	）量 然后让两边 分别小于/大于这个元素
+
+![image-20250105100449314](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250105100449314.png)
+
+这样需要额外开一个数组！！
+
+
+
+---
+
+这个方法 第一次先让 right 从右往左走！！！ 
+
+![image-20250103171534948](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250103171534948.png)
+
+**划分完成：**
+
+
+
+![image-20250103171543490](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250103171543490.png)
+
+**递归处理：**
+
+
+
+![image-20250103171639513](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250103171639513.png)
+
+### 递归的时空复杂度分析
+
+每次划分枢轴都刚好是中间值 的话就是效率最好的情况
+
+![image-20250103172242296](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250103172242296.png)
+
+**递归会占用系统栈空间 所以会有辅助空间的开销**
+
+**最坏情况**：本来就有序，而且每次枢轴量取当前区间的第一个元素
+
+**如果每次取中间有可能也会达到最差性能**
+
+![image-20250103172601011](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250103172601011.png)
+
+**辅助空间的复杂度最坏下也是 O(n) （因为递归层数是 O(n)）!!!**
+
 ~~~C++
-#include<iostream>
+#include <iostream>
 using namespace std;
-const int N=1e5+10;
-int a[N];
-void quick(int a[],int l ,int r)
+const int N = 1e5+10;
+int a [N];
+void quick(int a [], int l , int r)
 {
-    if(l==r)
+    if(l == r)
     return ;
     
-    int x=a[l+r>>1];
-    int i=l-1,j=r+1;
-    while(i<j)
+    int x = a [l+r >> 1];
+    int i = l-1, j = r+1;
+    while(i < j)
     {
-        //注意这个while 不能就一个 不然会嵌入下行的 除非while下面跟着语句
+        //注意这个 while 不能就一个 不然会嵌入下行的 除非 while 下面跟着语句
         
-        while(a[++i]<x);
-        while(a[--j]>x);//不能等
+        while(a [++i] < x);
+        while(a [--j] > x);//不能等
         //!
-        if(i<j)swap(a[i],a[j]);
+        if(i < j)swap(a [i], a [j]);
     }
-    quick(a,l,j);//不能mid 相遇在i/j 而不一定是mid
-    quick(a,j+1,r);
+    quick(a, l, j);//不能 mid 相遇在 i/j 而不一定是 mid
+    quick(a, j+1, r);
 }
 int main()
 {
     int n;
-    cin>>n;
-    for(int i=0;i<n;i++)cin>>a[i];
-    quick(a,0,n-1);
-    for(int i=0;i<n;i++)cout<<a[i]<<' ';
+    cin >> n;
+    for(int i = 0; i <n;i++)cin> > a [i];
+    quick(a,0, n-1);
+    for(int i = 0; i < n; i++)cout << a [i] <<' ';
     return 0;
 }
 ~~~
@@ -4119,29 +4674,91 @@ int main()
 
 ## 3.选择排序
 
+**key：一次交换涉及三次移动！！**
+
+![image-20250103224726113](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250103224726113.png)
+
+ <font size=6 color = red> 选择排序原代码有问题！！！！！</font>
+
+问题虽然可以排序成功但是效率极其低因为交换次数过多
+
+**测试数据：**
+
+5
+64, 25, 12, 22, 11
+
+**why :** 
+
 ~~~c++
-#include<iostream>
+#include <iostream>
 using namespace std;
-const int N=1e5+10;
-int a[N];
+const int N = 1e5+10;
+int a [N];
 int main()
 {
     int n;
-    cin>>n;
-    for(int i=0;i<n;i++)cin>>a[i];
+    cin >> n;
+    for(int i = 0; i <n;i++)cin> > a [i];
     int min;
-    for(int i=0;i<n-1;i++)
-        for(int j=i+1;j<n;j++)
+    for(int i = 0; i < n-1; i++)
+        for(int j = i+1; j < n; j++)
         {
-            if(a[j]<a[i])swap(a[i],a[j]);
+            if(a [j] < a [i])swap(a [i], a [j]);
         }
         
     
-    for(int i=0;i<n;i++)cout<<a[i]<<" ";
+    for(int i = 0; i < n; i++)cout << a [i] << " ";
     
     return 0;
 }
 ~~~
+
+ <font size=5 color =red > 正确写法 </font>
+
+#include <iostream>
+using namespace std;
+int a [10];
+int main()
+{
+    int n;
+    cin >> n;
+    int cn = 0; // 比较次数
+    int mn = 0; // 移动次数
+    
+```c++
+for(int i=0;i<n;i++) cin>>a[i];
+
+int min_index;
+for(int i=0;i<n-1;i++)
+{
+     min_index = i; // 最小的值的下标
+    for(int j=i+1;j<n;j++)
+    {
+        cn++;
+       // 每次找最小值
+       if(a[j]<a[min_index])
+       {
+           min_index = j;
+       } //  找的过程中不改变原序列  
+    }
+    if(min_index !=i)
+    {
+        swap(a[min_index],a[i]);
+        mn+=3;
+    }
+    
+}
+
+for(int i=0;i<n;i++)cout<<a[i]<<" ";
+cout<<endl;
+cout<<"比较次数: "<<cn<<endl;
+cout<<"移动次数："<<mn<<endl;
+
+return 0;
+```
+}
+
+
 
 ### 性能分析
 
@@ -4149,33 +4766,37 @@ int main()
 
 ## 4.冒泡排序
 
+每轮都从前往后以此比较相邻的两个数，逆序就交换
+
+这里的一次交换也是 ==三次== 移动（temp 操作）
+
 ~~~C++
-#include<iostream>
+#include <iostream>
 using namespace std;
 int main()
 {
     int n;
-    cin>>n;
-    int a[10];
-    for(int i=0;i<n;i++)cin>>a[i];
+    cin >> n;
+    int a [10];
+    for(int i = 0; i <n;i++)cin> > a [i];
         
-    for(int i=0;i<n-1;i++)
+    for(int i = 0; i < n-1; i++)
     {
-        //每一趟都设置为0
-        bool flag=0;//如果有交换就设为true
-        for(int j=n-1;j>i;j--)
+        //每一趟都设置为 0
+        bool flag = 0;//如果有交换就设为 true  没有交换了就说明已经有序了！
+        for(int j = n-1; j > i; j--)
         {
-            if(a[j]<a[j-1])
+            if(a [j] < a [j-1]) // 逆序遍历
             {
-                flag=1;
-                swap(a[j],a[j-1]);
+                flag = 1;
+                swap(a [j], a [j-1]);
             }
         }
-        if(flag==0)
+        if(flag == 0)
         break;
     }
     
-    for(int i=0;i<n;i++)cout<<a[i]<<" ";
+    for(int i = 0; i < n; i++)cout << a [i] << " ";
     
     return 0;
 }
@@ -4186,49 +4807,49 @@ int main()
 ## 5.堆排序
 
 ~~~c++
-#include<iostream>
+#include <iostream>
 using namespace std;
-const int N=1e5+10;
+const int N = 1e5+10;
 //需要什么
-int h[N];
+int h [N];
 int Size;
-int n,m;
+int n, m;
 void up(int u)
 {
-    while(u/2>0&&h[u]<h[u/2])//指涉不为空
+    while(u/2 > 0&&h [u] < h [u/2])//指涉不为空
     {
-        swap(h[u],h[u/2]);
-        u/=2;//步进
+        swap(h [u], h [u/2]);
+        u/= 2;//步进
     }
 }
 void down(int u)
 {
-    int t=u;//当前结点cur
+    int t = u;//当前结点 cur
     
     //比较三个值
-    if(u*2<=Size&&h[u*2]<h[t])t=u*2;
-    if(u*2+1<=Size&&h[u*2+1]<h[t])t=u*2+1;
+    if(u *2 <= Size&&h [u*2] < h [t])t = u* 2;
+    if(u *2+1 <= Size&&h [u*2+1] < h [t])t = u* 2+1;
     
-    if(t!=u)
+    if(t!= u)
     {
-        swap(h[t],h[u]);
-        down(t);//直到down到满足条件
+        swap(h [t], h [u]);
+        down(t);//直到 down 到满足条件
     }
 }
 
 int main()
 {
-    cin>>n>>m; 
-    Size=n;
-    for(int i=1;i<=n;i++)cin>>h[i];//传入时都是离散的每一个点
+    cin >> n >> m; 
+    Size = n;
+    for(int i = 1; i <=n;i++)cin> > h [i];//传入时都是离散的每一个点
     //!
-    for(int i=n/2;i;i--)down(i);//从最后一个父节点开始建堆
+    for(int i = n/2; i; i--)down(i);//从最后一个父节点开始建堆
    
     
     while(m--)
     {
-        cout<<h[1]<<" ";
-        h[1]=h[Size--];//覆盖
+        cout << h [1] << " ";
+        h [1] = h [Size--];//覆盖
         down(1);
         
     }
@@ -4239,88 +4860,153 @@ int main()
 
 
 
-## 6.基数排序
+## 6.基数排序 (非比较排序算法)
+
+​	**基数 ： 进制 e.g 二进制基数就是 2**
+
+操作：逐位进行 ==分配== 和 ==收集==（从最低位开始 ，从最高的话比较复杂涉及 **递归处理**）
+
+每个桶内部用链表（链式队列）这个数据结构存数据 （用数组的话会比较浪费空间）
+
+**分配：**（按照位数 第一轮就是个位 ，第二轮就是十位 …… 以此类推）
+
+ ![image-20250103164530664](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250103164530664.png)
+
+**收集**：
+**枚举桶、从桶里拿出来收集成一个单链表！**
+
+---
+
+**效率：**
+
+![image-20250103165218390](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250103165218390.png)
+
+![image-20250103165253057](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250103165253057.png)
+
+
+
+---
+
+
+
+
 
 
 
 ## 7.直插排序 (移位赋值操作)
 
+
+
+### 简单插入排序
+
+操作：依次将每个元素插入到前面有序的部分当中
+
+先拿当前元素和有有序区最后一个数进行比较 如果大于就无需排序直接加入有序区即可 如果小于呢 就把这个数先使用 temp 变量临时存起来 然后依次和有序区的每一个元素比较 
+
+![image-20250105162033781](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250105162033781.png)
+
+
+
+移动次数除了比较的时候移动还有 当前元素移动到 temp 再从 temp 移动到插入的位置
+
+
+
+![image-20250105162401059](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250105162401059.png)
+
+
+
+![image-20250105162522499](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250105162522499.png)
+
 ~~~C++
-#include<iostream>
+#include <iostream>
 using namespace std;
-const int N=1010;
-int a[N];
+const int N = 1010;
+int a [N];
 int main()
 {
     int n;
-    cin>>n;
-    //a[0] 哨兵结点
-    for(int i=1;i<=n;i++)cin>>a[i];
-    if(n==1)
+    cin >> n;
+    //a [0] 哨兵结点
+    for(int i = 1; i <=n;i++)cin> > a [i];
+    if(n == 1)
     {
-        cout<<a[1];
+        cout << a [1];
         return 0;
     }
     int j;
-    for(int i=2;i<=n;i++)//每次在遍历时都保证了前面是有序的了
+    for(int i = 2; i <= n; i++)//每次在遍历时都保证了前面是有序的了
     {
-        if(a[i]<a[i-1])
+        if(a [i] < a [i-1])
         {
-            a[0]=a[i];//复制当前元素到哨兵结点
-            //判断条件不需要j>0 因为a[0]本身，到本身一定会停下来
-            for(j=i-1;a[0]<a[j];j--) a[j+1]=a[j];//右移空间,因为会覆盖所以要用哨兵存起来
+            a [0] = a [i];//复制当前元素到哨兵结点
+            //判断条件不需要 j > 0 因为 a [0] 本身，到本身一定会停下来
+            for(j = i-1; a [0] < a [j]; j--) a [j+1] = a [j];//右移空间, 因为会覆盖所以要用哨兵存起来
             
-            //直到满足条件j就会停下来
-            a[j+1]=a[0];
+            //直到满足条件 j 就会停下来
+            a [j+1] = a [0];
         }
     }
-    for(int i=1;i<=n;i++)cout<<a[i]<<" ";
+    for(int i = 1; i <= n; i++)cout << a [i] << " ";
     return 0;
 }
 ~~~
 
 ### 二分优化（a bit）
 
+### 折半插入排序
+
+对有序区进行折半查找
+
+小于的话就 right = mid-1
+
+大于等于的话就 left = mid+1
+
+**直到 left 大于 right**
+
+然后插入在 left 的位置
+
+
+
 ~~~C++
-#include<iostream>
+#include <iostream>
 using namespace std;
-const int N=1010;
-int a[N];
+const int N = 1010;
+int a [N];
 int main()
 {
     int n;
-    cin>>n;
+    cin >> n;
     
-    for(int i=1;i<=n;i++)cin>>a[i];
-    if(n==1)
+    for(int i = 1; i <=n;i++)cin> > a [i];
+    if(n == 1)
     {
-        cout<<a[1];
+        cout << a [1];
         return 0;
     }
     int j;
-    int l,r;
-    for(int i=2;i<=n;i++)//每次在遍历时都保证了前面是有序的了
+    int l, r;
+    for(int i = 2; i <= n; i++)//每次在遍历时都保证了前面是有序的了
     {
-       if(a[i]<a[i-1])//一旦发现不满足的就二分查找能插入的位置
+       if(a [i] < a [i-1])//一旦发现不满足的就二分查找能插入的位置
        {
-           a[0]=a[i];
-         l=1,r=i-1;
-           while(l<r)
+           a [0] = a [i];
+         l = 1, r = i-1;
+           while(l < r)
            {
-               int mid=l+r>>1;
-               if(a[mid]>a[0])//二分逻辑注意
-                r=mid-1;
+               int mid = l+r >> 1;
+               if(a [mid] > a [0])//二分逻辑注意
+                r = mid-1;
                else 
-               l=mid+1;
+               l = mid+1;
            }//如果找不到
-          if(a[l]>a[0])//也就是都比之前小的话
-            l=0;
+          if(a [l] > a [0])//也就是都比之前小的话
+            l = 0;
             
             //统一后移让出位置
-              for(j=i-1;j>=l+1;j--)
-              a[j+1]=a[j];
+              for(j = i-1; j >= l+1; j--)
+              a [j+1] = a [j];
                
-              a[j+1]=a[0];
+              a [j+1] = a [0];
            
        }
   
@@ -4328,7 +5014,7 @@ int main()
       
        
     }
-    for(int i=1;i<=n;i++)cout<<a[i]<<" ";
+    for(int i = 1; i <= n; i++)cout << a [i] << " ";
     return 0;
 }
 ~~~
@@ -4337,35 +5023,51 @@ int main()
 
 ## 8.希尔（shell）排序
 
+**与开放寻址法的避免冲突类似都有一个增量**（Δ 变化量）
+
+![image-20250105164405234](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250105164405234.png)
+
+**如图增量是 2！**
+
+**优化的插入排序**
+
+思路：
+
+**增量依次折半**
+
+![image-20250105164535770](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250105164535770.png)
+
+
+
 ~~~C++
-#include<iostream>
+#include <iostream>
 using namespace std;
-const int N=1e5+10;
-int a[N];
+const int N = 1e5+10;
+int a [N];
 int main()
 {
     int n;
-    cin>>n;
-    for(int i=1;i<=n;i++)cin>>a[i];
+    cin >> n;
+    for(int i = 1; i <=n;i++)cin> > a [i];
     int j;
-    for(int d=n/2;d>=1;d/=2)
+    for(int d = n/2; d >= 1; d/= 2)
     {
-        for(int i=d+1;i<=n;i++)
+        for(int i = d+1; i <= n; i++)
         {
-            if(a[i]<a[i-d])//一旦发现子集中有一个大于a[0]
+            if(a [i] < a [i-d])//一旦发现子集中有一个大于 a [0]
             {
-                a[0]=a[i];//暂存这个值
+                a [0] = a [i];//暂存这个值
                 //插入排序步骤
-                for(j=i-d;j>0&&a[j]>a[0];j-=d)//枚举这个子集
-                a[j+d]=a[j];
-                a[j+d]=a[0];
+                for(j = i-d; j > 0&&a [j] > a [0]; j-= d)//枚举这个子集
+                a [j+d] = a [j];
+                a [j+d] = a [0];
                 
             }
         }
     }
 
 
-    for(int i=1;i<=n;i++)cout<<a[i]<<' ';
+    for(int i = 1; i <= n; i++)cout << a [i] <<' ';
     return 0;
 }
 ~~~
