@@ -2,6 +2,8 @@
 
 `use to match`
 
+![image-20250117102951812](https://cdn.jsdelivr.net/gh/kasahuki/os_test@main/img/image-20250117102951812.png)
+
 **应用：网站域名url 以及 html标签  或者 rgba?属性**   或者 ipv4地址
 
 （重要在于实践）
